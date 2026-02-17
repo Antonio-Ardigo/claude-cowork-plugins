@@ -1,0 +1,8 @@
+{
+  "name": "project-planning",
+  "version": "1.0.0",
+  "description": "Engineering and construction project planning with toll gate process. Scope analysis, three-alternative comparison, FEED, AACE cost estimates, CPM scheduling, procurement strategy, constructability, value engineering, risk management, and permits through Design Freeze.",
+  "author": {
+    "name": "Anton Ardigo"
+  }
+}

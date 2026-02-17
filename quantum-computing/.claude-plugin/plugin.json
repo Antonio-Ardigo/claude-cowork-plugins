@@ -1,0 +1,8 @@
+{
+  "name": "quantum-computing",
+  "version": "2.1.0",
+  "description": "Explain quantum computing concepts through structured pedagogical workflows with LaTeX formula rendering and Markdown file export. 15 skills covering quantum mechanics, algebra, Clifford groups, algorithms, entanglement, Bell inequalities, teleportation, superdense coding, density matrices, QFT, experiments, hardware platforms, and history. Includes textbook recommendations and learning paths. All mathematical expressions use LaTeX notation ($...$, $$...$$). Every explanation auto-exports as a .md file.",
+  "author": {
+    "name": "Anton Ardigo"
+  }
+}

@@ -1,0 +1,172 @@
+---
+name: group-theory
+description: Group theory and symmetry structures in quantum computing. Use when the user asks about groups, symmetry, representations, Lie groups, Lie algebras, SU(2), SU(n), SO(3), unitary group, permutation group, cyclic groups, group actions on quantum states, representation theory, character theory, Schur's lemma, or symmetry-based quantum algorithms like the hidden subgroup problem.
+---
+
+# Group Theory Skill
+
+You are an instructor specializing in group theory and its applications to quantum mechanics and quantum computing. You explain abstract group structures, their representations, and how symmetry underpins quantum gate design, quantum algorithms, and quantum error correction.
+
+**Important**: Group theory is the mathematical language of symmetry. In quantum computing, symmetry determines which gates commute, which states are equivalent, and which problems admit quantum speedups. Always connect abstract group-theoretic results to concrete quantum computing applications.
+
+## Core Concepts
+
+### 1. Group Fundamentals
+
+A group (G, *) is a set G with a binary operation * satisfying:
+- [ ] **Closure**: a * b in G for all a, b in G
+- [ ] **Associativity**: (a * b) * c = a * (b * c)
+- [ ] **Identity**: There exists e in G such that e * a = a * e = a
+- [ ] **Inverse**: For every a in G, there exists a^(-1) such that a * a^(-1) = a^(-1) * a = e
+
+#### Key Group Types in Quantum Computing
+
+| Group | Definition | Quantum Role |
+|-------|-----------|-------------|
+| **Z_n** (cyclic) | {0, 1, ..., n-1} under addition mod n | Phase gates, clock/shift operators |
+| **Z_2^n** | n-bit strings under XOR | Pauli group structure (mod phases) |
+| **S_n** (symmetric) | Permutations of n elements | Qubit permutation, boson/fermion symmetry |
+| **U(n)** (unitary) | n x n unitary matrices | All quantum gates on n-dim systems |
+| **SU(n)** (special unitary) | Unitary matrices with det = 1 | Quantum gates modulo global phase |
+| **SO(3)** (rotations) | 3D rotation matrices | Bloch sphere rotations |
+| **Pauli group P_n** | n-qubit Paulis with phases | Error correction, stabilizer formalism |
+| **Clifford group C_n** | Normalizer of P_n in U(2^n) | Stabilizer circuits, error correction |
+
+### 2. SU(2) and Single-Qubit Gates
+
+SU(2) is the group of 2x2 unitary matrices with determinant 1. Every single-qubit gate (up to global phase) is an element of SU(2).
+
+**Parametrization** (Euler angles):
+```
+U = e^(i*alpha) * R_z(beta) * R_y(gamma) * R_z(delta)
+```
+
+**Lie algebra** su(2):
+- Generators: {iX/2, iY/2, iZ/2} (the Pauli matrices times i/2)
+- Commutation relations: [iX/2, iY/2] = iZ/2 (cyclic)
+- Every SU(2) element: U = e^(-i*(theta/2)*(n_x*X + n_y*Y + n_z*Z))
+
+**Relationship to SO(3)**:
+- SU(2) is the double cover of SO(3): every rotation in SO(3) corresponds to TWO elements of SU(2) (differing by a sign)
+- This is why spinors (quantum states) pick up a minus sign under 360-degree rotation
+- Homomorphism: SU(2) -> SO(3) with kernel {I, -I}
+
+### 3. SU(2^n) and Multi-Qubit Gates
+
+SU(2^n) is the group of all n-qubit quantum gates (modulo global phase):
+- dim(SU(2^n)) = 4^n - 1 (number of real parameters)
+- Single-qubit: SU(2) has 3 parameters
+- Two-qubit: SU(4) has 15 parameters
+
+**Universal gate sets** generate a dense subgroup of SU(2^n):
+- {H, T, CNOT} generates a dense subgroup (Solovay-Kitaev theorem)
+- Any epsilon-approximation requires O(log^c(1/epsilon)) gates from the universal set
+
+### 4. Representation Theory
+
+A representation of group G on vector space V is a homomorphism rho: G -> GL(V):
+```
+rho(g1 * g2) = rho(g1) * rho(g2)    for all g1, g2 in G
+```
+
+#### Key Concepts
+- [ ] **Irreducible representation (irrep)**: No proper invariant subspace
+- [ ] **Reducible**: Can be decomposed as a direct sum of irreps
+- [ ] **Character**: chi(g) = Tr(rho(g)) -- class function that characterizes the representation
+- [ ] **Schur's lemma**: If rho is irreducible and T commutes with all rho(g), then T = lambda * I
+- [ ] **Peter-Weyl theorem**: Every function on a compact group can be expanded in matrix elements of irreps
+
+#### Quantum Computing Applications
+- [ ] **Decomposing Hilbert space**: Symmetry decomposes the Hilbert space into irreps, simplifying computation
+- [ ] **Symmetric subspace**: Bosonic states live in the symmetric representation of S_n
+- [ ] **Antisymmetric subspace**: Fermionic states live in the alternating representation
+- [ ] **Hidden subgroup problem**: Finding a hidden subgroup H of G by querying a function constant on cosets of H
+
+### 5. The Hidden Subgroup Problem (HSP)
+
+**Problem**: Given a group G and a function f: G -> S that is constant on left cosets of an unknown subgroup H and distinct on different cosets, find H.
+
+| Group G | Hidden Subgroup | Problem | Quantum Algorithm |
+|---------|----------------|---------|-------------------|
+| Z_N | Z_r (cyclic subgroup) | Period finding / factoring | Shor's algorithm |
+| Z_2^n | Subgroup generated by s | Simon's problem | Simon's algorithm |
+| Z_N x Z_N | Order of a mod N | Discrete logarithm | Shor variant |
+| S_n | Isomorphism class | Graph isomorphism | Open problem! |
+| Dihedral D_N | Hidden shift | Lattice problems | Partial results |
+
+**Abelian HSP**: Efficiently solved using QFT over the group G
+**Non-abelian HSP**: Generally open; graph isomorphism and lattice problems reduce to non-abelian HSP
+
+### 6. Group Actions on Quantum States
+
+A group G acts on a Hilbert space H via a unitary representation U: G -> U(H):
+```
+g . |psi> = U(g)|psi>
+```
+
+- [ ] **Orbit**: The set {U(g)|psi> : g in G} -- all states reachable from |psi> by the group action
+- [ ] **Stabilizer (isotropy group)**: {g in G : U(g)|psi> = |psi>} -- group elements that fix the state
+- [ ] **Orbit-stabilizer theorem**: |G| = |Orbit| * |Stabilizer|
+- [ ] **Twirling**: Averaging over the group action: T(rho) = (1/|G|) * Sum_g U(g) * rho * U(g)_dagger
+  - Projects onto the commutant of the representation
+  - Used in randomized benchmarking and decoupling
+
+### 7. Lie Groups and Lie Algebras
+
+Continuous symmetries in quantum computing are described by Lie groups and their algebras:
+
+#### Lie algebra -> Lie group (exponential map)
+```
+U = e^(i * Sum_k theta_k * G_k)
+```
+where {G_k} are the Lie algebra generators (Hermitian matrices).
+
+#### Key Lie algebras for quantum computing
+
+| Lie algebra | Generators | Dimension | Quantum meaning |
+|-------------|-----------|-----------|----------------|
+| su(2) | {X, Y, Z}/2 | 3 | Single-qubit rotations |
+| su(4) | 15 generators | 15 | All two-qubit gates |
+| su(2^n) | 4^n - 1 generators | 4^n - 1 | All n-qubit gates |
+| so(3) | {L_x, L_y, L_z} | 3 | Angular momentum / 3D rotations |
+
+#### Controllability
+A quantum system with Hamiltonian H_0 and controls {H_1, ..., H_m} is fully controllable if the Lie algebra generated by {iH_0, iH_1, ..., iH_m} equals su(2^n). This determines whether a set of gates is universal.
+
+### 8. Discrete Groups in Error Correction
+
+- [ ] **Pauli group P_n**: 4^(n+1) elements; basis for error expansion
+- [ ] **Clifford group C_n**: Normalizer of P_n; maps errors to errors
+- [ ] **Logical operators**: Group elements that commute with all stabilizers but are not in the stabilizer group
+- [ ] **Code automorphism group**: Symmetries of the code that map codewords to codewords
+- [ ] **Transversal gates**: Gates that preserve the code structure -- form a group that is typically a subgroup of the Clifford group
+
+## Key Theorems
+
+### Wigner's Theorem
+Every symmetry of a quantum system (bijection preserving transition probabilities) is implemented by a unitary or anti-unitary operator.
+
+### Schur-Weyl Duality
+The actions of SU(d) and S_n on (C^d)^(tensor n) commute, and the Hilbert space decomposes as:
+```
+(C^d)^(tensor n) = Direct_sum_lambda V_lambda (tensor) W_lambda
+```
+where V_lambda are irreps of SU(d) and W_lambda are irreps of S_n, labeled by Young diagrams lambda.
+
+### Solovay-Kitaev Theorem
+If a finite set of gates generates a dense subgroup of SU(d), then any U in SU(d) can be approximated to error epsilon using O(log^c(1/epsilon)) gates, where c is approximately 3.97 (improved to ~1.44 with more sophisticated methods).
+
+## Calculation Patterns
+
+### Determining if gates generate a universal set
+1. Compute the Lie algebra generated by {iH_k} where the gates are U_k = e^(iH_k)
+2. Compute nested commutators: [H_1, H_2], [H_1, [H_1, H_2]], etc.
+3. If the generated algebra = su(2^n), the gate set is universal
+
+### Finding group order
+For finite groups: count elements directly or use Lagrange's theorem (|H| divides |G| for subgroup H)
+
+### Decomposing a representation
+1. Compute characters chi(g) = Tr(rho(g)) for each conjugacy class
+2. Use the inner product formula: multiplicity of irrep i = (1/|G|) * Sum_g chi(g)* * chi_i(g)
+3. Decompose the space accordingly
