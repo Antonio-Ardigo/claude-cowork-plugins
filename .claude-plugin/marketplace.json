@@ -13,6 +13,11 @@
       "name": "quantum-computing",
       "source": "./quantum-computing",
       "description": "Explain quantum computing concepts through structured pedagogical workflows with LaTeX rendering. 15 skills covering quantum mechanics, algebra, algorithms, entanglement, teleportation, density matrices, QFT, experiments, hardware, and history."
+    },
+    {
+      "name": "github",
+      "source": "./github",
+      "description": "Official GitHub MCP server for repository management. Create issues, manage pull requests, review code, search repositories, and interact with GitHub's full API directly from Claude Code."
     }
   ]
 }
