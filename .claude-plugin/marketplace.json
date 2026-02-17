@@ -1,0 +1,18 @@
+{
+  "name": "claude-cowork-plugins",
+  "owner": {
+    "name": "Anton Ardigo"
+  },
+  "plugins": [
+    {
+      "name": "project-planning",
+      "source": "./project-planning",
+      "description": "Engineering and construction project planning with toll gate process. Scope analysis, three-alternative comparison, FEED, AACE cost estimates, CPM scheduling, procurement strategy, constructability, value engineering, risk management, and permits through Design Freeze."
+    },
+    {
+      "name": "quantum-computing",
+      "source": "./quantum-computing",
+      "description": "Explain quantum computing concepts through structured pedagogical workflows with LaTeX rendering. 15 skills covering quantum mechanics, algebra, algorithms, entanglement, teleportation, density matrices, QFT, experiments, hardware, and history."
+    }
+  ]
+}
