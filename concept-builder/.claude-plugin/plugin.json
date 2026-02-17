@@ -1,0 +1,8 @@
+{
+  "name": "concept-builder",
+  "version": "1.0.0",
+  "description": "Learn like the pioneers -- core principles first, formalism second. Domain-agnostic concept explainer with structured breakdowns (problem, principles, innovations, math, CTQ, conceptual maps), deep-dive expansion, side-by-side comparison, quick mapping, and a concept library with learning paths. All math in LaTeX. Every explanation exports as a .md file.",
+  "author": {
+    "name": "Anton Ardigo"
+  }
+}

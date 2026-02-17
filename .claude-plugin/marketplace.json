@@ -18,6 +18,11 @@
       "name": "github",
       "source": "./github",
       "description": "Official GitHub MCP server for repository management. Create issues, manage pull requests, review code, search repositories, and interact with GitHub's full API directly from Claude Code."
+    },
+    {
+      "name": "concept-builder",
+      "source": "./concept-builder",
+      "description": "Learn like the pioneers -- core principles first, formalism second. Domain-agnostic concept breakdowns with LaTeX, conceptual maps, CTQ mastery criteria, deep-dive expansion, side-by-side comparison, and learning paths."
     }
   ]
 }
