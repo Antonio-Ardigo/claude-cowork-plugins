@@ -15,11 +15,6 @@
       "description": "Explain quantum computing concepts through structured pedagogical workflows with LaTeX rendering. 15 skills covering quantum mechanics, algebra, algorithms, entanglement, teleportation, density matrices, QFT, experiments, hardware, and history."
     },
     {
-      "name": "github",
-      "source": "./github",
-      "description": "Official GitHub MCP server for repository management. Create issues, manage pull requests, review code, search repositories, and interact with GitHub's full API directly from Claude Code."
-    },
-    {
       "name": "concept-builder",
       "source": "./concept-builder",
       "description": "Learn like the pioneers -- core principles first, formalism second. Domain-agnostic concept breakdowns with LaTeX, conceptual maps, CTQ mastery criteria, deep-dive expansion, side-by-side comparison, and learning paths."
