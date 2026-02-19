@@ -18,6 +18,11 @@
       "name": "concept-builder",
       "source": "./concept-builder",
       "description": "Learn like the pioneers -- core principles first, formalism second. Domain-agnostic concept breakdowns with LaTeX, conceptual maps, CTQ mastery criteria, deep-dive expansion, side-by-side comparison, and learning paths."
+    },
+    {
+      "name": "greek-tragedy",
+      "source": "./greek-tragedy",
+      "description": "Classify Greek tragedies as Apollonian, Dionysiac, or mixture using Nietzsche's Birth of Tragedy framework. Six-dimensional analysis across chorus, individuation, suffering, resolution, language, and body/boundaries. Includes 11 source texts and classifications."
     }
   ]
 }
