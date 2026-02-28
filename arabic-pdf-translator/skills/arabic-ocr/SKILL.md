@@ -105,21 +105,45 @@ Common OCR errors for Arabic script:
 ### Multi-Engine Consensus Merging
 When multiple engines return results, consensus merging picks the longest valid line per position across engines, preferring longer text that passed post-processing.
 
+## Handwriting-Capable Engines
+
+Traditional OCR engines (EasyOCR, Tesseract, PaddleOCR) fail on Arabic handwriting. Two engines specifically handle handwriting:
+
+### Claude Vision OCR (Pipeline Engine)
+- **Engine name**: `claude_vision`
+- **How it works**: Sends the image to Claude API via Anthropic SDK; Claude's vision reads the Arabic text
+- **Requires**: `ANTHROPIC_API_KEY` environment variable
+- **Quality**: ~95% word overlap on handwritten Arabic (benchmarked on Umm Al-Qura dataset)
+- **Speed**: 2-5 seconds per image (API call)
+- **Key advantage**: Feeds into ensemble translation pipeline -- best OCR + best translation combined
+- **Limitation**: Requires API key and internet; costs per API call
+
+### Qari-OCR (Local VLM)
+- **Engine name**: `qari`
+- **Model**: NAMAA-Space/Qari-OCR-v0.3-VL-2B-Instruct (2B parameter Qwen2-VL fine-tune)
+- **How it works**: Local vision-language model processes the full page, no line segmentation needed
+- **Requires**: `transformers`, `torch`, `qwen-vl-utils` (install with `pip install arabic-pdf-translator[qari]`)
+- **Quality**: CER ~6.1% on Arabic handwriting benchmarks (academic paper: arxiv 2506.02295)
+- **Speed**: 30-120 seconds per page on CPU (first run downloads ~4GB model)
+- **Key advantage**: Fully offline, free, no API keys needed
+- **Limitation**: Slow on CPU without GPU; ~8GB RAM usage during inference
+
 ## Recommendations by Document Type
 
 | Document Type | Recommended DPI | Engines | Notes |
 |--------------|----------------|---------|-------|
 | Clean printed PDF | 300 | EasyOCR | Primary engine, sufficient quality |
 | Scanned book | 400 | EasyOCR + Tesseract | Higher DPI for aging paper, multi-engine consensus |
-| Handwritten | 400+ | EasyOCR + PaddleOCR | Skip Tesseract for handwriting |
+| **Handwritten** | 300 | **claude_vision or qari** | Traditional OCR engines fail on handwriting |
 | Mixed Arabic/English | 300 | EasyOCR | Best multilingual support |
-| Low-quality scan | 400-600 | All three | Use ensemble for noisy input |
+| Low-quality scan | 400-600 | EasyOCR + Tesseract + claude_vision | Vision model reads what OCR engines miss |
 | Diacritized text (Quran) | 400 | EasyOCR + Tesseract | Gentle preprocessing, preserve tashkeel |
-| Tesseract unavailable | 300+ | EasyOCR | Fully functional as sole engine |
+| No API keys, handwritten | 300 | qari | Offline VLM, no API key needed |
+| No Python available | - | Native mode | Claude vision via Read tool |
 
 ## Native Mode OCR via Claude Vision
 
-When the Python OCR pipeline is unavailable (e.g., in the Cowork VM), Claude's built-in vision capabilities serve as a fallback for reading Arabic text from PDF page images.
+When the Python OCR pipeline is unavailable (e.g., in the Cowork VM), Claude's built-in vision capabilities serve as a fallback for reading Arabic text from PDF page images. This is distinct from the `claude_vision` pipeline engine -- native mode uses Claude Code's Read tool directly without the Python pipeline.
 
 ### How It Works
 - The Read tool presents PDF pages as images to Claude
@@ -128,20 +152,18 @@ When the Python OCR pipeline is unavailable (e.g., in the Cowork VM), Claude's b
 
 ### Strengths
 - Works without any Python dependencies or OCR binaries
-- Good with clean, printed Arabic text at reasonable resolution
+- Excellent on both printed and handwritten Arabic text
 - Handles mixed Arabic/Latin text well
 - Can understand context and disambiguate characters
 
 ### Limitations
 - No multi-engine consensus (single-pass reading)
-- May miss fine diacritical marks (nuqat, tashkeel) especially on small or faded text
-- No confidence-weighted scoring across engines
-- Handwritten Arabic is significantly harder than for trained OCR models
 - No image preprocessing means noisy/skewed scans produce worse results
+- Single translation method (no ensemble comparison)
 
 ### Self-Assessment Guidelines
 When using native mode OCR, assess reading confidence per page:
-- **0.90+**: Clean printed text, modern typeface, good resolution
+- **0.90+**: Clean printed text or legible handwriting, good resolution
 - **0.75-0.89**: Readable but some characters uncertain (faded ink, small font, decorative script)
 - **0.60-0.74**: Multiple uncertain characters, possible misreadings of similar letters (ba/ta/tha)
 - **Below 0.60**: Significant portions illegible -- recommend pipeline mode with higher DPI

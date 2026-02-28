@@ -35,7 +35,7 @@ Parse `$ARGUMENTS` to extract:
 - **--dpi**: Rendering DPI for scanned PDFs (default: 300). Use 400 for poor quality scans.
 - **--force-multi**: Always run all translation methods and compare. Flag, no value.
 - **--methods**: Comma-separated list of methods to use: claude, google, deepl, openai.
-- **--ocr-engines**: Comma-separated OCR engines: tesseract, easyocr, paddleocr.
+- **--ocr-engines**: Comma-separated OCR engines: easyocr, tesseract, paddleocr, claude_vision, qari.
 - **--quality-threshold**: Ensemble trigger level: strict, moderate, relaxed, always.
 - **-o / --output**: Output file path (.txt, .json, .md).
 - **--save-intermediate**: Save per-page OCR and all translation variants.
@@ -260,14 +260,19 @@ Format the output file name as: `<original_name>_translated_<date>.<ext>`
 /translate-pdf doc.pdf --pages 1-5                    # translate first 5 pages
 /translate-pdf doc.pdf --methods claude,deepl          # use specific methods
 /translate-pdf doc.pdf --ocr-engines easyocr           # EasyOCR only (skip Tesseract)
+/translate-pdf doc.pdf --ocr-engines claude_vision     # handwritten docs (needs ANTHROPIC_API_KEY)
+/translate-pdf doc.pdf --ocr-engines qari              # handwritten docs (local, no API key)
+/translate-pdf doc.pdf --ocr-engines qari,easyocr      # handwriting + printed consensus
 ```
 
 ## Notes
 
 - **Auto mode** is the default and recommended. It uses the pipeline when available, native mode otherwise.
 - In pipeline mode, OCR engines run in sequence and translation methods run in parallel (ThreadPoolExecutor)
-- In native mode, Claude's vision capabilities work best on clean printed text at reasonable resolution
+- In native mode, Claude's vision capabilities work on both printed and handwritten Arabic text
 - For best pipeline results, set all 4 API keys and use `--force-multi`
 - DPI 300 is good for clean scans; use 400+ for degraded or low-resolution documents
 - Claude-as-judge arbitration activates automatically when top methods score within 0.1 of each other
 - Default OCR engine is EasyOCR (primary). Tesseract is optional and adds multi-engine consensus.
+- For **handwritten Arabic**, use `--ocr-engines claude_vision` (API) or `--ocr-engines qari` (local). Traditional engines (EasyOCR, Tesseract) fail on cursive handwriting.
+- Qari-OCR first run downloads ~4GB model. Inference takes 30-120s per page on CPU.

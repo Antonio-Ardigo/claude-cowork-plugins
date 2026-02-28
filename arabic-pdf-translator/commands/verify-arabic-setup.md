@@ -57,13 +57,25 @@ try:
 except ImportError:
     checks['arabic_pdf_translator'] = None
 
-# OCR engines
+# OCR engines (printed)
 for mod in ['easyocr', 'pytesseract', 'paddleocr']:
     try:
         m = importlib.import_module(mod)
         checks[mod] = getattr(m, '__version__', 'installed')
     except ImportError:
         checks[mod] = None
+
+# OCR engines (handwriting)
+try:
+    import anthropic
+    checks['claude_vision'] = anthropic.__version__
+except ImportError:
+    checks['claude_vision'] = None
+try:
+    import transformers
+    checks['qari_ocr'] = transformers.__version__
+except ImportError:
+    checks['qari_ocr'] = None
 
 # Translation backends
 for mod in ['anthropic', 'openai', 'deepl']:
@@ -140,10 +152,12 @@ Python:      [path] ([version])
 | Component                 | Status    | Version  |
 +---------------------------+-----------+----------+
 | arabic_pdf_translator     | OK / MISS | x.y.z    |
-| EasyOCR                   | OK / MISS | x.y.z    |
-| Tesseract OCR             | OK / MISS | x.y.z    |
+| EasyOCR (printed)         | OK / MISS | x.y.z    |
+| Tesseract OCR (printed)   | OK / MISS | x.y.z    |
 | Tesseract Arabic data     | OK / MISS | --       |
-| PaddleOCR                 | OK / MISS | --       |
+| PaddleOCR (printed)       | OK / MISS | --       |
+| Claude Vision (handwriting)| OK / MISS | --      |
+| Qari-OCR (handwriting)    | OK / MISS | --       |
 | OpenCV                    | OK / MISS | x.y.z    |
 | PyMuPDF (fitz)            | OK / MISS | x.y.z    |
 | numpy                     | OK / MISS | x.y.z    |

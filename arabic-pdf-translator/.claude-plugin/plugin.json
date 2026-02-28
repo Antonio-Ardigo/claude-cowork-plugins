@@ -1,7 +1,7 @@
 {
   "name": "arabic-pdf-translator",
-  "version": "2.0.0",
-  "description": "Arabic PDF OCR and translation with dual-mode architecture. Pipeline mode: multi-engine OCR (EasyOCR primary, Tesseract + PaddleOCR optional) with 7-stage Arabic-tuned preprocessing, 4-method ensemble translation (Claude, Google Cloud, DeepL, OpenAI), and Claude-as-judge quality evaluation. Native mode: Claude vision + translation -- fully functional without Python dependencies or API keys. Auto-selects best available mode. Includes /verify-arabic-setup for installation diagnostics.",
+  "version": "2.1.0",
+  "description": "Arabic PDF OCR and translation with dual-mode architecture. Pipeline mode: 5 OCR engines (EasyOCR, Tesseract, PaddleOCR for printed text + Claude Vision and Qari-OCR for handwriting) with 7-stage preprocessing, 4-method ensemble translation (Claude, Google Cloud, DeepL, OpenAI), and Claude-as-judge quality evaluation. Native mode: Claude vision + translation without Python or API keys. Qari-OCR: local 2B VLM for offline handwriting recognition. Auto-selects best available mode.",
   "author": {
     "name": "Anton Ardigo"
   }

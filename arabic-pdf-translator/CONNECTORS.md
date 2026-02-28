@@ -15,9 +15,11 @@ Native mode uses Claude's built-in vision and language capabilities. It requires
 |--------|---------|-----------|---------|
 | Python 3.11+ (lettore conda env) | Runtime for OCR and translation pipeline | Yes (pipeline mode) | `conda create -n lettore python=3.12` |
 | arabic_pdf_translator package | Core OCR + translation code | Yes (pipeline mode) | `pip install -e ~/Remote-Project` |
-| EasyOCR | Primary Arabic OCR engine (deep learning) | Yes (pipeline mode) | Installed with package |
-| Tesseract OCR + Arabic data | Secondary OCR engine (LSTM) | Optional | `choco install tesseract` + ara.traineddata |
-| PaddleOCR + PaddlePaddle | Tertiary OCR engine | Optional | `pip install paddleocr paddlepaddle` |
+| EasyOCR | Primary OCR engine for printed text | Yes (pipeline mode) | Installed with package |
+| Tesseract OCR + Arabic data | Secondary OCR engine for printed text | Optional | `choco install tesseract` + ara.traineddata |
+| PaddleOCR + PaddlePaddle | Tertiary OCR engine for printed text | Optional | `pip install paddleocr paddlepaddle` |
+| Claude Vision OCR | Handwriting-capable OCR via Anthropic API | Optional | Needs `ANTHROPIC_API_KEY` |
+| Qari-OCR (NAMAA 2B VLM) | Local handwriting OCR, no API key needed | Optional | `pip install arabic-pdf-translator[qari]` |
 
 ## Translation API Keys
 
