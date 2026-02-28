@@ -1,7 +1,7 @@
 ---
 name: arabic-translation
 description: Arabic-to-English ensemble translation, quality evaluation, and method comparison. Use when the user asks about Arabic translation methods, translation quality evaluation, Claude-as-judge, ensemble translation, comparing translation APIs, Arabic translation accuracy, translation confidence scoring, heuristic quality evaluation, cross-method agreement, or choosing between Claude, Google, DeepL, and OpenAI for translation.
-version: 1.0.0
+version: 2.0.0
 ---
 
 # Arabic Translation Ensemble Skill
@@ -184,6 +184,18 @@ Rate your translation on three dimensions (0.0-1.0):
 | **Accuracy** | Confident in all meaning | Minor uncertainties | Several ambiguous passages | Major meaning unclear |
 | **Fluency** | Natural English prose | Slightly awkward phrasing | Noticeable translation artifacts | Hard to read |
 | **Completeness** | Everything translated | Minor omissions noted | Some passages skipped | Significant content missing |
+
+## No API Keys Available
+
+When running in the Cowork VM or without any API keys configured, native mode translation uses Claude directly through the Claude Code session. This does NOT require `ANTHROPIC_API_KEY` because Claude Code authenticates via OAuth tokens (not API keys).
+
+The `ANTHROPIC_API_KEY` environment variable is only needed for the Python pipeline's direct API calls (via the `anthropic` SDK). Native mode bypasses the SDK entirely -- Claude translates as part of the conversation.
+
+This means:
+- **Native mode always works** regardless of API key configuration
+- **Pipeline mode requires at least one key** (any of the 4 providers)
+- If all 4 keys are missing, the plugin automatically selects native mode
+- Users do NOT need to create or expose API keys for basic Arabic translation
 
 ### Limitations vs Ensemble
 - No cross-method agreement scoring (no Jaccard similarity check)

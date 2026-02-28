@@ -58,7 +58,7 @@ Save the Arabic text to a temporary file:
 ```bash
 # Write text to temp file (use Write tool, not Bash)
 ```
-Use the Write tool to write the Arabic text to `/tmp/arabic_input.txt`.
+Use the Write tool to write the Arabic text to `$HOME/arabic_input.txt`.
 
 #### 3b. Run Ensemble Translation
 
@@ -71,7 +71,7 @@ from arabic_pdf_translator.config import TranslationConfig
 config = TranslationConfig(force_multi_method=True)
 translator = ArabicPDFTranslator(config)
 
-text = open('/tmp/arabic_input.txt', 'r', encoding='utf-8').read()
+text = open('$HOME/arabic_input.txt', 'r', encoding='utf-8').read()
 best, all_results, quality = translator.translate_text(text)
 
 output = {

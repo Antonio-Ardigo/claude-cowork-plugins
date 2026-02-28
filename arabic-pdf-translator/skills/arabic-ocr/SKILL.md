@@ -1,7 +1,7 @@
 ---
 name: arabic-ocr
 description: Arabic OCR preprocessing, multi-engine text extraction, and Arabic-specific post-processing. Use when the user asks about Arabic OCR, extracting text from Arabic PDFs, scanned Arabic documents, Tesseract for Arabic, EasyOCR Arabic, PaddleOCR Arabic, image preprocessing for OCR, deskewing, denoising, binarization, CLAHE contrast, OCR engine comparison, Arabic text extraction from images, or multi-engine OCR consensus.
-version: 1.0.0
+version: 2.0.0
 ---
 
 # Arabic OCR Skill
@@ -57,11 +57,16 @@ The pipeline runs multiple OCR engines and selects the best result by confidence
 - **Weaknesses**: Struggles with decorative fonts and heavily diacritized text
 - **Output**: Word-level confidences (0-100 scale, normalized to 0-1)
 
-### EasyOCR
-- **Configuration**: Languages=["ar"], GPU flag configurable
-- **Strengths**: Better with varied fonts, handles mixed Arabic/Latin text
-- **Weaknesses**: Slower than Tesseract, paragraph detection can merge lines
-- **Output**: Text blocks with per-block confidence, paragraph mode for RTL ordering
+### EasyOCR (Primary Engine)
+- **Configuration**: Languages=["ar"], GPU flag configurable, `detail=1, paragraph=False`
+- **Strengths**: Better with varied fonts, handles mixed Arabic/Latin text, works on CPU without GPU
+- **Weaknesses**: Slower than Tesseract, higher memory usage
+- **Output**: Text blocks with per-block confidence
+- **Status**: Primary OCR engine -- installed by default with the package
+
+#### Known Issue: EasyOCR paragraph Mode
+
+In some EasyOCR versions, `paragraph=True` returns `(bbox, text)` tuples without confidence scores (expected: `(bbox, text, conf)`). The pipeline uses `paragraph=False, detail=1` to ensure confidence scores are always returned. This was fixed in engine.py v1.1.0. If you encounter `not enough values to unpack`, run `/verify-arabic-setup --fix`.
 
 ### PaddleOCR
 - **Configuration**: lang="ar", use_angle_cls=True (handles rotated text)
@@ -104,12 +109,13 @@ When multiple engines return results, consensus merging picks the longest valid 
 
 | Document Type | Recommended DPI | Engines | Notes |
 |--------------|----------------|---------|-------|
-| Clean printed PDF | 300 | Tesseract | Fast, sufficient quality |
-| Scanned book | 400 | Tesseract + EasyOCR | Higher DPI for aging paper |
+| Clean printed PDF | 300 | EasyOCR | Primary engine, sufficient quality |
+| Scanned book | 400 | EasyOCR + Tesseract | Higher DPI for aging paper, multi-engine consensus |
 | Handwritten | 400+ | EasyOCR + PaddleOCR | Skip Tesseract for handwriting |
 | Mixed Arabic/English | 300 | EasyOCR | Best multilingual support |
 | Low-quality scan | 400-600 | All three | Use ensemble for noisy input |
-| Diacritized text (Quran) | 400 | Tesseract + EasyOCR | Gentle preprocessing, preserve tashkeel |
+| Diacritized text (Quran) | 400 | EasyOCR + Tesseract | Gentle preprocessing, preserve tashkeel |
+| Tesseract unavailable | 300+ | EasyOCR | Fully functional as sole engine |
 
 ## Native Mode OCR via Claude Vision
 

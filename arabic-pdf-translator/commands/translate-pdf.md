@@ -111,7 +111,7 @@ Report which keys are available. At least one is required. If none are set, tell
 Construct the CLI command from parsed arguments:
 
 ```bash
-$PYTHON_BIN -m arabic_pdf_translator "<pdf_path>" [options] -o /tmp/arabic_translation_result.json --save-intermediate
+$PYTHON_BIN -m arabic_pdf_translator "<pdf_path>" [options] -o $HOME/arabic_translation_result.json --save-intermediate
 ```
 
 Always use JSON output so results can be parsed programmatically. Add `--save-intermediate` for full diagnostics.
@@ -215,7 +215,7 @@ Construct a JSON result object and save it:
 }
 ```
 
-Write this JSON to `/tmp/arabic_translation_result.json` (or the user-specified `-o` path).
+Write this JSON to `$HOME/arabic_translation_result.json` (or the user-specified `-o` path).
 
 #### 5f. Present Native Mode Results
 
@@ -239,12 +239,28 @@ Format the output file name as: `<original_name>_translated_<date>.<ext>`
 
 ## Error Handling
 
-- **--mode pipeline but no Python**: Stop with clear error. List setup instructions.
-- **No API keys (pipeline mode)**: List which keys to set and how (`export ANTHROPIC_API_KEY="..."`)
+- **--mode pipeline but no Python**: Stop with clear error. Suggest running `/verify-arabic-setup --fix`.
+- **No API keys (pipeline mode)**: List which keys to set and how (`export ANTHROPIC_API_KEY="..."`). If no keys at all, suggest `--mode native` which needs no API keys.
+- **`RuntimeError: No OCR engines available`**: Install EasyOCR: `pip install easyocr`. Or use `--ocr-engines easyocr`.
+- **`RuntimeError: No translation methods available`**: Set at least one API key or use `--mode native`.
+- **`ImportError: pytesseract`**: Tesseract is optional. Re-run with `--ocr-engines easyocr`.
+- **`openai.AuthenticationError` (401)**: Invalid OpenAI API key. Remove it (`unset OPENAI_API_KEY`) or use `--methods claude,deepl,google`.
 - **OCR failure (pipeline mode)**: Suggest increasing DPI (`--dpi 400`) or trying different engines
 - **Translation timeout**: Suggest translating fewer pages (`--pages 1-5`)
 - **Low quality scores**: Suggest `--force-multi` to compare all methods
 - **Large PDF in native mode**: Process in batches of 20 pages maximum per Read call
+
+## Quick Reference
+
+```
+/translate-pdf document.pdf                           # auto-detect mode
+/translate-pdf document.pdf --mode native             # force native (no Python needed)
+/translate-pdf scan.pdf --dpi 400                     # better quality for poor scans
+/translate-pdf doc.pdf --force-multi -o out.json      # compare all methods
+/translate-pdf doc.pdf --pages 1-5                    # translate first 5 pages
+/translate-pdf doc.pdf --methods claude,deepl          # use specific methods
+/translate-pdf doc.pdf --ocr-engines easyocr           # EasyOCR only (skip Tesseract)
+```
 
 ## Notes
 
@@ -254,3 +270,4 @@ Format the output file name as: `<original_name>_translated_<date>.<ext>`
 - For best pipeline results, set all 4 API keys and use `--force-multi`
 - DPI 300 is good for clean scans; use 400+ for degraded or low-resolution documents
 - Claude-as-judge arbitration activates automatically when top methods score within 0.1 of each other
+- Default OCR engine is EasyOCR (primary). Tesseract is optional and adds multi-engine consensus.
