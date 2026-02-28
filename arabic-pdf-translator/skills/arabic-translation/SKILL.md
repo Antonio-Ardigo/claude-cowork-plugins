@@ -157,3 +157,37 @@ When source text exceeds 3000 characters:
 | Legal/formal documents | `--methods claude,deepl --quality-threshold strict` |
 | Low budget, one API key | Use whichever key you have; Claude preferred |
 | Research/comparison | `--force-multi --save-intermediate` for full analysis |
+
+## Native Mode Translation
+
+When the ensemble pipeline is unavailable, Claude translates directly using its built-in Arabic language understanding. This is a single-method approach without cross-validation.
+
+### How It Works
+- Claude translates the Arabic text to English in a single pass
+- No comparison with other translation engines
+- Quality is self-assessed rather than cross-validated
+
+### Translation Guidelines for Native Mode
+Apply the same standards as the ensemble pipeline:
+1. **Preserve meaning**: Prioritize faithfulness to the source over fluency
+2. **Maintain register**: Formal Arabic -> formal English, informal -> informal
+3. **Handle idioms**: Translate the meaning, not the literal words
+4. **Proper nouns**: Transliterate names phonetically (e.g., Muhammad, Ahmad)
+5. **Cultural context**: Add brief inline notes `[i.e., ...]` for culture-specific references
+6. **Ambiguity**: When a word has multiple valid readings, choose the most contextually appropriate and note alternatives in processing notes
+
+### Self-Assessment Criteria
+Rate your translation on three dimensions (0.0-1.0):
+
+| Dimension | 0.90+ | 0.75-0.89 | 0.60-0.74 | Below 0.60 |
+|-----------|-------|-----------|-----------|------------|
+| **Accuracy** | Confident in all meaning | Minor uncertainties | Several ambiguous passages | Major meaning unclear |
+| **Fluency** | Natural English prose | Slightly awkward phrasing | Noticeable translation artifacts | Hard to read |
+| **Completeness** | Everything translated | Minor omissions noted | Some passages skipped | Significant content missing |
+
+### Limitations vs Ensemble
+- No cross-method agreement scoring (no Jaccard similarity check)
+- No Claude-as-judge arbitration (only one method to evaluate)
+- No heuristic quality dimensions (consistency, cross-agreement)
+- No confidence blending from multiple sources
+- Single-method bias: no way to catch systematic translation errors

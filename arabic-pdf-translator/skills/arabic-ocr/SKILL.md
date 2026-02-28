@@ -110,3 +110,32 @@ When multiple engines return results, consensus merging picks the longest valid 
 | Mixed Arabic/English | 300 | EasyOCR | Best multilingual support |
 | Low-quality scan | 400-600 | All three | Use ensemble for noisy input |
 | Diacritized text (Quran) | 400 | Tesseract + EasyOCR | Gentle preprocessing, preserve tashkeel |
+
+## Native Mode OCR via Claude Vision
+
+When the Python OCR pipeline is unavailable (e.g., in the Cowork VM), Claude's built-in vision capabilities serve as a fallback for reading Arabic text from PDF page images.
+
+### How It Works
+- The Read tool presents PDF pages as images to Claude
+- Claude reads the Arabic text directly using its multimodal understanding
+- No image preprocessing is applied (no deskewing, denoising, binarization)
+
+### Strengths
+- Works without any Python dependencies or OCR binaries
+- Good with clean, printed Arabic text at reasonable resolution
+- Handles mixed Arabic/Latin text well
+- Can understand context and disambiguate characters
+
+### Limitations
+- No multi-engine consensus (single-pass reading)
+- May miss fine diacritical marks (nuqat, tashkeel) especially on small or faded text
+- No confidence-weighted scoring across engines
+- Handwritten Arabic is significantly harder than for trained OCR models
+- No image preprocessing means noisy/skewed scans produce worse results
+
+### Self-Assessment Guidelines
+When using native mode OCR, assess reading confidence per page:
+- **0.90+**: Clean printed text, modern typeface, good resolution
+- **0.75-0.89**: Readable but some characters uncertain (faded ink, small font, decorative script)
+- **0.60-0.74**: Multiple uncertain characters, possible misreadings of similar letters (ba/ta/tha)
+- **Below 0.60**: Significant portions illegible -- recommend pipeline mode with higher DPI
