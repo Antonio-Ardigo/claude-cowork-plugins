@@ -1,0 +1,8 @@
+{
+  "name": "arabic-pdf-translator",
+  "version": "1.0.0",
+  "description": "Arabic PDF OCR and translation pipeline. Multi-engine OCR (Tesseract + EasyOCR + PaddleOCR) with 7-stage Arabic-tuned preprocessing, 4-method ensemble translation (Claude, Google Cloud, DeepL, OpenAI), and quality evaluation with heuristic scoring and Claude-as-judge arbitration. Translates scanned Arabic PDFs to English with automatic best-result selection.",
+  "author": {
+    "name": "Anton Ardigo"
+  }
+}
