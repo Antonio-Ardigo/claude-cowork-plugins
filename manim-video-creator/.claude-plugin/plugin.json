@@ -1,0 +1,9 @@
+{
+  "name": "manim-video-creator",
+  "version": "0.1.0",
+  "description": "Create mathematical animation videos using Manim Community Edition — describe what you want and get a rendered MP4",
+  "author": {
+    "name": "Anton"
+  },
+  "keywords": ["manim", "video", "animation", "math", "visualization"]
+}

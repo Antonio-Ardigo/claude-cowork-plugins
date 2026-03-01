@@ -28,6 +28,21 @@
       "name": "arabic-pdf-translator",
       "source": "./arabic-pdf-translator",
       "description": "Arabic PDF OCR and ensemble translation. Multi-engine OCR (Tesseract + EasyOCR + PaddleOCR) with 7-stage preprocessing, 4-method translation ensemble (Claude, Google, DeepL, OpenAI), and quality evaluation with Claude-as-judge arbitration."
+    },
+    {
+      "name": "cost-engineer",
+      "source": "./cost-engineer",
+      "description": "Full cost engineering suite for EPC and construction projects. Estimation methods (parametric, factored, bottom-up), benchmarking (AACE, IPA, CEPCI), earned value management, change order pricing, and lifecycle cost analysis with spreadsheet analysis."
+    },
+    {
+      "name": "board-meeting-sim",
+      "source": "./board-meeting-sim",
+      "description": "Simulate a board of directors meeting. Present a proposal, get it debated by six directors (Chair, CEO, CFO, COO, GC, Independent) with distinct perspectives, and receive a formal vote with conditions and action items."
+    },
+    {
+      "name": "manim-video-creator",
+      "source": "./manim-video-creator",
+      "description": "Create mathematical animation videos using Manim Community Edition. Describe what you want and get a rendered MP4. Includes scene authoring, rendering at multiple quality levels, and comprehensive Manim CE 0.20.0 API knowledge."
     }
   ]
 }
