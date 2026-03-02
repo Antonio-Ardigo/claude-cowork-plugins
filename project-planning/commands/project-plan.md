@@ -1,6 +1,8 @@
 ---
 description: Generate a toll-gate project plan -- scope, 3 alternatives, FEED, AACE cost, schedule, procurement, constructability, VE, risk, permits, and Design Freeze verification
 argument-hint: "<project description>"
+allowed-tools: Read, Write, Edit, Bash(python*), Bash(python3*), Bash(pip*), Bash(pip3*)
+model: opus
 ---
 
 # /project-plan -- Toll-Gate Project Planning
