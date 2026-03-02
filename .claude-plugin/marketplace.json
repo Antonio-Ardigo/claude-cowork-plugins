@@ -43,6 +43,11 @@
       "name": "manim-video-creator",
       "source": "./manim-video-creator",
       "description": "Create mathematical animation videos using Manim Community Edition. Describe what you want and get a rendered MP4. Includes scene authoring, rendering at multiple quality levels, and comprehensive Manim CE 0.20.0 API knowledge."
+    },
+    {
+      "name": "cartoon-maker",
+      "source": "./cartoon-maker",
+      "description": "Create cartoon sequence videos with human characters from natural language descriptions. Characters include engineer, doctor, architect, project manager, woman, and baby lady — each with distinct appearance and voice. Describe the scene and dialogue to produce an MP4."
     }
   ]
 }

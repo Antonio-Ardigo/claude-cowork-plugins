@@ -1,0 +1,9 @@
+{
+  "name": "cartoon-maker",
+  "version": "0.1.0",
+  "description": "Create cartoon sequence videos with human characters (engineer, doctor, architect, project manager) from natural language descriptions — text, dialogue, and synchronized audio.",
+  "author": {
+    "name": "Anton"
+  },
+  "keywords": ["cartoon", "animation", "video", "characters", "dialogue", "tts", "storytelling"]
+}
