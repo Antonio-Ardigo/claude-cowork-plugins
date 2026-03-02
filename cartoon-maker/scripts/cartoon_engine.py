@@ -198,15 +198,85 @@ def _audio_cache_path(voice: str, text: str, rate: str, pitch: str) -> Path:
     return AUDIO_DIR / f"{h}.mp3"
 
 
+# espeak-ng voice map for offline fallback (voice, speed wpm, pitch 0-99)
+ESPEAK_VOICES = {
+    "engineer":        ("en-us+m3", 150, 42),
+    "doctor":          ("en-us+f3", 148, 55),
+    "architect":       ("en-us+m1", 152, 38),
+    "project_manager": ("en-us+f1", 155, 60),
+    "woman":           ("en-us+f2", 148, 58),
+    "baby_lady":       ("en-us+f4", 135, 80),
+}
+
+
 def _generate_audio(dialogue: list[Dialogue]) -> list[Optional[str]]:
-    """Generate audio for each dialogue line. Returns list of mp3 paths (or None for narration)."""
-    results = []
+    """Generate audio: tries edge-tts first, falls back to espeak-ng, then silent mode."""
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     try:
         results = loop.run_until_complete(_generate_audio_async(dialogue))
     finally:
         loop.close()
+
+    # If all character lines are None, edge-tts was unavailable — try espeak-ng
+    char_results = [(r, d) for r, d in zip(results, dialogue) if d.character is not None]
+    if char_results and all(r is None for r, _ in char_results):
+        print("[cartoon-maker] edge-tts unavailable — trying espeak-ng offline TTS...")
+        results = _generate_audio_espeak(dialogue)
+
+    return results
+
+
+def _generate_audio_espeak(dialogue: list[Dialogue]) -> list[Optional[str]]:
+    """Generate audio using espeak-ng (offline, no internet required)."""
+    import subprocess
+
+    espeak_available = None
+    results = []
+
+    for i, line in enumerate(dialogue):
+        if line.character is None:
+            results.append(None)
+            continue
+
+        if espeak_available is False:
+            results.append(None)
+            continue
+
+        char = line.character
+        key = f"espeak|{char.name}|{line.text}"
+        h = hashlib.md5(key.encode()).hexdigest()
+        wav_path = AUDIO_DIR / f"{h}.wav"
+
+        if wav_path.exists():
+            print(f"  Using cached audio [{i+1}/{len(dialogue)}]: {char.name} (espeak)")
+            results.append(str(wav_path))
+            continue
+
+        voice, speed, pitch = ESPEAK_VOICES.get(char.name, ("en-us", 150, 50))
+        print(f"  Generating audio [{i+1}/{len(dialogue)}]: {char.name} (espeak-ng)...")
+        try:
+            proc = subprocess.run(
+                ["espeak-ng", "-v", voice, "-s", str(speed), "-p", str(pitch),
+                 line.text, "-w", str(wav_path)],
+                capture_output=True, timeout=30,
+            )
+            if proc.returncode == 0 and wav_path.exists():
+                espeak_available = True
+                results.append(str(wav_path))
+            else:
+                if espeak_available is None:
+                    print("  [INFO] espeak-ng failed — running in silent mode (word-count timing).")
+                    espeak_available = False
+                results.append(None)
+        except (FileNotFoundError, subprocess.TimeoutExpired):
+            if espeak_available is None:
+                print("  [INFO] espeak-ng not found — running in silent mode (word-count timing).")
+                espeak_available = False
+            results.append(None)
+
+    if espeak_available:
+        print("[cartoon-maker] Audio generated via espeak-ng (offline).")
     return results
 
 

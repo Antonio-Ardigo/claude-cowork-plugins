@@ -30,14 +30,21 @@ mkdir -p cartoon_workspace/audio cartoon_workspace/characters cartoon_workspace/
 pip3 install moviepy pillow edge-tts requests --quiet
 ```
 
+Install espeak-ng for offline TTS audio (works without internet):
+
+```bash
+apt-get install -y espeak-ng 2>/dev/null || echo "apt not available, espeak-ng may already be installed"
+```
+
 Find and copy the engine from the plugin directory:
 
 ```bash
 python3 -c "
 import shutil, os
 CANDIDATES = [
+    '/mnt/.claude/cowork_plugins/cache/claude-cowork-plugins/cartoon-maker/0.2.0/scripts/cartoon_engine.py',
     '/mnt/.claude/cowork_plugins/cache/claude-cowork-plugins/cartoon-maker/0.1.0/scripts/cartoon_engine.py',
-    '/home/user/.claude/cowork_plugins/cache/claude-cowork-plugins/cartoon-maker/0.1.0/scripts/cartoon_engine.py',
+    '/home/user/.claude/cowork_plugins/cache/claude-cowork-plugins/cartoon-maker/0.2.0/scripts/cartoon_engine.py',
 ]
 for src in CANDIDATES:
     if os.path.exists(src):
@@ -49,7 +56,7 @@ else:
 "
 ```
 
-If `ENGINE_NOT_FOUND`, use the **Write** tool to write `cartoon_workspace/cartoon_engine.py` by reading the engine from: `/mnt/.claude/cowork_plugins/cache/claude-cowork-plugins/cartoon-maker/0.1.0/scripts/cartoon_engine.py`
+If `ENGINE_NOT_FOUND`, use the **Write** tool to write `cartoon_workspace/cartoon_engine.py` by reading the engine from: `/mnt/.claude/cowork_plugins/cache/claude-cowork-plugins/cartoon-maker/0.2.0/scripts/cartoon_engine.py`
 
 Generate backgrounds (offline, no internet needed):
 
