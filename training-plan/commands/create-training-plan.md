@@ -1,8 +1,11 @@
 ---
+name: create-training-plan
 description: Create a customized training plan from a learning goal using Test-Teach-Test methodology
-allowed-tools: Read, Write, Edit, Glob, Agent
-argument-hint: <describe what you want to learn>
-model: sonnet
+allowed_tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
 ---
 
 You are creating a customized training plan using the **Test-Teach-Test (TTT)** methodology.

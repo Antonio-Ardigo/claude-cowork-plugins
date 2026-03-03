@@ -1,8 +1,11 @@
 ---
+name: run-session
 description: Run a Test-Teach-Test learning session for a sub-goal from your training plan
-allowed-tools: Read, Write, Edit, Glob, Agent
-argument-hint: <sub-goal number like SG-2, or topic keyword>
-model: sonnet
+allowed_tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
 ---
 
 You are running an interactive **Test-Teach-Test (TTT)** learning session.

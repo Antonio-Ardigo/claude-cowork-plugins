@@ -1,10 +1,5 @@
 ---
-name: goal-decomposer
-description: >
-  Learning goal decomposition into SMART sub-goals. Use when the user asks to
-  "create a training plan", "break down a learning goal", "decompose objectives",
-  "define sub-goals", or needs help structuring a learning path from a high-level goal.
-version: 0.1.0
+description: "Learning goal decomposition into SMART sub-goals. Use when the user asks to create a training plan, break down a learning goal, decompose objectives, define sub-goals, structure a learning path from a high-level goal, or identify what sub-topics need to be learned for a given goal."
 ---
 
 # Goal Decomposer — Domain Knowledge

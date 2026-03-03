@@ -1,11 +1,5 @@
 ---
-name: content-builder
-description: >
-  Gap-targeted teaching content generation. Use when generating teaching material
-  during the Teach phase of a TTT session, when the user asks to "explain a concept",
-  "teach me about", "what did I get wrong", or needs targeted content to fill a
-  specific learning gap identified during assessment.
-version: 0.1.0
+description: "Gap-targeted teaching content generation for training sessions. Use when generating teaching material during the Teach phase of a TTT session, when the user asks to explain a concept, teach me about a topic, what did I get wrong, fill a learning gap, or needs targeted content covering motivation, definitions, exercises, typical errors, pitfalls, and misconceptions."
 ---
 
 # Content Builder — Domain Knowledge

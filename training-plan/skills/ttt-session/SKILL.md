@@ -1,11 +1,5 @@
 ---
-name: ttt-session
-description: >
-  Test-Teach-Test session design and execution. Use when the user asks to
-  "run a session", "start a learning session", "test me on", "practice",
-  "assess my knowledge", or needs to design or execute a TTT learning cycle
-  for a sub-goal.
-version: 0.1.0
+description: "Test-Teach-Test session design and execution. Use when the user asks to run a session, start a learning session, test me on a topic, practice a skill, assess my knowledge, design a TTT learning cycle, or execute an adaptive test-teach-test loop for a sub-goal."
 ---
 
 # TTT Session — Domain Knowledge
