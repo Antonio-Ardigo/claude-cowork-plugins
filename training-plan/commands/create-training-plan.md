@@ -25,6 +25,18 @@ Take the user's input and refine it into a **SMART Goal** (max 15 words):
 - Relevant: aligned with the user's intent
 - Time-bound: includes a timeframe if the user mentioned one
 
+### Step 1.5: Check Learner Profile
+
+Use Glob to look for `learner_profile.md` in the current directory.
+
+If found, read it and note:
+- **Known strengths**: Topics the learner has mastered (passed Initial Test with zero gaps). If any relate to this new goal, plan harder initial tests for those sub-goals.
+- **Gap patterns**: Recurring weaknesses. If any relate to this new goal, note them in the Teach Topics of relevant session blueprints so they get proactive coverage.
+
+If no profile exists, proceed normally. The profile will be created after the first /run-session.
+
+Pass these notes forward to Step 3 (Design Session Blueprints) so the blueprints reflect what is already known about the learner.
+
 ### Step 2: Decompose into Sub-Goals
 
 Break the SMART goal into **N sub-goals** across 4 axes:
@@ -37,10 +49,10 @@ Break the SMART goal into **N sub-goals** across 4 axes:
 | Verification | Proof of mastery | 1+ |
 
 Rules:
-- Key Concepts MUST expand — each covers ONE testable idea
+- Key Concepts MUST expand -- each covers ONE testable idea
 - Each sub-goal is a 15-word SMART statement
 - Each sub-goal gets a domain label and difficulty (low/medium/high)
-- Sequence: Motivation first → Key Concepts (dependency order) → Tools → Verification last
+- Sequence: Motivation first -> Key Concepts (dependency order) -> Tools -> Verification last
 - Total: typically 4-10+ sub-goals depending on complexity
 
 ### Step 3: Design Session Blueprints
@@ -51,6 +63,10 @@ For each sub-goal, design a TTT session blueprint:
 - **Pass Criteria**: Concrete, measurable threshold (e.g., "identifies 8 of 10 categories", "calculation within 5%")
 - **Teach Topics**: Key concepts, exercises, and known pitfalls/misconceptions to address if gaps are found
 - **Final Test**: A DIFFERENT practical case testing the same competencies
+
+If the learner profile indicated strengths or gap patterns relevant to a sub-goal, note them in the blueprint:
+- **Profile note (strength):** "Learner has prior mastery in [topic] -- set Initial Test at elevated difficulty"
+- **Profile note (gap pattern):** "Learner has recurring gap in [pattern] -- include proactive Quick Check in Teach Topics even if not identified in Initial Test"
 
 ### Step 4: Write the Plan File
 
@@ -101,11 +117,12 @@ After writing the file, present a summary:
 - The SMART goal
 - The sub-goals table
 - The suggested starting sub-goal
+- Any learner profile notes that influenced the plan (if profile existed)
 - Remind the user to run `/run-session SG-<N>` to start learning
 
 ## Important
 
-- Do NOT include theory or teaching content in the plan — that happens during `/run-session`
+- Do NOT include theory or teaching content in the plan -- that happens during `/run-session`
 - Do NOT skip the session blueprint for any sub-goal
 - Practical cases must be realistic scenarios, not abstract questions
 - The `<topic>` in the filename should be a short kebab-case slug derived from the goal (e.g., `cost-estimation`, `python-data-analysis`)

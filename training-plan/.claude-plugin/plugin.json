@@ -1,9 +1,9 @@
 {
   "name": "training-plan",
-  "version": "0.1.0",
-  "description": "Generate customized learning paths using Test-Teach-Test methodology. Decompose goals, design sessions, run interactive TTT loops with adaptation until mastery.",
+  "version": "0.2.0",
+  "description": "Generate customized learning paths using Test-Teach-Test methodology. Decompose goals, design sessions, run interactive TTT loops with adaptation until mastery. Includes mid-session checkpointing, concept maps, persistent learner profiles, and cross-plan analytics.",
   "author": {
-    "name": "Anton"
+    "name": "Anton Ardigo"
   },
   "keywords": [
     "training",
@@ -13,6 +13,10 @@
     "education",
     "assessment",
     "adaptive-learning",
-    "skill-development"
+    "skill-development",
+    "checkpointing",
+    "concept-maps",
+    "learner-profile",
+    "analytics"
   ]
 }
