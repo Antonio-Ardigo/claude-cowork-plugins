@@ -8,7 +8,7 @@ Generate customized learning paths using **Test-Teach-Test (TTT)** methodology w
 2. The plugin decomposes it into testable sub-goals with CTQ mastery criteria
 3. For each sub-goal, you run a TTT session:
    - **Test** -- face a practical case immediately (no theory first)
-   - **Teach** -- get principle-first concept explanations for your gaps (adaptive: abbreviated for simple gaps, full 6-section with LaTeX and CTQ for complex gaps, comparison for conflation)
+   - **Teach** -- get principle-first concept explanations for your gaps (adaptive: abbreviated for simple gaps, full 7-section with LaTeX, Worked Examples, and CTQ for complex gaps, comparison for conflation)
    - **Test** -- prove mastery with a new case
 4. Each Teach phase generates a concept file documenting what was taught
 5. Sessions save checkpoints -- if interrupted, resume from where you left off
@@ -28,7 +28,7 @@ Example:
 
 ### `/run-session <sub-goal>`
 
-Runs an interactive TTT session for one sub-goal. Teaches using concept-builder methodology (Problem, Principles, Innovations, Formalization, CTQ, Conceptual Map). Saves checkpoints after each phase. Exports a concept file on completion.
+Runs an interactive TTT session for one sub-goal. Teaches using concept-builder methodology (Problem, Principles, Innovations, Worked Example, Formalization, CTQ, Conceptual Map). Saves checkpoints after each phase. Exports a concept file on completion.
 
 Example:
 ```
@@ -74,11 +74,12 @@ The Teach phase uses a principle-first approach adapted from the concept-builder
 1. **The Problem** -- why the gap matters (framed in learner's context)
 2. **Core Principles** -- foundational truths (with LaTeX at intermediate+ levels)
 3. **Key Innovations** -- breakthroughs and techniques
+3.5. **Worked Example** -- fully developed step-by-step example with every intermediate step shown and annotated (always included)
 4. **Intuitive Formalization** -- minimum math needed for prediction
 5. **CTQ Mapping** -- mastery criteria with failure mode awareness
 6. **Conceptual Map** -- visual structure of learned concepts
 
-Teaching is **adaptive**: simple gaps get abbreviated treatment (Problem + Principles + Quick Check), complex gaps get the full 6-section explanation, and conflation gaps get a side-by-side comparison.
+Teaching is **adaptive**: simple gaps get abbreviated treatment (Problem + Principles + Worked Example + Quick Check), complex gaps get the full 7-section explanation, and conflation gaps get a side-by-side comparison.
 
 During a session, learners can request a **deep-dive** into any taught principle for a full expanded explanation.
 

@@ -90,8 +90,8 @@ Classify each gap using the CTQ failure mode taxonomy:
 For EACH identified gap, deliver a concept explanation using the content-builder skill:
 
 **Step 1: Assess gap complexity** (from the failure mode classification in Phase 2):
-- Simple gap (no failure mode tag) -> **Abbreviated Concept Explanation** (Problem + Principles + CTQ Quick Check)
-- Complex gap (has failure mode tag) -> **Full Concept Explanation** (6 sections from concept-explainer)
+- Simple gap (no failure mode tag) -> **Abbreviated Concept Explanation** (Problem + Principles + Worked Example + CTQ Quick Check)
+- Complex gap (has failure mode tag) -> **Full Concept Explanation** (7 sections from concept-explainer, including Worked Example)
 - Conflation gap -> **Concept Comparison** (shared principles + divergences + CTQ distinction)
 
 **Step 2: Determine depth level**

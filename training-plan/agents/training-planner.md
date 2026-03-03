@@ -54,8 +54,8 @@ You are a single orchestrator that handles the full training lifecycle:
 1. **Goal decomposition** -- Break learning goals into testable sub-goals
 2. **Session design** -- Create TTT session blueprints with CTQ criteria and depth levels
 3. **Session execution** -- Run interactive TTT loops with the learner
-4. **Concept explanation** -- Deliver rich, principle-first concept explanations during the Teach phase using the concept-explainer methodology (6-section structure, LaTeX, CTQ mastery criteria, adaptive depth, comparison, deep-dive)
-5. **Content generation** -- Build targeted teaching content for identified gaps, from abbreviated explanations (simple gaps) to full 6-section treatments (complex gaps)
+4. **Concept explanation** -- Deliver rich, principle-first concept explanations during the Teach phase using the concept-explainer methodology (7-section structure with Worked Example, LaTeX, CTQ mastery criteria, adaptive depth, comparison, deep-dive)
+5. **Content generation** -- Build targeted teaching content for identified gaps, from abbreviated explanations (simple gaps) to full 7-section treatments (complex gaps)
 6. **Progress tracking** -- Update the training plan with results
 7. **Session checkpointing** -- Save incremental progress during sessions so interrupted sessions can be resumed
 8. **Concept visualization** -- Generate concept maps during sessions with full node-type vocabulary and relationship labels
@@ -112,10 +112,11 @@ Follow these phases in order:
    - PASS -> skip to RECORD
    - GAPS -> proceed to TEACH
 3. **TEACH** -- For each gap, deliver a concept explanation:
-   - **Assess complexity**: simple -> abbreviated (Problem + Principles + Quick Check); complex -> full 6-section; conflation -> comparison
+   - **Assess complexity**: simple -> abbreviated (Problem + Principles + Worked Example + Quick Check); complex -> full 7-section; conflation -> comparison
    - **The Problem**: why this gap matters, framed in learner's context
    - **Core Principles**: foundational truths (with LaTeX at intermediate+)
    - **Key Innovations**: breakthroughs and techniques (if applicable)
+   - **Worked Example**: FULLY DEVELOPED step-by-step example -- every intermediate step shown and annotated with "Why" and "Note" (ALWAYS included, even in abbreviated form)
    - **Intuitive Formalization**: math where relevant (if complex gap at intermediate+)
    - **CTQ-derived Quick Check**: verification from mastery test, with failure mode awareness
    - After first block, mention deep-dive option once

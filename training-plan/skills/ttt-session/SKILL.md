@@ -123,8 +123,8 @@ Simple gaps that don't match a failure mode pattern:
 For each identified gap, generate a concept explanation using the `content-builder` skill:
 
 1. **Assess gap complexity** (from the failure mode classification in Phase 2):
-   - Simple gap (no failure mode) -> Abbreviated Concept Explanation
-   - Complex gap (has failure mode) -> Full Concept Explanation
+   - Simple gap (no failure mode) -> Abbreviated Concept Explanation (Problem + Principles + Worked Example + Quick Check)
+   - Complex gap (has failure mode) -> Full Concept Explanation (7 sections including Worked Example)
    - Conflation gap -> Concept Comparison
 
 2. **Select depth level** from the blueprint's Estimated Depth (default: intermediate)

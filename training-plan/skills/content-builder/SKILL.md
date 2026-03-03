@@ -26,6 +26,12 @@ Not "this is important" but "without this, your estimates will systematically mi
 **Core Principles**
 <1-2 principles in plain language. Each: one clear statement + one concrete example.>
 
+**Worked Example**
+<Short but COMPLETE worked example: 2-4 steps, every step shown explicitly, annotated with
+"Why" notes explaining reasoning. No intermediate steps skipped. Domain-appropriate format
+(LaTeX for math, word-by-word for language, line-by-line for code, etc.).
+See concept-explainer skill Section 3.5 for domain templates.>
+
 **Quick Check** (CTQ: [source principle])
 <CTQ-derived verification question>
 (Expected answer: <answer>)
@@ -36,14 +42,15 @@ Not "this is important" but "without this, your estimates will systematically mi
 
 ### Full Concept Explanation (for complex gaps)
 
-Deliver all 6 sections from the concept-explainer skill at the session's depth level:
+Deliver all 7 sections from the concept-explainer skill at the session's depth level:
 
 1. **The Problem** -- What makes this concept necessary; framed in the learner's gap context
 2. **Core Principles** (3-5) -- Foundational truths with statement + LaTeX (at intermediate+) + example
 3. **Key Innovations** (2-4) -- Breakthroughs: who, what it solved, worked example
-4. **Intuitive Formalization** -- Minimum math to make predictions
-5. **CTQ Mapping** -- Mastery criteria table with failure modes
-6. **Quick Check** (CTQ-derived) -- Verification question from the CTQ mastery test
+4. **Worked Example** -- FULLY DEVELOPED step-by-step example with every intermediate step shown, every algebraic/linguistic/logical transformation explicit, annotated with "Why" and "Note" at each step. See concept-explainer skill Section 3.5 for format and domain templates.
+5. **Intuitive Formalization** -- Minimum math to make predictions
+6. **CTQ Mapping** -- Mastery criteria table with failure modes
+7. **Quick Check** (CTQ-derived) -- Verification question from the CTQ mastery test
 
 ### Concept Comparison (for conflation gaps)
 
@@ -82,7 +89,7 @@ Each concept explanation addresses exactly ONE gap. If the learner has 3 gaps, p
 
 For **simple gaps**: abbreviated treatment (Problem + Principles + Quick Check). Similar length to the old teaching block.
 
-For **complex gaps**: the full 6-section treatment IS the minimum needed -- the gap is deep enough that shortcuts would leave misunderstandings intact. But even here, each section should be concise and targeted.
+For **complex gaps**: the full 7-section treatment IS the minimum needed -- the gap is deep enough that shortcuts would leave misunderstandings intact. But even here, each section should be concise and targeted.
 
 ### 4. Error-Focused with CTQ Failure Modes
 
@@ -110,18 +117,38 @@ Gap [simple]: "Learner miscalculated unit cost by using wrong units."
 ---
 
 **The Problem**
-Your foundation cost was off by a factor of 2.2 because you mixed kg with lb for rebar pricing. Unit mismatches are the most common arithmetic error in cost estimation -- they don't look wrong until the total is wildly off.
+Your rebar cost was off by a factor of 1,000 because your quantity was in kg but your rate was in $/t. Unit mismatches are the most common arithmetic error in cost estimation -- they don't look wrong until the total is wildly off.
 
 **Core Principles**
 
-**Dimensional consistency**: Every multiplication must have compatible units. If your quantity is in kg and your rate is in $/lb, you need a conversion factor (1 lb = 0.4536 kg) before multiplying.
+**Dimensional consistency**: Every multiplication must have compatible units. If your quantity is in kg and your rate is in $/t, you need a conversion factor (1 t = 1,000 kg) before multiplying.
 
 **Unit-label tracking**: Write units next to every number in your calculation. If the units don't cancel to produce $, something is wrong.
 
+**Worked Example**
+
+**Given**: Rebar quantity = 38,000 kg. Rate card = $2,100/t.
+
+**Step 1**: Identify the unit mismatch
+Quantity is in **kg**, rate is in **$/t** (tonnes). These cannot be multiplied directly.
+> **Why**: kg x $/t does not cancel to $. You'd get kg-$/t, which is meaningless.
+
+**Step 2**: Convert quantity to match the rate's unit
+$$1 \text{ t} = 1{,}000 \text{ kg}$$
+$$38{,}000 \text{ kg} \div 1{,}000 \text{ kg/t} = 38.0 \text{ t}$$
+> **Why**: We convert the quantity to tonnes so the multiplication will produce $.
+> **Note**: Divide by 1,000 (NOT multiply). A common error: 38,000 x 1,000 = 38,000,000 -- obviously wrong but easy to type.
+
+**Step 3**: Multiply converted quantity by rate
+$$38.0 \text{ t} \times \$2{,}100/\text{t} = \$79{,}800$$
+> **Check**: The wrong answer (no conversion) would be 38,000 x $2,100 = $79,800,000 -- absurdly high for rebar on one foundation. Sanity check confirms our answer is in the right order of magnitude.
+
+**Result**: **$79,800**
+
 **Quick Check** (CTQ: dimensional consistency)
-Your quantity is 38,000 kg of rebar. The rate card says $2.10/lb. What is the correct rebar cost?
-(Expected answer: 38,000 kg x 2.205 lb/kg x $2.10/lb = $175,959)
-(Watch for: overgeneralization -- applying the rate directly without conversion)
+Your quantity is 38,000 kg of rebar. The rate card says $2,100/t. What is the correct rebar cost?
+(Expected answer: 38,000 kg / 1,000 kg/t = 38.0 t; 38.0 t x $2,100/t = $79,800)
+(Watch for: overgeneralization -- applying the rate directly without unit conversion)
 
 ---
 ```
@@ -157,6 +184,51 @@ Your estimate lumped "miscellaneous 15%" at the bottom without distinguishing in
 #### AACE Classification System (AACE International, 1990s)
 **What**: Standardized cost breakdown into direct, indirect, contingency, and escalation categories.
 **Why it mattered**: Before this, estimators used ad-hoc categories, making estimates incomparable across projects and companies.
+
+### 3.5. Worked Example: Building a Cost Estimate with Correct Classification
+
+**Given**: A small tank farm project with the following costs to classify and total.
+
+**Step 1**: Identify and sum direct costs
+| Item | Quantity | Unit | Rate | Cost |
+|------|----------|------|------|------|
+| Carbon steel plate | 85 | t | $3,200/t | $272,000 |
+| Welding labour | 2,400 | h | $65/h | $156,000 |
+| Foundation concrete | 120 | m3 | $180/m3 | $21,600 |
+| Piping (installed) | 350 | m | $420/m | $147,000 |
+| **Direct subtotal** | | | | **$596,600** |
+
+> **Why**: Each of these items is traceable to a specific scope item on the drawings. Steel is for Tank T-101/T-102, welding is for those tanks, concrete is for their foundations, piping connects them.
+> **Note**: "Traceable to a drawing" is the key test. If you can point to it on a P&ID, GA, or structural drawing, it is direct.
+
+**Step 2**: Identify and sum indirect costs (itemized)
+| Item | Basis | Cost |
+|------|-------|------|
+| Site security | 8 months x $4,500/month | $36,000 |
+| Builder's risk insurance | 0.8% of $596,600 | $4,773 |
+| Mob/demob | lump sum | $45,000 |
+| Construction management | 8 months x $18,000/month | $144,000 |
+| **Indirect subtotal** | | **$229,773** |
+
+> **Why**: None of these serve a single scope item -- they serve the whole project. Security protects the entire site, insurance covers all direct works, mob/demob moves the crew.
+> **Note**: Insurance base is direct costs only ($596,600), NOT direct + indirect. The base must exclude the items being calculated -- otherwise you get a circular reference.
+
+**Step 3**: Calculate contingency via risk analysis (NOT a blanket %)
+| Risk Event | Probability | Impact | Contingency |
+|-----------|------------|--------|-------------|
+| Soil bearing capacity below design | 25% | $80,000 (extra piling) | $20,000 |
+| Steel price escalation >10% | 30% | $40,000 (price delta) | $12,000 |
+| Schedule delay due to permits | 15% | $54,000 (extended indirects) | $8,100 |
+| **Contingency total** | | | **$40,100** |
+
+> **Why**: Each contingency line is probability x impact for an identified risk. This is NOT "add 15% to cover unknowns" -- it is a quantified reserve for specific risks that may or may not occur.
+> **Note**: A blanket "15% contingency" on this project would be $123,956 -- three times the risk-based number. Blanket percentages either overcharge or underprotect.
+
+**Step 4**: Assemble the total estimate
+$$\text{Total} = \$596{,}600 + \$229{,}773 + \$40{,}100 = \$866{,}473$$
+> **Check**: Indirects are 38.5% of directs (typical range for small projects: 30-50%). Contingency is 4.6% of base (direct + indirect) -- reasonable for a well-defined scope with few unknowns.
+
+**Result**: **$866,473** (Direct: $596,600 + Indirect: $229,773 + Contingency: $40,100)
 
 ### 4. Intuitive Formalization
 
