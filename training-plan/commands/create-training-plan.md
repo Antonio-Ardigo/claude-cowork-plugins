@@ -51,7 +51,8 @@ Break the SMART goal into **N sub-goals** across 4 axes:
 Rules:
 - Key Concepts MUST expand -- each covers ONE testable idea
 - Each sub-goal is a 15-word SMART statement
-- Each sub-goal gets a domain label and difficulty (low/medium/high)
+- Each sub-goal gets a domain label, difficulty (low/medium/high), and depth level
+- Depth level is derived from difficulty: low -> introductory, medium -> intermediate, high -> advanced
 - Sequence: Motivation first -> Key Concepts (dependency order) -> Tools -> Verification last
 - Total: typically 4-10+ sub-goals depending on complexity
 
@@ -61,7 +62,9 @@ For each sub-goal, design a TTT session blueprint:
 
 - **Initial Test**: A practical case the learner must solve immediately (no theory first). Describe the scenario and the task.
 - **Pass Criteria**: Concrete, measurable threshold (e.g., "identifies 8 of 10 categories", "calculation within 5%")
-- **Teach Topics**: Key concepts, exercises, and known pitfalls/misconceptions to address if gaps are found
+- **Estimated Depth**: introductory / intermediate / advanced (derived from sub-goal difficulty)
+- **Anticipated CTQs**: 2-4 Critical-To-Quality criteria for this sub-goal. Each CTQ: what must be understood + mastery test + common failure mode (using CTQ failure mode taxonomy: conflation, overgeneralization, missing-prerequisite, procedural-without-conceptual, verbal-without-formal, formal-without-intuitive)
+- **Teach Topics**: Key concepts, exercises, and known pitfalls with CTQ failure mode classification (e.g., "[conflation]: confusing indirect costs with contingency", "[procedural-without-conceptual]: applying formula without understanding boundary conditions")
 - **Final Test**: A DIFFERENT practical case testing the same competencies
 
 If the learner profile indicated strengths or gap patterns relevant to a sub-goal, note them in the blueprint:
@@ -84,12 +87,12 @@ Generated: <date> | Status: in-progress
 
 ## Sub-Goals
 
-| # | Axis | Sub-Goal | Domain | Status | Score |
-|---|------|----------|--------|--------|-------|
-| SG-1 | Motivation | <statement> | <domain> | pending | - |
-| SG-2 | Key Concept | <statement> | <domain> | pending | - |
-| SG-3 | Key Concept | <statement> | <domain> | pending | - |
-| ... | ... | ... | ... | ... | ... |
+| # | Axis | Sub-Goal | Domain | Difficulty | Depth | Status | Score |
+|---|------|----------|--------|-----------|-------|--------|-------|
+| SG-1 | Motivation | <statement> | <domain> | <low/med/high> | <intro/inter/adv> | pending | - |
+| SG-2 | Key Concept | <statement> | <domain> | <low/med/high> | <intro/inter/adv> | pending | - |
+| SG-3 | Key Concept | <statement> | <domain> | <low/med/high> | <intro/inter/adv> | pending | - |
+| ... | ... | ... | ... | ... | ... | ... | ... |
 
 ## Sequence
 <dependency notes: which sub-goals must come before others>
@@ -99,7 +102,12 @@ Generated: <date> | Status: in-progress
 ### SG-1: <short title>
 - **Initial Test:** <practical case description>
 - **Pass Criteria:** <measurable threshold>
-- **Teach Topics:** <concepts, exercises, pitfalls>
+- **Estimated Depth:** <introductory/intermediate/advanced>
+- **Anticipated CTQs:**
+  | CTQ | Source | Mastery Test | Common Failure Mode |
+  |-----|--------|-------------|---------------------|
+  | <what must be understood> | <concept> | <verification task> | <failure pattern> |
+- **Teach Topics:** <concepts, exercises, pitfalls with CTQ failure mode tags>
 - **Final Test:** <different case, same competencies>
 
 ### SG-2: <short title>

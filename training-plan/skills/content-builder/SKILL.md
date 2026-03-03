@@ -1,133 +1,200 @@
 ---
-description: "Gap-targeted teaching content generation for training sessions. Use when generating teaching material during the Teach phase of a TTT session, when the user asks to explain a concept, teach me about a topic, what did I get wrong, fill a learning gap, or needs targeted content covering motivation, definitions, exercises, typical errors, pitfalls, and misconceptions."
+description: "Gap-targeted teaching content generation for training sessions. Use when generating teaching material during the Teach phase of a TTT session, when the user asks to explain a concept, teach me about a topic, what did I get wrong, fill a learning gap, when a gap involves distinguishing two concepts, or when the learner requests a deep-dive into a taught principle."
 ---
 
 # Content Builder -- Domain Knowledge
 
-Reference knowledge for generating targeted, gap-filling teaching content.
+Reference knowledge for generating targeted, gap-filling teaching content within TTT sessions. Delegates to the concept-explainer skill for the full explanation methodology and CTQ framework.
 
 ## Purpose
 
-Generate a **teaching block** for ONE specific learning gap. Not a lecture. Not a textbook chapter. Just enough to fill the gap so the learner can pass the next test.
+Generate a **concept explanation** for ONE specific learning gap. Not a lecture. Not a textbook chapter. Just enough to fill the gap so the learner can pass the next test -- but structured using principle-first pedagogy when the gap warrants it.
 
-## Teaching Block Format
+## Teaching Format
 
-For each identified gap, produce exactly this structure:
+Each gap receives either an abbreviated or full concept explanation, determined by the Gap Complexity Assessment below.
+
+### Abbreviated Concept Explanation (for simple gaps)
 
 ```markdown
 ---
 
-**Why This Matters**
-<1-2 sentences connecting this concept to the learner's real goal. Make it concrete.
+**The Problem**
+<1-2 sentences: why this gap matters, framed in the learner's context.
 Not "this is important" but "without this, your estimates will systematically miss 15-25% of costs.">
 
-**Definition**
-<Clear, concise explanation of the concept. Use plain language. One paragraph maximum.
-If the concept has sub-parts, use a short bullet list.>
+**Core Principles**
+<1-2 principles in plain language. Each: one clear statement + one concrete example.>
 
-**Simple Exercise**
-<A small, immediately solvable exercise that builds understanding.
-The learner should be able to complete it in 1-2 minutes.
-Provide enough context to solve it without looking anything up.>
-
-**Typical Errors**
-<2-3 common mistakes learners make with this concept, and WHY they make them.
-Format: "Error: ... -- Why: ...">
-
-**Pitfalls & Misconceptions**
-<1-2 wrong mental models that learners commonly hold about this topic.
-Format: "Misconception: '...' -- Reality: ...">
-
-**Quick Check**
-<One focused question to verify the learner understood this block.
-Should be answerable in one sentence. Provide the expected answer in parentheses afterward.>
+**Quick Check** (CTQ: [source principle])
+<CTQ-derived verification question>
+(Expected answer: <answer>)
+(Watch for: <failure mode>)
 
 ---
 ```
 
+### Full Concept Explanation (for complex gaps)
+
+Deliver all 6 sections from the concept-explainer skill at the session's depth level:
+
+1. **The Problem** -- What makes this concept necessary; framed in the learner's gap context
+2. **Core Principles** (3-5) -- Foundational truths with statement + LaTeX (at intermediate+) + example
+3. **Key Innovations** (2-4) -- Breakthroughs: who, what it solved, worked example
+4. **Intuitive Formalization** -- Minimum math to make predictions
+5. **CTQ Mapping** -- Mastery criteria table with failure modes
+6. **Quick Check** (CTQ-derived) -- Verification question from the CTQ mastery test
+
+### Concept Comparison (for conflation gaps)
+
+When the gap is classified as [conflation], use the concept-explainer skill's Concept Comparison Protocol instead:
+1. What They Share -- shared principles table
+2. Where They Diverge -- differences table
+3. CTQ: The Critical Distinction -- specific mastery test for the A vs B distinction
+4. Quick Check targeting the distinction
+
+## Gap Complexity Assessment
+
+Before generating content for each gap, assess complexity using the CTQ failure mode classification from the EVALUATE phase:
+
+1. Does the gap match a CTQ failure mode? (conflation, overgeneralization, missing prerequisite, procedural-without-conceptual, verbal-without-formal, formal-without-intuitive)
+2. Is the gap flagged as a persistent pattern in the learner profile? (2+ occurrences)
+3. Does the gap involve a prerequisite the learner is missing?
+4. Is the gap a conflation between two specific concepts?
+
+**If condition 4 is true** -> Concept Comparison
+**If any of conditions 1-3 are true** -> Full Concept Explanation
+**Otherwise** -> Abbreviated Concept Explanation
+
 ## Design Principles
 
-### 1. One Gap, One Block
+### 1. One Gap, One Explanation
 
-Each teaching block addresses exactly ONE gap. If the learner has 3 gaps, produce 3 separate blocks delivered sequentially -- not one large combined explanation.
+Each concept explanation addresses exactly ONE gap. If the learner has 3 gaps, produce 3 separate explanations delivered sequentially -- not one large combined lesson.
 
 ### 2. Practical Over Theoretical
 
-- Lead with "Why This Matters" -- connect to the learner's actual goal
-- Exercises should be hands-on, not "explain the concept back to me"
-- Use concrete numbers, scenarios, and examples
+- Lead with "The Problem" -- connect to the learner's actual gap and real-world consequences
+- Exercises and examples should use concrete numbers, scenarios, and contexts
+- Principles should be illustrated with vivid, specific examples before any formalization
 
 ### 3. Minimal and Sufficient
 
-- Definition: one paragraph. If you need more, the gap is too broad -- split it.
-- Exercise: 1-2 minutes to solve. Not a project.
-- Quick Check: one question. Not a quiz.
+For **simple gaps**: abbreviated treatment (Problem + Principles + Quick Check). Similar length to the old teaching block.
 
-### 4. Error-Focused
+For **complex gaps**: the full 6-section treatment IS the minimum needed -- the gap is deep enough that shortcuts would leave misunderstandings intact. But even here, each section should be concise and targeted.
 
-The "Typical Errors" and "Pitfalls & Misconceptions" sections are often the most valuable part. They tell the learner what NOT to do, which is faster than re-teaching from scratch.
+### 4. Error-Focused with CTQ Failure Modes
 
-Focus on errors that are:
-- **Common** -- most learners make them
-- **Consequential** -- they lead to wrong results
-- **Non-obvious** -- the learner wouldn't catch them on their own
+The CTQ failure mode taxonomy enriches error identification:
+- **Conflation**: the learner confused two distinct concepts -> use Comparison format
+- **Overgeneralization**: applied a rule beyond its domain -> teach the boundary conditions
+- **Missing prerequisite**: lacks foundation -> teach the prerequisite first, then the target concept
+- **Procedural without conceptual**: can follow steps but not explain why -> emphasize principles and "why" before "how"
+- **Verbal without formal**: describes correctly but cannot formalize -> emphasize the LaTeX / formal expression
+- **Formal without intuitive**: manipulates symbols but cannot interpret results -> emphasize concrete examples and physical meaning
 
-### 5. Quick Check Design
+### 5. CTQ-Enhanced Quick Checks
 
-The Quick Check verifies comprehension of THIS block only. Rules:
+Quick Checks are derived from CTQ mastery tests:
+- The question comes from the CTQ table's "Mastery Test" column
+- The expected answer is specific and verifiable
+- The "Watch for" line identifies the most likely failure mode
+- Must test understanding, not recall: "When would you use X?" not "What is the definition of X?"
 
-- Must be answerable from the content just presented
-- Must have a clear correct answer (no opinion questions)
-- Should test understanding, not recall ("When would you use X?" not "What is the definition of X?")
-- Always provide the expected answer in parentheses
+## Example: Abbreviated Concept Explanation
 
-## Example Teaching Block
-
-Gap: "Learner does not distinguish direct from indirect costs in a project estimate."
+Gap [simple]: "Learner miscalculated unit cost by using wrong units."
 
 ```markdown
 ---
 
-**Why This Matters**
-Indirect costs typically represent 15-25% of an EPC project estimate. If you miss
-them, every estimate you produce will be systematically low -- and your project will
-overrun its budget before construction even starts.
+**The Problem**
+Your foundation cost was off by a factor of 2.2 because you mixed kg with lb for rebar pricing. Unit mismatches are the most common arithmetic error in cost estimation -- they don't look wrong until the total is wildly off.
 
-**Definition**
-**Direct costs** are tied to a specific scope item -- the steel for a tank, the labor
-to install a pump, the concrete for a foundation. If you can point to the item on
-a drawing, it's a direct cost.
+**Core Principles**
 
-**Indirect costs** are necessary for the project to happen but not tied to one item:
-- Construction camp and temporary facilities
-- Site security and fencing
-- Builder's risk insurance
-- Mobilization / demobilization
-- Quality inspection staff
-- Permits and regulatory fees
+**Dimensional consistency**: Every multiplication must have compatible units. If your quantity is in kg and your rate is in $/lb, you need a conversion factor (1 lb = 0.4536 kg) before multiplying.
 
-**Simple Exercise**
-Classify each as direct (D) or indirect (I):
-1. Crane rental for tank erection
-2. Builder's risk insurance policy
-3. Welding rods for piping installation
-4. Security guard at site gate
-5. Freight of equipment from factory to site
+**Unit-label tracking**: Write units next to every number in your calculation. If the units don't cancel to produce $, something is wrong.
 
-**Typical Errors**
-- Error: Listing "miscellaneous 10%" instead of itemizing indirects -- Why: feels
-  easier, but hides real costs and makes the estimate uncheckable.
-- Error: Classifying freight as indirect -- Why: if freight is for a specific piece
-  of equipment, it's a direct cost for that item.
+**Quick Check** (CTQ: dimensional consistency)
+Your quantity is 38,000 kg of rebar. The rate card says $2.10/lb. What is the correct rebar cost?
+(Expected answer: 38,000 kg x 2.205 lb/kg x $2.10/lb = $175,959)
+(Watch for: overgeneralization -- applying the rate directly without conversion)
 
-**Pitfalls & Misconceptions**
-- Misconception: "Indirects are covered by contingency" -- Reality: Contingency
-  covers unknowns and risks. Indirects are known, quantifiable costs that must
-  be estimated explicitly.
+---
+```
 
-**Quick Check**
-Is "crane rental for tank erection" a direct or indirect cost, and why?
-(Answer: Direct -- it is tied to a specific scope item, the tanks.)
+## Example: Full Concept Explanation
+
+Gap [conflation]: "Learner confused indirect costs with contingency."
+
+```markdown
+---
+
+## Indirect Costs vs Contingency
+
+### 1. The Problem
+
+Your estimate lumped "miscellaneous 15%" at the bottom without distinguishing indirect costs from contingency. These are fundamentally different categories: one covers KNOWN costs you can itemize, the other covers UNKNOWN risks you cannot. Mixing them means you cannot defend your estimate in a review, and you will either double-count or miss real costs.
+
+### 2. Core Principles
+
+#### Principle 1: Direct vs Indirect Classification
+**Statement**: Every project cost is either traceable to a specific scope item (direct) or necessary for the project but not tied to one item (indirect).
+**Example**: Steel for Tank T-101 is direct. Site security fencing is indirect -- it serves the whole project, not one deliverable.
+
+#### Principle 2: Contingency as Risk Reserve
+**Statement**: Contingency covers the cost impact of identified risks that may or may not occur. It is probability-weighted, not a line item.
+**Example**: "30% chance the soil needs extra piling" = contingency of 0.30 x $200k = $60k. This is NOT an indirect cost -- it may never be spent.
+
+#### Principle 3: Estimating Traceability
+**Statement**: If you can point to the item on a drawing or schedule, it is direct. If it serves the whole project, it is indirect. If it depends on a risk event, it is contingency.
+
+### 3. Key Innovations
+
+#### AACE Classification System (AACE International, 1990s)
+**What**: Standardized cost breakdown into direct, indirect, contingency, and escalation categories.
+**Why it mattered**: Before this, estimators used ad-hoc categories, making estimates incomparable across projects and companies.
+
+### 4. Intuitive Formalization
+
+$$\text{Total Estimate} = \sum \text{Direct}_i + \sum \text{Indirect}_j + \text{Contingency} + \text{Escalation}$$
+
+| Component | Formula | What it covers |
+|-----------|---------|----------------|
+| Direct costs | $\sum Q_i \times R_i$ | Scope-specific items (quantity x rate) |
+| Indirect costs | Itemized list | Project-wide costs (camp, insurance, mob/demob) |
+| Contingency | $\sum P_k \times I_k$ | Probability-weighted risk impacts |
+
+### 5. CTQ Mapping
+
+| CTQ | Source | Mastery Test | Common Failure Mode |
+|-----|--------|-------------|---------------------|
+| Can classify any cost line as direct, indirect, or contingency | Principle 1 + 2 | "Freight for equipment X" -- which category? | Conflation: calling freight "indirect" when it's direct to that equipment |
+| Can explain why contingency is not a percentage add-on | Principle 2 | Why is "add 15% contingency" a bad practice? | Procedural: applies % without risk analysis |
+
+### What They Share
+
+| Shared Principle | Indirect Costs | Contingency |
+|-----------------|----------------|-------------|
+| Both are non-scope-specific costs | Yes -- project-wide, not item-specific | Yes -- risk-driven, not item-specific |
+| Both appear below the direct cost subtotal | Yes | Yes |
+
+### Where They Diverge
+
+| Dimension | Indirect Costs | Contingency |
+|-----------|---------------|-------------|
+| Nature | KNOWN and quantifiable | UNCERTAIN and probability-weighted |
+| Can you itemize it? | Yes -- security, insurance, camp, etc. | No -- it is a reserve for risk events |
+| When is it spent? | Always -- these costs will occur | Maybe -- only if the risk event occurs |
+| How to estimate | Bottom-up: list and price each item | Risk analysis: probability x impact |
+
+**Quick Check** (CTQ: classification)
+Your estimate includes "builder's risk insurance: $45,000" and "possible soil remediation if contamination found: $120,000." Which is indirect and which is contingency, and why?
+(Expected answer: Insurance is indirect -- it's a known, project-wide cost that will be paid regardless. Soil remediation is contingency -- it depends on a risk event that may not occur.)
+(Watch for: conflation -- calling both "indirect" because neither is tied to a specific scope item)
 
 ---
 ```
@@ -137,8 +204,8 @@ Is "crane rental for tank erection" a direct or indirect cost, and why?
 If the learner answers the Quick Check incorrectly:
 
 1. Do NOT move to the next teaching block
-2. Re-explain the specific point they got wrong, in different words
-3. Give one more Quick Check on the same concept
+2. Re-explain the specific point they got wrong, using a DIFFERENT angle or example
+3. Give one more CTQ-derived Quick Check on the same concept
 4. If they pass the second check, proceed
 5. If they fail again, note it as a persistent gap and proceed (don't loop on Quick Checks)
 
@@ -146,44 +213,53 @@ If the learner answers the Quick Check incorrectly:
 
 ## Concept Map for TTT Sessions
 
-When offered during Phase 3.5 of a TTT session, generate a concept map to help the learner visualize relationships between the concepts just taught. This uses the same node-type vocabulary as the concept-builder plugin but is self-contained -- no cross-plugin dependency.
+After all teaching blocks are delivered and Quick Checks passed, generate a concept map during Phase 3.5.
 
 ### Format
 
-Use a markdown nested list with the following node types and relationship labels.
+Use the concept-explainer skill's full Concept Map Format:
+- All node types: (core), (principle), (innovation), (application), (prerequisite), (shared)
+- All relationship labels: `rests on`, `requires`, `led to`, `enables`, `generalizes`, `is a special case of`, `contrasts with`, `equivalent to`
 
-**Node types** (in parentheses after node name):
-- **(core)**: The sub-goal's central competency
-- **(principle)**: Foundational ideas from the teaching blocks
-- **(innovation)**: Key techniques or approaches
-- **(application)**: Practical uses the learner should know
-- **(prerequisite)**: Prior knowledge assumed by this sub-goal
+### Design Rules for TTT Context
 
-**Relationship labels** as prefixes on nested groups:
-`rests on`, `requires`, `led to`, `enables`
-
-**Structure:**
-
-```markdown
-## Concept Map: <Sub-Goal Topic>
-
-- **<Core Topic>** (core): <one-line description>
-  - requires:
-    - **<Prerequisite>** (prerequisite): <description>
-  - rests on:
-    - **<Principle from Gap 1>** (principle): <description>
-      - led to:
-        - **<Technique/Approach>** (innovation): <description>
-    - **<Principle from Gap 2>** (principle): <description>
-  - enables:
-    - **<Application>** (application): <description>
-```
-
-### Design Rules
-
-1. Use `shallow` depth: 5-8 nodes maximum
+1. Default depth: **standard** (10-15 nodes)
 2. The (core) node is the sub-goal's topic, NOT the entire training plan topic
-3. Principles should correspond to the gaps that were taught -- this makes the map a structural summary of what the learner just learned
-4. Include 1-2 applications to connect the concepts to practical use
-5. Keep descriptions to one line each
-6. Do NOT include "Where to Go Next" suggestions -- the next step is the Final Test
+3. ALL gaps taught MUST appear as principles or innovations in the map
+4. Nest innovations under their parent principle using `led to`
+5. Add 2-4 applications connecting concepts to practical use
+6. Add 1-3 prerequisites for context
+7. Keep descriptions to one line each
+8. Do NOT include "Where to Go Next" suggestions -- the next step is the Final Test
+
+### For Conflation Gaps
+
+If the session included a comparison, use the comparison map format (three-section: Shared Foundation, Concept A, Concept B).
+
+---
+
+## Concept File Export
+
+Every Teach phase generates a concept file, written during the RECORD phase (Phase 6).
+
+- **Filename**: `concept-<domain>-<topic>.md` (kebab-case)
+- **Content**: YAML frontmatter + all teaching blocks + concept map + aggregated CTQ table + session context
+- **Format**: See concept-explainer skill's Concept File Export Format
+
+The concept file is a persistent learning artifact. It can be browsed via `/concept-library`.
+
+---
+
+## In-Session Deep-Dive
+
+If the learner asks for deeper explanation of a principle after a teaching block:
+
+1. Identify the principle to expand (from the most recent teaching block or concept map)
+2. Generate a full 6-section explanation for that principle using the concept-explainer skill's Deep-Dive Protocol
+3. Deliver it inline -- the deep-dive does NOT interrupt the session flow
+4. Return to the next gap (or Phase 3.5 if all gaps are done)
+
+Rules:
+- Mention the deep-dive option once after the first teaching block
+- Only one deep-dive per teaching block (prevent rabbit holes)
+- Include the deep-dive content in the session transcript and concept file

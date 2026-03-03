@@ -68,64 +68,59 @@ Example:
 
 ### Phase 2: EVALUATE
 
-After the learner responds, evaluate against the pass criteria from the blueprint.
+After the learner responds, evaluate against the pass criteria and CTQ mastery tests from the blueprint.
 
 - List what they got right
 - List what they got wrong or missed
 - Determine: **PASS**, **PARTIAL**, or **FAIL**
 - If PASS: tell them, then skip to Phase 6
-- If PARTIAL or FAIL: list the specific gaps, then proceed to Phase 3
+- If PARTIAL or FAIL: list the specific gaps with CTQ failure mode classification, then proceed to Phase 3
 
-Name gaps precisely:
-- Good: "Gap: confused indirect costs with contingency"
-- Bad: "Gap: needs improvement" (too vague)
+Classify each gap using the CTQ failure mode taxonomy:
+- "Gap [conflation]: confused indirect costs with contingency"
+- "Gap [procedural-without-conceptual]: applied formula but cannot explain reasoning"
+- "Gap [overgeneralization]: assumed all overhead is a fixed percentage"
+- "Gap [missing-prerequisite]: unfamiliar with WBS needed for cost classification"
+- "Gap: arithmetic error in unit conversion" (simple gap -- no deeper conceptual issue)
 
-**Checkpoint:** Update `<topic>_checkpoint_SG<N>.md` with evaluation results and gap list. Set `## Current Phase: TEACH` (or `RECORD` if PASS).
+**Checkpoint:** Update `<topic>_checkpoint_SG<N>.md` with evaluation results and classified gap list. Set `## Current Phase: TEACH` (or `RECORD` if PASS).
 
 ### Phase 3: TEACH
 
-For EACH identified gap, deliver a teaching block:
+For EACH identified gap, deliver a concept explanation using the content-builder skill:
 
-```
----
+**Step 1: Assess gap complexity** (from the failure mode classification in Phase 2):
+- Simple gap (no failure mode tag) -> **Abbreviated Concept Explanation** (Problem + Principles + CTQ Quick Check)
+- Complex gap (has failure mode tag) -> **Full Concept Explanation** (6 sections from concept-explainer)
+- Conflation gap -> **Concept Comparison** (shared principles + divergences + CTQ distinction)
 
-**Why This Matters**
-<1-2 sentences connecting to the learner's goal>
+**Step 2: Determine depth level**
+Use the sub-goal's blueprint Estimated Depth. Default: intermediate.
 
-**Definition**
-<Clear, concise explanation>
+**Step 3: Deliver the concept explanation**
+- ONE explanation per gap, delivered sequentially
+- After each Quick Check (CTQ-derived), wait for the learner's answer
+- If they get the Quick Check wrong: re-explain using a different angle, give one more CTQ check
+- If they fail the second check: note as persistent gap, proceed to next gap
 
-**Simple Exercise**
-<Small exercise, solvable in 1-2 minutes>
+**Step 4: Deep-dive option**
+After the FIRST teaching block, mention once:
+"You can ask me to go deeper on any principle I just explained."
+- If the learner requests a deep-dive: generate a full 6-section explanation for that principle inline, then continue with the next gap
+- If they don't ask: proceed normally
+- Do NOT repeat this offer after subsequent blocks
 
-**Typical Errors**
-<2-3 common mistakes and why they happen>
+After ALL gaps are taught and Quick Checks addressed, proceed to Phase 3.5.
 
-**Pitfalls & Misconceptions**
-<1-2 wrong mental models to watch for>
-
-**Quick Check**
-<One focused question>
-(Expected answer: <answer>)
-
----
-```
-
-Rules:
-- ONE block per gap. Deliver them sequentially.
-- After each Quick Check, wait for the learner's answer
-- If they get the Quick Check wrong, re-explain briefly and give one more check
-- After ALL blocks are delivered and Quick Checks passed, proceed to Phase 3.5
-
-**Checkpoint:** After EACH teaching block and Quick Check, update `<topic>_checkpoint_SG<N>.md` with the completed block. Update `## Current Phase: TEACH (Gap N of M completed)`. After the final block, set `## Current Phase: CONCEPT_MAP_OFFER`.
+**Checkpoint:** After EACH teaching block and Quick Check, update `<topic>_checkpoint_SG<N>.md` with the completed block (including format used: abbreviated/full/comparison). Update `## Current Phase: TEACH (Gap N of M completed)`. After the final block, set `## Current Phase: CONCEPT_MAP_OFFER`.
 
 ### Phase 3.5: OPTIONAL CONCEPT MAP
 
-After all teaching blocks are delivered and Quick Checks passed, but BEFORE the Final Test, offer the learner a concept map:
+After all teaching is delivered and Quick Checks passed, but BEFORE the Final Test, offer the learner a concept map:
 
 "Would you like a concept map for [sub-goal topic] before the Final Test? This is optional -- it can help visualize how the concepts connect."
 
-- If YES: Generate a concept map using the content-builder skill's "Concept Map for TTT Sessions" format. Use `shallow` depth (5-8 nodes). The map should focus on the concepts covered in the teaching blocks plus the sub-goal's core competency. Display the map inline. Include it in the checkpoint and later in the session transcript.
+- If YES: Generate a concept map using the content-builder skill's "Concept Map for TTT Sessions" format. Use **standard** depth (10-15 nodes). ALL gaps taught must appear as principles or innovations in the map. For conflation gaps, use the comparison map format. Display the map inline.
 
 - If NO: Proceed directly to Phase 4.
 
@@ -148,14 +143,14 @@ Wait for the learner to respond.
 ### Phase 5: EVALUATE FINAL
 
 - **PASS**: Congratulate. Proceed to Phase 6.
-- **FAIL (first time)**: Identify remaining gaps. Loop back to Phase 3 with ONLY the persistent gaps. Then present ANOTHER new Final Test case. This is Loop 1.
+- **FAIL (first time)**: Identify remaining gaps with failure mode classification. Loop back to Phase 3 with ONLY the persistent gaps. Then present ANOTHER new Final Test case. This is Loop 1.
 - **FAIL (second time -- Loop 2 max)**: Record the result. Tell the learner: "This sub-goal needs additional review. I recommend revisiting the prerequisites or discussing with an instructor."
 
 **Checkpoint:** Update checkpoint with final evaluation. Set `## Current Phase: RECORD`.
 
 ### Phase 6: RECORD
 
-Do five things:
+Do six things:
 
 **A) Update the training plan file** using the Edit tool:
 - Change the sub-goal's Status from "pending" to "complete" (or "needs-review")
@@ -165,11 +160,12 @@ Do five things:
 ```markdown
 ### SG-<N> -- <Completed/Needs Review> <date>
 - Initial Test: <PASS/PARTIAL/FAIL> (<details>)
-- Gaps found: <list or "none">
-- Teach Phase: <N blocks delivered, or "skipped -- no gaps">
+- Gaps found: <list with failure mode tags, or "none">
+- Teach Phase: <N explanations delivered (N abbreviated, N full, N comparison), or "skipped -- no gaps">
 - Final Test: <PASS/FAIL> (<details>)
 - Loops: <0/1/2>
-- Concept Map: <generated/not generated>
+- Concept Map: <generated (standard/deep) / not generated>
+- Concept File: <filename or "none">
 - Notes: <brief observations>
 ```
 
@@ -183,12 +179,14 @@ Date: <date>
 **Case:** <what was presented>
 **Learner response:** <what they said>
 **Evaluation:** <PASS/PARTIAL/FAIL>
-**Gaps identified:** <list>
+**Gaps identified:** <list with failure mode classifications>
 
 ## Teach Phase
-### Gap: <name>
-**Content:** <summary of what was taught>
+### Gap: <name> [<failure mode>]
+**Format:** <abbreviated/full/comparison>
+**Content:** <summary of what was taught -- for full explanations, summarize the 6 sections>
 **Quick Check:** <question> -> Learner: <answer> -> <correct/incorrect>
+**Deep-dive:** <if requested, summary of expanded principle>
 
 (repeat for each gap)
 
@@ -210,20 +208,30 @@ Loops: <0/1/2>
 **D) Update the learner profile.** Read `learner_profile.md` from the current directory (create it if it does not exist). Update according to the learner-analytics skill's Update Rules:
 1. Update or add the plan row in the Plans table
 2. If Initial Test was PASS with zero gaps, add to Strengths
-3. For each gap found, update Gap Patterns (increment existing or add new)
+3. For each gap found, update Gap Patterns (increment existing or add new, noting failure mode)
 4. Add a Session History entry
 
-**E) Suggest next step:** Tell the learner which sub-goal to run next (the next pending one in sequence). Mention `/training-status` if they want to see their overall progress.
+**E) Export concept file** (if teaching occurred):
+Write a concept file to the current directory using the concept-explainer skill's export format.
+- Filename: `concept-<domain>-<sg-topic>.md` (kebab-case)
+- Contains: YAML frontmatter (type: ttt-session, session, plan, level, tags) + all teaching content + concept map (if generated) + aggregated CTQ table + session context
+- If no teaching occurred (learner passed Initial Test), skip this step
+
+**F) Suggest next step:** Tell the learner which sub-goal to run next (the next pending one in sequence). Mention `/training-status` for overall progress and `/concept-library` to browse saved concept files.
 
 ## Important Rules
 
 - NEVER teach before testing -- the Initial Test ALWAYS comes first
-- NEVER skip evaluation -- always explicitly state PASS/FAIL with reasons
-- NEVER combine multiple gaps into one teaching block -- one gap, one block
+- NEVER skip evaluation -- always explicitly state PASS/FAIL with reasons and failure mode classifications
+- NEVER combine multiple gaps into one explanation -- one gap, one concept explanation
+- ALWAYS assess gap complexity before choosing teaching format (abbreviated vs full vs comparison)
+- ALWAYS use CTQ failure mode taxonomy when naming gaps in EVALUATE
 - ALWAYS wait for learner responses at: Initial Test, each Quick Check, Final Test
 - ALWAYS update the plan file and write the transcript at the end
 - ALWAYS check for an existing checkpoint file before starting -- offer to resume if one exists
 - ALWAYS write/update the checkpoint after each phase completes
 - ALWAYS delete the checkpoint file after a successful RECORD phase
 - ALWAYS update the learner profile during RECORD
+- ALWAYS export a concept file during RECORD if teaching occurred
+- MENTION the deep-dive option once after the first teaching block -- never repeat the offer
 - OPTIONALLY offer a concept map after the TEACH phase -- never insist, just offer once

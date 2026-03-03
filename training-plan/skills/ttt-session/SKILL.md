@@ -27,10 +27,20 @@ For each sub-goal, produce a session blueprint with this structure:
 - Assesses: <specific competencies being tested>
 - Pass criteria: <concrete, measurable threshold>
 
+**Estimated Depth:** <introductory/intermediate/advanced>
+
+**Anticipated CTQs:**
+| CTQ | Source | Mastery Test | Common Failure Mode |
+|-----|--------|-------------|---------------------|
+| <what the learner must understand> | <concept> | <verification task> | <likely failure pattern> |
+
 **Teach Phase Plan** (activated only if Initial Test reveals gaps)
 - Concepts to cover: <list of key ideas>
 - Exercises: <2-3 graduated exercises>
-- Known pitfalls: <common errors and misconceptions for this topic>
+- Known pitfalls: <common errors with CTQ failure mode classification>
+  - [conflation]: <two concepts learners commonly confuse>
+  - [procedural-without-conceptual]: <formulas applied without understanding>
+  - [overgeneralization]: <rules applied beyond their domain>
 
 **Final Test**
 - Case: <different scenario, same competencies>
@@ -54,7 +64,14 @@ For each sub-goal, produce a session blueprint with this structure:
    - Good: "Calculation within 5% of reference answer"
    - Bad: "Shows understanding" (not measurable)
 
-5. **Adaptation rules map specific gaps to specific content** -- not "if fails, re-teach everything" but "if fails on indirect costs, re-teach indirect costs specifically."
+5. **CTQ criteria supplement pass criteria** -- they define what specific understanding is required, not just what score threshold to meet. Each CTQ traces to a principle or innovation and has a concrete mastery test.
+
+6. **Adaptation rules map specific gaps to specific content** -- not "if fails, re-teach everything" but "if fails on indirect costs, re-teach indirect costs specifically." Classify anticipated failures using CTQ failure mode taxonomy.
+
+7. **Estimated Depth determines teaching richness** -- derived from the sub-goal's difficulty:
+   - low difficulty -> introductory (minimal LaTeX, 3 principles, brief)
+   - medium difficulty -> intermediate (full LaTeX, 3-5 principles, worked examples)
+   - high difficulty -> advanced (proofs, edge cases, 5 principles, detailed)
 
 ---
 
@@ -86,37 +103,59 @@ Example opening:
 
 ### Phase 2: EVALUATE
 
-After the learner responds, evaluate against the pass criteria:
+After the learner responds, evaluate against the pass criteria and CTQ mastery tests:
 
 - **PASS** (meets or exceeds criteria): Skip to Phase 6 (RECORD). Sub-goal complete.
-- **PARTIAL** (some gaps identified): Proceed to Phase 3. List specific gaps.
-- **FAIL** (major gaps): Proceed to Phase 3. List all gaps.
+- **PARTIAL** (some gaps identified): Proceed to Phase 3. List specific gaps with failure mode classification.
+- **FAIL** (major gaps): Proceed to Phase 3. List all gaps with failure mode classification.
 
-When evaluating, identify gaps as specific, named deficits:
-- Good: "Gap: does not distinguish direct from indirect costs"
-- Good: "Gap: unit conversion error (confused kg with lb)"
-- Bad: "Gap: doesn't understand the topic" (too vague to teach)
+When identifying gaps, classify each using the CTQ failure mode taxonomy:
+- "Gap [conflation]: confused indirect costs with contingency"
+- "Gap [procedural-without-conceptual]: applied the formula correctly but cannot explain why it works"
+- "Gap [overgeneralization]: assumed all overhead is a fixed percentage"
+- "Gap [missing-prerequisite]: unfamiliar with WBS structure needed for cost classification"
+
+Simple gaps that don't match a failure mode pattern:
+- "Gap: arithmetic error in unit conversion" (simple, no deeper conceptual issue)
 
 ### Phase 3: TEACH
 
-For each identified gap, generate a teaching block using the `content-builder` skill format:
+For each identified gap, generate a concept explanation using the `content-builder` skill:
 
-1. Why This Matters (1-2 sentences)
-2. Definition (clear, concise)
-3. Simple Exercise (immediately solvable)
-4. Typical Errors (what others get wrong)
-5. Pitfalls & Misconceptions (wrong mental models)
-6. Quick Check (one verification question)
+1. **Assess gap complexity** (from the failure mode classification in Phase 2):
+   - Simple gap (no failure mode) -> Abbreviated Concept Explanation
+   - Complex gap (has failure mode) -> Full Concept Explanation
+   - Conflation gap -> Concept Comparison
+
+2. **Select depth level** from the blueprint's Estimated Depth (default: intermediate)
+
+3. **Deliver the concept explanation**:
+   - ONE explanation per gap, delivered sequentially
+   - After each Quick Check (CTQ-derived), wait for the learner's answer
+   - If Quick Check fails: re-explain using a different angle, give one more CTQ check
+   - If second check fails: note as persistent gap, proceed
+
+4. **After the first teaching block**, mention once:
+   "You can ask me to go deeper on any principle I just explained."
+   If the learner requests a deep-dive: generate it inline using the concept-explainer skill's Deep-Dive Protocol, then continue.
+
+5. After ALL gaps are taught, proceed to Phase 3.5
 
 Rules:
-- Deliver ONE teaching block at a time
-- Wait for the learner to complete the Quick Check before moving to the next block
+- Deliver ONE explanation at a time
+- Wait for the learner to complete the Quick Check before moving to the next
 - If the Quick Check fails, re-explain that specific point before moving on
 - After ALL gaps are taught, proceed to Phase 3.5
 
 ### Phase 3.5: OPTIONAL CONCEPT MAP
 
-After all teaching blocks are delivered, optionally offer a concept map (see content-builder skill for format). This is a brief offer -- proceed to Phase 4 regardless.
+After all teaching is delivered, optionally offer a concept map:
+
+- Use **standard** depth (10-15 nodes)
+- ALL gaps taught must appear as principles or innovations in the map
+- For conflation gaps, use the comparison map format (three-section)
+- See the content-builder skill's "Concept Map for TTT Sessions" for format details
+- This is a brief offer -- proceed to Phase 4 regardless of answer
 
 ### Phase 4: FINAL TEST
 
@@ -132,12 +171,12 @@ Present a NEW practical case testing the same competencies:
 Evaluate the Final Test response:
 
 - **PASS**: Proceed to Phase 6. Sub-goal complete.
-- **FAIL (Loop 1)**: Identify remaining gaps. Loop back to Phase 3 with NARROWER focus -- only re-teach the specific gaps that persist. Then present ANOTHER new Final Test case.
+- **FAIL (Loop 1)**: Identify remaining gaps with failure mode classification. Loop back to Phase 3 with NARROWER focus -- only re-teach the specific gaps that persist. Then present ANOTHER new Final Test case.
 - **FAIL (Loop 2)**: This is the maximum. Record the result and flag: "Sub-goal needs additional review. Recommend revisiting prerequisites or seeking instructor support."
 
 ### Phase 6: RECORD
 
-Update the training plan file, write the session transcript, delete checkpoint, update learner profile, and suggest next step.
+Update the training plan file, write the session transcript, delete checkpoint, update learner profile, export concept file, and suggest next step.
 
 ---
 
@@ -172,12 +211,14 @@ Started: <date>
 
 ## Evaluation
 **Result:** <PASS/PARTIAL/FAIL>
-**Gaps identified:** <list>
+**Gaps identified:** <list with failure mode classifications>
 
 ## Teach Phase
-### Gap: <name>
+### Gap: <name> [<failure mode>]
+**Format:** <abbreviated/full/comparison>
 **Content:** <summary of what was taught>
 **Quick Check:** <question> -> Learner: <answer> -> <correct/incorrect>
+**Deep-dive:** <if requested, summary of expanded principle>
 
 (repeat for each gap completed so far)
 
