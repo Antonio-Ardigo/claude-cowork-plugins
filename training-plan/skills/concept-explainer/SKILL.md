@@ -6,6 +6,10 @@ description: "Concept explanation methodology for TTT sessions. Use when generat
 
 Reference knowledge for generating rich, principle-first concept explanations within TTT sessions. Replaces simple teaching blocks with structured concept breakdowns when appropriate, while preserving the gap-driven, one-at-a-time delivery model of TTT.
 
+## Standalone Invocation Rule
+
+When this skill is invoked directly (e.g., via `/training-plan:concept-explainer` or when a learner declares "not familiar" with a topic), ALWAYS deliver the **Full 7-Section Concept Explanation** at intermediate depth (default). NEVER use the abbreviated form for standalone invocations -- the abbreviated form is reserved exclusively for simple gaps within TTT session Teach phases. A standalone concept explanation must include all 7 sections: The Problem, Core Principles, Key Innovations, Worked Example, Intuitive Formalization, CTQ Mapping, and Conceptual Map.
+
 ## The 7-Section Concept Explanation Structure
 
 Every concept explanation follows this structure (7 sections). Sections may be abbreviated or omitted based on the adaptive depth logic below, but the Worked Example (3.5) is ALWAYS included -- it is the core teaching artifact.

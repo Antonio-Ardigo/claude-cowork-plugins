@@ -88,6 +88,7 @@ Rules:
 - Present the scenario and the task directly
 - Ask the learner to respond
 - Wait for the learner's response before proceeding
+- ALWAYS include the "not familiar" note at the end of every Initial Test (see below)
 
 Example opening:
 > **Practical Case -- SG-3: Unit-Rate Estimation**
@@ -100,6 +101,10 @@ Example opening:
 > Unit rates: Concrete $180/m3, Rebar $2.10/kg, Formwork $45/m2
 >
 > **Task:** Calculate the total foundation cost. Show your work.
+>
+> *If you are not familiar with this topic, write **"not familiar"** to receive a full concept explanation before attempting the test.*
+
+The "not familiar" note MUST appear at the end of every Initial Test presentation. It gives learners an honest opt-in to receive the full concept explainer before attempting a topic they have no background in.
 
 ### Phase 2: EVALUATE
 
@@ -108,6 +113,7 @@ After the learner responds, evaluate against the pass criteria and CTQ mastery t
 - **PASS** (meets or exceeds criteria): Skip to Phase 6 (RECORD). Sub-goal complete.
 - **PARTIAL** (some gaps identified): Proceed to Phase 3. List specific gaps with failure mode classification.
 - **FAIL** (major gaps): Proceed to Phase 3. List all gaps with failure mode classification.
+- **NOT FAMILIAR**: If the learner writes "not familiar" (or equivalent: "I don't know this topic", "no background", "never learned this"), treat the ENTIRE sub-goal as a single complex gap with failure mode `[missing-prerequisite]`. Proceed to Phase 3 and deliver the **Full 7-Section Concept Explanation** for the sub-goal's topic at the blueprint's depth level. After the full explanation and Quick Check, proceed to the Initial Test again (the learner now attempts it with the knowledge gained). This does NOT count as an adaptation loop.
 
 When identifying gaps, classify each using the CTQ failure mode taxonomy:
 - "Gap [conflation]: confused indirect costs with contingency"

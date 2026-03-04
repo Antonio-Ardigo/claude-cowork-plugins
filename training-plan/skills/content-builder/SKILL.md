@@ -68,8 +68,10 @@ Before generating content for each gap, assess complexity using the CTQ failure 
 2. Is the gap flagged as a persistent pattern in the learner profile? (2+ occurrences)
 3. Does the gap involve a prerequisite the learner is missing?
 4. Is the gap a conflation between two specific concepts?
+5. Did the learner declare "not familiar" with the topic? (responded "not familiar", "I don't know this", "no background", or equivalent to the Initial Test)
 
 **If condition 4 is true** -> Concept Comparison
+**If condition 5 is true** -> Full Concept Explanation (the learner has no prior knowledge; deliver all 7 sections as a comprehensive introduction to the topic)
 **If any of conditions 1-3 are true** -> Full Concept Explanation
 **Otherwise** -> Abbreviated Concept Explanation
 
