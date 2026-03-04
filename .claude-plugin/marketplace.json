@@ -47,12 +47,12 @@
     {
       "name": "cartoon-maker",
       "source": "./cartoon-maker",
-      "description": "Create cartoon sequence videos with human characters from natural language descriptions. Characters include engineer, doctor, architect, project manager, woman, and baby lady — each with distinct appearance and voice. Describe the scene and dialogue to produce an MP4."
+      "description": "Create cartoon sequence videos with human characters from natural language descriptions. Characters include engineer, doctor, architect, project manager, woman, and baby lady \u00e2\u20ac\u201d each with distinct appearance and voice. Describe the scene and dialogue to produce an MP4."
     },
     {
       "name": "training-plan",
       "source": "./training-plan",
-      "description": "Generate customized learning paths using Test-Teach-Test methodology. Decompose goals into sub-goals, design adaptive sessions, run interactive TTT loops with practical cases first, and re-work until mastery."
+      "description": "Generate customized learning paths using Test-Teach-Test methodology with integrated concept-builder pedagogy. Decompose goals, design sessions, run interactive TTT loops with principle-first teaching (LaTeX, fully developed worked examples, CTQ mastery criteria, concept maps, comparison, deep-dive), concept file export, and a concept library. Includes mid-session checkpointing, persistent learner profiles, and cross-plan analytics."
     }
   ]
 }
