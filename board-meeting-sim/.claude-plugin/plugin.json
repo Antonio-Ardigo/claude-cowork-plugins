@@ -1,0 +1,15 @@
+{
+  "name": "board-meeting-sim",
+  "version": "0.1.0",
+  "description": "Simulate a board of directors meeting. Present a proposal, get it debated by six directors with distinct perspectives, and receive a vote with conditions and action items.",
+  "author": {
+    "name": "Anton"
+  },
+  "keywords": [
+    "board meeting",
+    "simulation",
+    "governance",
+    "decision making",
+    "stress test"
+  ]
+}

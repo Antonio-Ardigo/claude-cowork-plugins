@@ -25,11 +25,6 @@
       "description": "Classify Greek tragedies as Apollonian, Dionysiac, or mixture using Nietzsche's Birth of Tragedy framework. Six-dimensional analysis across chorus, individuation, suffering, resolution, language, and body/boundaries. Includes 11 source texts and classifications."
     },
     {
-      "name": "arabic-pdf-translator",
-      "source": "./arabic-pdf-translator",
-      "description": "Arabic PDF OCR and ensemble translation. Multi-engine OCR (Tesseract + EasyOCR + PaddleOCR) with 7-stage preprocessing, 4-method translation ensemble (Claude, Google, DeepL, OpenAI), and quality evaluation with Claude-as-judge arbitration."
-    },
-    {
       "name": "cost-engineer",
       "source": "./cost-engineer",
       "description": "Full cost engineering suite for EPC and construction projects. Estimation methods (parametric, factored, bottom-up), benchmarking (AACE, IPA, CEPCI), earned value management, change order pricing, and lifecycle cost analysis with spreadsheet analysis."

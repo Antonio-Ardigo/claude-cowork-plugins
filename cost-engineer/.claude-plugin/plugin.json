@@ -1,0 +1,20 @@
+{
+  "name": "cost-engineer",
+  "version": "0.1.0",
+  "description": "Full cost engineering suite for EPC and construction projects — estimation, benchmarking, EVM, change orders, and lifecycle costing with spreadsheet analysis capabilities.",
+  "author": {
+    "name": "Anton"
+  },
+  "keywords": [
+    "cost engineering",
+    "AACE",
+    "EPC",
+    "construction",
+    "estimation",
+    "benchmarking",
+    "EVM",
+    "earned value",
+    "change orders",
+    "lifecycle cost"
+  ]
+}
