@@ -1,6 +1,6 @@
 {
   "name": "training-plan",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Generate customized learning paths using Test-Teach-Test methodology with integrated concept-builder pedagogy. Decompose goals, design sessions, run interactive TTT loops with principle-first teaching (LaTeX, fully developed worked examples, CTQ mastery criteria, concept maps, comparison, deep-dive), concept file export, and a concept library. Includes mid-session checkpointing, persistent learner profiles, and cross-plan analytics.",
   "author": {
     "name": "Anton Ardigo"
