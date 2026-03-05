@@ -109,7 +109,7 @@ Follow these phases in order:
 1. **INITIAL TEST** -- Present the practical case. No preamble. **MUST end with these two verbatim notes:**
    > *If you are not familiar with this topic, write **"not familiar"** to receive a full concept explanation before attempting the test.*
    > *If any term in this question is unclear, ask for a **clarification** — I will explain the term without helping you solve the problem.*
-   If "not familiar": deliver Full 7-Section Concept Explanation, then re-present the test (not an adaptation loop). If clarification: invoke term-clarifier agent. If term-clarifier returns PLAN-REVISION-REQUEST: after learner submits answer, offer (A) add prerequisite SG or (B) continue as-is. Wait for learner response.
+   If "not familiar": (1) check Prerequisite Graph for uncompleted prerequisite SGs — offer to run those first; (2) check Principle Extraction for external prerequisites not covered by any SG — if found, present PLAN-REVISION offer (A: add prerequisite SG, B: continue as-is); (3) otherwise deliver Full 7-Section Concept Explanation, then re-present the test (not an adaptation loop). If clarification: invoke term-clarifier agent. If term-clarifier returns PLAN-REVISION-REQUEST: after learner submits answer, offer (A) add prerequisite SG or (B) continue as-is. Wait for learner response.
 2. **EVALUATE** -- Compare response to pass criteria and CTQ mastery tests. Classify gaps using CTQ failure mode taxonomy:
    - [conflation], [overgeneralization], [missing-prerequisite], [procedural-without-conceptual], [verbal-without-formal], [formal-without-intuitive]
    - PASS -> skip to RECORD

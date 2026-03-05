@@ -60,7 +60,18 @@ Rules:
 >
 > *If any term in this question is unclear, ask for a **clarification** — I will explain the term without helping you solve the problem.*
 
-If the learner writes "not familiar": treat as a full [missing-prerequisite] gap, deliver a Full 7-Section Concept Explanation, then re-present the Initial Test. This does NOT count as an adaptation loop.
+If the learner writes "not familiar":
+
+1. **Check the Prerequisite Graph**: does this SG have uncompleted prerequisite SGs?
+   - If YES: offer to run the prerequisite SG first before continuing this test.
+2. **Check the Principle Extraction table**: does this SG's principles list external prerequisites NOT covered by any existing SG?
+   - If YES: this is a missing prerequisite. Present the PLAN-REVISION offer:
+     > "You indicated you're not familiar with this topic. The prerequisite knowledge (**[concept]**) is not currently covered in your training plan. You can:
+     > - **A)** Add a prerequisite session on [concept] and run it first
+     > - **B)** Continue with a full concept explanation as-is"
+     If A: save checkpoint, add prerequisite SG to plan (update Sub-Goals, Prerequisite Graph, Sequence), run it, then resume.
+     If B: proceed to step 3.
+3. Deliver a **Full 7-Section Concept Explanation** for the sub-goal's topic at the blueprint's depth level, then re-present the Initial Test. This does NOT count as an adaptation loop.
 
 If the learner asks for a clarification: invoke the term-clarifier agent with ONLY (1) the term, (2) the CTQ list, (3) the principle list, (4) the sub-goal statement. Do NOT pass the test question, expected answer, or pass criteria.
 

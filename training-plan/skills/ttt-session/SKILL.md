@@ -152,7 +152,14 @@ After the learner responds, evaluate against the pass criteria and CTQ mastery t
 - **PASS** (meets or exceeds criteria): Skip to Phase 6 (RECORD). Sub-goal complete.
 - **PARTIAL** (some gaps identified): Proceed to Phase 3. List specific gaps with failure mode classification.
 - **FAIL** (major gaps): Proceed to Phase 3. List all gaps with failure mode classification.
-- **NOT FAMILIAR**: If the learner writes "not familiar" (or equivalent: "I don't know this topic", "no background", "never learned this"), treat the ENTIRE sub-goal as a single complex gap with failure mode `[missing-prerequisite]`. Proceed to Phase 3 and deliver the **Full 7-Section Concept Explanation** for the sub-goal's topic at the blueprint's depth level. After the full explanation and Quick Check, proceed to the Initial Test again (the learner now attempts it with the knowledge gained). This does NOT count as an adaptation loop.
+- **NOT FAMILIAR**: If the learner writes "not familiar" (or equivalent: "I don't know this topic", "no background", "never learned this"):
+  1. **Check Prerequisite Graph**: does this SG have uncompleted prerequisite SGs? If YES, offer to run the prerequisite SG first.
+  2. **Check Principle Extraction table**: does this SG's principles list external prerequisites NOT covered by any existing SG? If YES, present the PLAN-REVISION offer:
+     > "You indicated you're not familiar with this topic. The prerequisite knowledge (**[concept]**) is not currently covered in your training plan. You can:
+     > - **A)** Add a prerequisite session on [concept] and run it first
+     > - **B)** Continue with a full concept explanation as-is"
+     If A: save checkpoint, add prerequisite SG, run it, then resume. If B: proceed to step 3.
+  3. Treat as a single complex gap with failure mode `[missing-prerequisite]`. Deliver the **Full 7-Section Concept Explanation** for the sub-goal's topic at the blueprint's depth level. After the full explanation and Quick Check, proceed to the Initial Test again (the learner now attempts it with the knowledge gained). This does NOT count as an adaptation loop.
 
 When identifying gaps, classify each using the CTQ failure mode taxonomy:
 - "Gap [conflation]: confused indirect costs with contingency"
