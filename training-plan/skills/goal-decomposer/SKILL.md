@@ -12,9 +12,48 @@ Takes a free-form learning goal and produces:
 
 1. A **Principle Extraction** of the domain (3-5 core principles)
 2. A refined **SMART Goal** (max 15 words)
-3. **N sub-goals** decomposed across 4 axes, each mapped to principles
+3. **N sub-goals** decomposed across 5 axes, each mapped to principles
 4. A **prerequisite graph** with hard dependencies
 5. A suggested **sequence** derived from the prerequisite graph
+
+---
+
+## Core Principles vs Key Concepts
+
+The decomposition distinguishes two tiers of knowledge:
+
+### Core Principles
+
+Domain-level foundational truths — abstract, general, and transferable. A core principle can be stated without reference to any specific technique, tool, or procedure. It is the **"why"** behind the domain. Core principles rarely change; they are the load-bearing axioms.
+
+- High abstraction, broad scope
+- Applies across the entire domain regardless of method or tooling
+- Independently testable via reasoning, not just procedure
+- Example (cost engineering): *"Every project cost is either traceable to a specific scope item or necessary for the project as a whole"*
+- Example (quantum computing): *"A quantum state exists in superposition until measured"*
+
+### Key Concepts
+
+Specific, teachable ideas that **operationalize** core principles. They are more concrete, narrower in scope, and often domain-specific applications or decompositions of a core principle. A key concept is the **"what"** and **"how"** the learner needs to master.
+
+- Medium abstraction, narrow scope
+- One testable competency per concept
+- May evolve with methods and tools
+- Example (cost engineering): *"Unit-rate estimation: multiply quantity takeoff by unit rate to get direct cost"*
+- Example (quantum computing): *"The Bloch sphere representation of a single qubit"*
+
+### The Relationship
+
+Core principles **generate** key concepts. Every key concept must trace back to at least one core principle. A single core principle may generate multiple key concepts. Core principles come first in the learning sequence because they provide the framework into which key concepts slot.
+
+| Dimension | Core Principle | Key Concept |
+|-----------|---------------|-------------|
+| Abstraction | High — domain-level truth | Medium — specific, teachable idea |
+| Scope | Broad — applies across the domain | Narrow — one testable competency |
+| Stability | Rarely changes | May evolve with methods/tools |
+| Testability | Testable via understanding/reasoning | Testable via practical case |
+| Position in sequence | Early — sets the framework | After the principle(s) it depends on |
+| Maps to in plan | Core Principle axis SG | Key Concept axis SG |
 
 ---
 
@@ -37,12 +76,13 @@ For each principle, state:
 
 ---
 
-## Step 1: The 4 Decomposition Axes
+## Step 1: The 5 Decomposition Axes
 
 | Axis | Purpose | Typical Count | Position in Sequence |
 |------|---------|---------------|---------------------|
 | **Motivation** | Why this matters. Engagement, relevance, real-world impact. | 1 (sometimes 2) | First — sets context |
-| **Key Concepts** | Foundational knowledge. Theory, definitions, principles. | **As many as the domain requires** (2-8+) | Middle — bulk of learning |
+| **Core Principle** | Domain-level foundational truth. Abstract, transferable, the "why." | 1 per principle from Step 0 (typically 3-5) | After Motivation — sets the framework |
+| **Key Concept** | Operational knowledge that applies a core principle. The "what/how." | **As many as the domain requires** (2-8+) | After Core Principles — bulk of learning |
 | **Tools** | Practical techniques, frameworks, software, resources. | 0-3 (only if tooling is relevant) | After concepts that require them |
 | **Verification** | Integrative proof of mastery. Combines multiple concepts. | 1-2 | Last — capstone |
 
@@ -50,9 +90,13 @@ For each principle, state:
 
 The axes are **decomposition directions**, NOT fixed slots. Specifically:
 
+- **Core Principles get exactly ONE sub-goal per principle** from Step 0. Each Core Principle SG:
+  - Is always **low difficulty / introductory depth**
+  - Tests whether the learner can STATE and APPLY the principle in a simple scenario
+  - MUST include a **simple, fully worked example** in its session blueprint — this is the one exception to the "no teaching content in the plan" rule. The worked example grounds the abstract principle in concrete reality (2-4 steps, concrete numbers, annotated with "Why" notes, simplest possible scenario).
 - **Key Concepts MUST expand** into as many sub-goals as the domain requires. A simple goal may have 2 Key Concept sub-goals; a complex goal may have 8+.
 - Each Key Concept sub-goal covers **one testable idea** — if a concept has multiple independent parts, split it.
-- **Each Key Concept sub-goal MUST map to at least one principle** from Step 0. If a sub-goal doesn't trace to a principle, either the principle list is incomplete or the sub-goal is not load-bearing.
+- **Each Key Concept sub-goal MUST map to at least one Core Principle SG** (not just to the principle table). If a Key Concept sub-goal doesn't trace to a Core Principle SG, either the principle list is incomplete or the sub-goal is not load-bearing.
 - Motivation and Verification typically have 1 sub-goal each, but can have more.
 - Tools sub-goals exist ONLY if the goal involves specific tooling (software, frameworks, instruments).
 
@@ -92,6 +136,8 @@ Difficulty determines the **depth level** for the session blueprint:
 - medium → intermediate
 - high → advanced
 
+**Core Principle SGs are always low difficulty / introductory depth** — by definition they involve 1 principle, 0 prereq depth within the plan, and minimal formalism. This is a hard rule, not derived.
+
 ---
 
 ## Step 4: Prerequisite Tracing
@@ -125,10 +171,11 @@ Build a prerequisite graph using the concept map relationship types. The princip
 Sequence sub-goals using the prerequisite graph:
 
 1. **Motivation first** — always. Brief, but sets the "why."
-2. **Key Concepts ordered by prerequisite graph** — if Principle B `rests on` Principle A, the sub-goal for A comes before B. This is a hard constraint derived from the graph, not a guess.
-3. **Independent concepts can be parallel** — if two sub-goals have no graph edge between them, they can run in parallel.
-4. **Tools after the concepts they serve** — don't teach the tool before the learner understands what it does.
-5. **Verification last** — it integrates everything. Always depends on all prior sub-goals.
+2. **Core Principles after Motivation** — ordered by principle dependency (if Principle B `rests on` Principle A, the Core Principle SG for A comes before B). These set the foundational framework.
+3. **Key Concepts after Core Principles** — ordered by prerequisite graph. Each Key Concept SG comes after the Core Principle SG(s) it depends on. This is a hard constraint derived from the graph, not a guess.
+4. **Independent concepts can be parallel** — if two sub-goals have no graph edge between them, they can run in parallel.
+5. **Tools after the concepts they serve** — don't teach the tool before the learner understands what it does.
+6. **Verification last** — it integrates everything. Always depends on all prior sub-goals.
 
 ---
 
@@ -164,7 +211,10 @@ When decomposing a goal, produce this structure:
 | # | Axis | Sub-Goal | Domain | Difficulty | Depth | Principle |
 |---|------|----------|--------|-----------|-------|-----------|
 | SG-1 | Motivation | <statement> | <domain> | low | intro | — |
-| SG-2 | Key Concept | <statement> | <domain> | <derived> | <derived> | <principle name> |
+| SG-2 | Core Principle | <statement> | <domain> | low | intro | <principle name> |
+| SG-3 | Core Principle | <statement> | <domain> | low | intro | <principle name> |
+| ... | ... | ... | ... | ... | ... | ... |
+| SG-N-1 | Key Concept | <statement> | <domain> | <derived> | <derived> | <principle name> |
 | ... | ... | ... | ... | ... | ... | ... |
 | SG-N | Verification | <statement> | <domain> | high | adv | integrative |
 

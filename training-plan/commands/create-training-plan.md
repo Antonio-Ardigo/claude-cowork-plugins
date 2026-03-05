@@ -53,24 +53,26 @@ Rules:
 
 ### Step 2: Decompose into Sub-Goals
 
-Break the SMART goal into **N sub-goals** across 4 axes:
+Break the SMART goal into **N sub-goals** across 5 axes:
 
 | Axis | Purpose | Count |
 |------|---------|-------|
 | Motivation | Why this matters | 1+ |
-| Key Concepts | Foundational knowledge | **As many as the domain requires** |
+| Core Principle | Domain-level foundational truth. The "why." | 1 per principle from Step 1.75 (typically 3-5) |
+| Key Concept | Operational knowledge that applies a core principle. The "what/how." | **As many as the domain requires** |
 | Tools | Practical techniques/frameworks | 0+ (only if relevant) |
 | Verification | Proof of mastery | 1+ |
 
 Rules:
+- **Each principle from Step 1.75 gets exactly ONE Core Principle sub-goal.** Core Principle SGs are always low difficulty / introductory depth. They test whether the learner can state and apply the foundational principle in a simple scenario.
 - Key Concepts MUST expand -- each covers ONE testable idea
-- **Each Key Concept sub-goal MUST map to at least one principle** from Step 1.75. If a sub-goal doesn't trace to a principle, either the principle list is incomplete or the sub-goal is not load-bearing.
+- **Each Key Concept sub-goal MUST map to at least one Core Principle SG.** If a sub-goal doesn't trace to a Core Principle SG, either the principle list is incomplete or the sub-goal is not load-bearing.
 - Each sub-goal is a 15-word SMART statement
 - Each sub-goal gets a domain label, difficulty, and depth level
 - Difficulty is derived (not guessed): low = 1 principle + 0-1 prereq depth, medium = 2-3 principles + 2-3 prereq depth, high = 4+ principles or proofs/derivations required
 - Depth level follows difficulty: low -> introductory, medium -> intermediate, high -> advanced
-- Sequence: Motivation first -> Key Concepts (dependency order) -> Tools -> Verification last
-- Total: typically 4-10+ sub-goals depending on complexity
+- Sequence: Motivation first -> Core Principles (dependency order) -> Key Concepts (dependency order) -> Tools -> Verification last
+- Total: typically 7-15+ sub-goals depending on complexity
 
 ### Step 2.5: Prerequisite Tracing
 
@@ -95,7 +97,9 @@ Rules:
 
 ### Step 3: Design Session Blueprints
 
-For each sub-goal, design a TTT session blueprint:
+For each sub-goal, design a TTT session blueprint.
+
+#### Standard blueprint (Key Concept, Tools, Motivation, Verification SGs):
 
 - **Initial Test**: A practical case the learner must solve immediately (no theory first). Describe the scenario and the task.
 - **Pass Criteria**: Concrete, measurable threshold (e.g., "identifies 8 of 10 categories", "calculation within 5%")
@@ -104,6 +108,19 @@ For each sub-goal, design a TTT session blueprint:
 - **Anticipated CTQs**: 2-4 Critical-To-Quality criteria for this sub-goal. Each CTQ: what must be understood + mastery test + common failure mode (using CTQ failure mode taxonomy: conflation, overgeneralization, missing-prerequisite, procedural-without-conceptual, verbal-without-formal, formal-without-intuitive)
 - **Teach Topics**: Key concepts, exercises, and known pitfalls with CTQ failure mode classification (e.g., "[conflation]: confusing indirect costs with contingency", "[procedural-without-conceptual]: applying formula without understanding boundary conditions")
 - **Final Test**: A DIFFERENT practical case testing the same competencies
+
+#### Core Principle blueprint (Core Principle SGs only):
+
+Core Principle blueprints include a **fully worked example in the plan itself** — this is the one exception to the "no teaching content in the plan" rule. The worked example grounds the abstract principle in concrete reality.
+
+- **Principle**: The principle name and statement from Step 1.75
+- **Worked Example (foundational)**: A simple, fully worked example demonstrating the principle in the most basic scenario. 2-4 steps, concrete numbers, every step shown explicitly, annotated with "Why" notes explaining reasoning. This is the simplest possible scenario that makes the principle visible — not a complex application.
+- **Initial Test**: A simple scenario testing whether the learner can STATE the principle in their own words AND APPLY it to a basic case. Simpler than Key Concept tests.
+- **Pass Criteria**: "Can state the principle in own words AND apply it to a basic scenario correctly"
+- **Estimated Depth**: Always introductory
+- **Anticipated CTQs**: 1-2 CTQs focused on understanding the principle, not applying advanced techniques
+- **Teach Topics**: The principle itself, its boundary conditions, common misunderstandings
+- **Final Test**: A DIFFERENT simple scenario testing the same principle
 
 If the learner profile indicated strengths or gap patterns relevant to a sub-goal, note them in the blueprint:
 - **Profile note (strength):** "Learner has prior mastery in [topic] -- set Initial Test at elevated difficulty"
@@ -133,9 +150,11 @@ Generated: <date> | Status: in-progress
 
 | # | Axis | Sub-Goal | Domain | Difficulty | Depth | Principle | Status | Score |
 |---|------|----------|--------|-----------|-------|-----------|--------|-------|
-| SG-1 | Motivation | <statement> | <domain> | <low/med/high> | <intro/inter/adv> | — | pending | - |
-| SG-2 | Key Concept | <statement> | <domain> | <low/med/high> | <intro/inter/adv> | <principle> | pending | - |
-| SG-3 | Key Concept | <statement> | <domain> | <low/med/high> | <intro/inter/adv> | <principle> | pending | - |
+| SG-1 | Motivation | <statement> | <domain> | low | intro | — | pending | - |
+| SG-2 | Core Principle | <statement> | <domain> | low | intro | <principle> | pending | - |
+| SG-3 | Core Principle | <statement> | <domain> | low | intro | <principle> | pending | - |
+| ... | Core Principle | ... | ... | low | intro | ... | ... | ... |
+| SG-N | Key Concept | <statement> | <domain> | <low/med/high> | <intro/inter/adv> | <principle> | pending | - |
 | ... | ... | ... | ... | ... | ... | ... | ... | ... |
 
 ## Prerequisite Graph
@@ -153,11 +172,11 @@ Generated: <date> | Status: in-progress
 
 ## Session Blueprints
 
-### SG-1: <short title>
+### SG-1: <Motivation short title>
 - **Initial Test:** <practical case description>
 - **Pass Criteria:** <measurable threshold>
-- **Estimated Depth:** <introductory/intermediate/advanced>
-- **Principle:** <principle name or — for Motivation/Verification>
+- **Estimated Depth:** introductory
+- **Principle:** —
 - **Anticipated CTQs:**
   | CTQ | Source | Mastery Test | Common Failure Mode |
   |-----|--------|-------------|---------------------|
@@ -165,10 +184,38 @@ Generated: <date> | Status: in-progress
 - **Teach Topics:** <concepts, exercises, pitfalls with CTQ failure mode tags>
 - **Final Test:** <different case, same competencies>
 
-### SG-2: <short title>
-...
+### SG-2: <Core Principle short title>
+- **Principle:** <principle name> — <principle statement>
+- **Worked Example (foundational):**
+  **Given:** <simplest possible scenario with concrete numbers>
+  **Step 1:** <operation>
+  > **Why:** <reasoning>
+  **Step 2:** <operation>
+  > **Why:** <reasoning>
+  **Result:** <answer with units and interpretation>
+- **Initial Test:** <simple scenario testing principle understanding>
+- **Pass Criteria:** Can state the principle in own words AND apply it to a basic scenario correctly
+- **Estimated Depth:** introductory
+- **Anticipated CTQs:**
+  | CTQ | Source | Mastery Test | Common Failure Mode |
+  |-----|--------|-------------|---------------------|
+  | <what must be understood> | <principle> | <verification task> | <failure pattern> |
+- **Teach Topics:** <the principle, boundary conditions, common misunderstandings>
+- **Final Test:** <different simple scenario testing same principle>
 
-(repeat for every sub-goal)
+### SG-N: <Key Concept short title>
+- **Initial Test:** <practical case description>
+- **Pass Criteria:** <measurable threshold>
+- **Estimated Depth:** <introductory/intermediate/advanced>
+- **Principle:** <principle name>
+- **Anticipated CTQs:**
+  | CTQ | Source | Mastery Test | Common Failure Mode |
+  |-----|--------|-------------|---------------------|
+  | <what must be understood> | <concept> | <verification task> | <failure pattern> |
+- **Teach Topics:** <concepts, exercises, pitfalls with CTQ failure mode tags>
+- **Final Test:** <different case, same competencies>
+
+(repeat for every sub-goal — Core Principle SGs include the Worked Example field, others do not)
 
 ## Progress Log
 (updated by /run-session)
@@ -187,7 +234,7 @@ After writing the file, present a summary:
 
 ## Important
 
-- Do NOT include theory or teaching content in the plan -- that happens during `/run-session`
+- Do NOT include theory or teaching content in the plan -- that happens during `/run-session` -- EXCEPT for Core Principle SG blueprints, which MUST include a simple fully worked example
 - Do NOT skip the session blueprint for any sub-goal
 - Practical cases must be realistic scenarios, not abstract questions
 - The `<topic>` in the filename should be a short kebab-case slug derived from the goal (e.g., `cost-estimation`, `python-data-analysis`)

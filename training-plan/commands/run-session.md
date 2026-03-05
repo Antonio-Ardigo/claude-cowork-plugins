@@ -54,6 +54,11 @@ Rules:
 - Format it clearly with a header and the task in bold
 - Wait for the learner to respond -- do NOT continue until they answer
 
+**Core Principle SGs — special handling:**
+For sub-goals with Axis = "Core Principle", the Initial Test is simpler — it tests whether the learner can state and apply the foundational principle, not perform complex applications. The blueprint includes a fully worked example. Session flow:
+- If **PASS**: still present the blueprint's worked example as **reinforcement** before proceeding to Phase 6. Say: "You've demonstrated understanding of this principle. Here's a grounding example for reference:" then show the worked example from the blueprint. This ensures every learner sees the foundational example regardless of prior knowledge.
+- If **FAIL/PARTIAL**: the Teach phase delivers the blueprint's worked example as the **primary teaching content**, then proceeds with standard gap-filling if additional gaps exist.
+
 **MANDATORY: Every Initial Test MUST end with these two notes (copy them verbatim):**
 
 > *If you are not familiar with this topic, write **"not familiar"** to receive a full concept explanation before attempting the test.*
@@ -208,6 +213,7 @@ Do six things:
 - Loops: <0/1/2>
 - Concept Map: <generated (standard/deep) / not generated>
 - Concept File: <filename or "none">
+- Worked Example: <delivered as reinforcement / delivered as teaching / N/A (not a Core Principle SG)>
 - Notes: <brief observations>
 ```
 
