@@ -37,9 +37,8 @@ See concept-explainer skill Section 3.5 for domain templates.>
 
 *If any term in this question is unclear, ask for a **clarification**.*
 
-<!-- HIDDEN — do NOT show to the learner until AFTER they respond:
-Expected answer: <answer>
-Watch for: <failure mode> -->
+⏸ **STOP HERE. Wait for the learner to respond.**
+Then reveal the expected answer and evaluate. Do NOT write the expected answer in the teaching block.
 
 ---
 ```
@@ -54,7 +53,7 @@ Deliver all 7 sections from the concept-explainer skill at the session's depth l
 4. **Worked Example** -- FULLY DEVELOPED step-by-step example with every intermediate step shown, every algebraic/linguistic/logical transformation explicit, annotated with "Why" and "Note" at each step. See concept-explainer skill Section 3.5 for format and domain templates.
 5. **Intuitive Formalization** -- Minimum math to make predictions
 6. **CTQ Mapping** -- Mastery criteria table with failure modes
-7. **Quick Check** (CTQ-derived) -- Verification question from the CTQ mastery test. Include clarification note. HIDE expected answer until the learner responds.
+7. **Quick Check** (CTQ-derived) -- Verification question from the CTQ mastery test. Include clarification note. Do NOT write the expected answer — stop and wait for the learner to respond.
 
 ### Concept Comparison (for conflation gaps)
 
@@ -111,11 +110,9 @@ The CTQ failure mode taxonomy enriches error identification:
 
 Quick Checks are derived from CTQ mastery tests:
 - The question comes from the CTQ table's "Mastery Test" column
-- The expected answer is specific and verifiable
-- The "Watch for" line identifies the most likely failure mode
 - Must test understanding, not recall: "When would you use X?" not "What is the definition of X?"
 - Every Quick Check MUST end with: `*If any term in this question is unclear, ask for a **clarification**.*`
-- The expected answer and "Watch for" hint are HIDDEN from the learner — only reveal AFTER the learner responds
+- **CRITICAL: Do NOT write the expected answer or "Watch for" hint in the teaching block.** The Quick Check output contains ONLY the question + clarification note. Stop there and wait for the learner. You know the answer internally — reveal it only AFTER the learner responds.
 
 ## Example: Abbreviated Concept Explanation
 
@@ -158,9 +155,7 @@ Your quantity is 38,000 kg of rebar. The rate card says $2,100/t. What is the co
 
 *If any term in this question is unclear, ask for a **clarification**.*
 
-<!-- HIDDEN — reveal ONLY after the learner responds:
-Expected answer: 38,000 kg / 1,000 kg/t = 38.0 t; 38.0 t x $2,100/t = $79,800
-Watch for: overgeneralization -- applying the rate directly without unit conversion -->
+⏸ **Wait for the learner to respond before revealing the answer.**
 
 ---
 ```
@@ -280,9 +275,7 @@ Your estimate includes "builder's risk insurance: $45,000" and "possible soil re
 
 *If any term in this question is unclear, ask for a **clarification**.*
 
-<!-- HIDDEN — reveal ONLY after the learner responds:
-Expected answer: Insurance is indirect -- it's a known, project-wide cost that will be paid regardless. Soil remediation is contingency -- it depends on a risk event that may not occur.
-Watch for: conflation -- calling both "indirect" because neither is tied to a specific scope item -->
+⏸ **Wait for the learner to respond before revealing the answer.**
 
 ---
 ```
