@@ -40,7 +40,7 @@ description: >
   </commentary>
   </example>
 
-model: sonnet
+model: opus
 color: blue
 tools: ["Read", "Write", "Edit", "Glob"]
 ---
