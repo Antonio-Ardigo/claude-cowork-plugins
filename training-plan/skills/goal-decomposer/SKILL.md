@@ -4,17 +4,40 @@ description: "Learning goal decomposition into SMART sub-goals. Use when the use
 
 # Goal Decomposer — Domain Knowledge
 
-Reference knowledge for decomposing a learning goal into structured, testable sub-goals.
+Reference knowledge for decomposing a learning goal into structured, testable sub-goals using principle-first analysis.
 
 ## What This Skill Does
 
 Takes a free-form learning goal and produces:
 
-1. A refined **SMART Goal** (max 15 words)
-2. **N sub-goals** decomposed across 4 axes
-3. A suggested **sequence** with dependencies
+1. A **Principle Extraction** of the domain (3-5 core principles)
+2. A refined **SMART Goal** (max 15 words)
+3. **N sub-goals** decomposed across 4 axes, each mapped to principles
+4. A **prerequisite graph** with hard dependencies
+5. A suggested **sequence** derived from the prerequisite graph
 
-## The 4 Decomposition Axes
+---
+
+## Step 0: Principle Extraction
+
+Before decomposing into sub-goals, identify the domain's **3-5 core principles**. This ensures sub-goals are principle-anchored, not topic-guessed.
+
+For each principle, state:
+
+| Principle | Statement | Formally | Prerequisites |
+|-----------|-----------|---------|---------------|
+| <name> | <one clear sentence> | <LaTeX or "—" if non-mathematical> | <concepts the learner must already know> |
+
+### Rules
+
+- Order from most fundamental to most derived
+- Each principle should be independently testable
+- The Prerequisites column feeds Step 4 (Prerequisite Tracing)
+- If the domain has fewer than 3 principles, it may be too narrow — consider whether the goal should be a sub-goal of a larger plan
+
+---
+
+## Step 1: The 4 Decomposition Axes
 
 | Axis | Purpose | Typical Count | Position in Sequence |
 |------|---------|---------------|---------------------|
@@ -29,10 +52,13 @@ The axes are **decomposition directions**, NOT fixed slots. Specifically:
 
 - **Key Concepts MUST expand** into as many sub-goals as the domain requires. A simple goal may have 2 Key Concept sub-goals; a complex goal may have 8+.
 - Each Key Concept sub-goal covers **one testable idea** — if a concept has multiple independent parts, split it.
+- **Each Key Concept sub-goal MUST map to at least one principle** from Step 0. If a sub-goal doesn't trace to a principle, either the principle list is incomplete or the sub-goal is not load-bearing.
 - Motivation and Verification typically have 1 sub-goal each, but can have more.
 - Tools sub-goals exist ONLY if the goal involves specific tooling (software, frameworks, instruments).
 
-## SMART Statement Format
+---
+
+## Step 2: SMART Statement Format
 
 Each sub-goal is expressed as a 15-word SMART statement:
 
@@ -49,46 +75,113 @@ Good: `"Apply unit-rate estimation to civil quantities with less than 5% calcula
 Bad: `"Understand cost estimation"` (too vague, not measurable)
 Bad: `"Learn everything about piping, structural, and electrical estimation"` (too broad — split into separate sub-goals)
 
-## Output Format
+---
 
-When decomposing a goal, produce this structure:
+## Step 3: Difficulty Calibration
+
+Assign difficulty to each sub-goal using these **derived criteria**, not intuition:
+
+| Criterion | Low | Medium | High |
+|-----------|-----|--------|------|
+| Principles involved | 1 | 2-3 | 4+ |
+| Prerequisite chain depth | 0-1 | 2-3 | 4+ |
+| Math/formalism required | None or minimal | Standard notation | Proofs, derivations |
+
+Difficulty determines the **depth level** for the session blueprint:
+- low → introductory
+- medium → intermediate
+- high → advanced
+
+---
+
+## Step 4: Prerequisite Tracing
+
+Build a prerequisite graph using the concept map relationship types. The principles from Step 0 and their Prerequisites column are the source.
 
 ```markdown
-## SMART Goal
-<15-word refined statement>
-
-## Sub-Goals
-
-| # | Axis | Sub-Goal | Domain | Difficulty |
-|---|------|----------|--------|------------|
-| SG-1 | Motivation | <15-word statement> | <domain label> | low/medium/high |
-| SG-2 | Key Concept | <15-word statement> | <domain label> | low/medium/high |
-| SG-3 | Key Concept | <15-word statement> | <domain label> | low/medium/high |
-| ... | ... | ... | ... | ... |
-| SG-N | Verification | <15-word statement> | <domain label> | high |
-
-## Sequence
-- SG-1 has no prerequisites
-- SG-2 requires SG-1
-- SG-3 requires SG-2
-- SG-4 can run in parallel with SG-3
-- ...
-- SG-N requires all previous sub-goals
+<Goal> (core)
+  requires:
+    <External Prerequisite 1> (prerequisite) ← CHECK learner profile
+    <External Prerequisite 2> (prerequisite) ← CHECK learner profile
+  rests on:
+    <Principle 1> (principle) → SG-X
+      led to:
+        <Principle 2> (principle) → SG-Y
+    <Principle 3> (principle) → SG-Z
 ```
 
-## Sequencing Rules
+### Rules
+
+- **`requires`** links point to knowledge OUTSIDE this training plan. These are external prerequisites — the learner must already know them or they need their own sub-goals.
+- **`rests on`** links point to principles WITHIN this plan. These become hard sub-goal dependencies.
+- **`led to`** links show derived relationships — if Principle 2 was derived from Principle 1, SG-Y depends on SG-X.
+- If a `requires` prerequisite is NOT in the learner profile as a known strength, flag it: "WARNING: Learner may lack prerequisite [X]. Consider adding a prerequisite sub-goal or verifying during session."
+- The prerequisite graph replaces intuited dependencies — every dependency in the Sequence must trace to a graph edge.
+
+---
+
+## Step 5: Sequencing Rules
+
+Sequence sub-goals using the prerequisite graph:
 
 1. **Motivation first** — always. Brief, but sets the "why."
-2. **Key Concepts ordered by dependency** — foundational before advanced. If concept B requires understanding concept A, A comes first.
-3. **Independent concepts can be parallel** — if two Key Concept sub-goals don't depend on each other, note that in the sequence.
+2. **Key Concepts ordered by prerequisite graph** — if Principle B `rests on` Principle A, the sub-goal for A comes before B. This is a hard constraint derived from the graph, not a guess.
+3. **Independent concepts can be parallel** — if two sub-goals have no graph edge between them, they can run in parallel.
 4. **Tools after the concepts they serve** — don't teach the tool before the learner understands what it does.
 5. **Verification last** — it integrates everything. Always depends on all prior sub-goals.
 
-## Testability Check
+---
+
+## Step 6: Testability Check
 
 Before finalizing, verify each sub-goal passes this check:
 
 > "Can I design a practical case (scenario, exercise, or problem) that a competent person could solve, and that would FAIL if the specific knowledge in this sub-goal is missing?"
 
+Additionally, verify the sub-goal traces to at least one principle from Step 0. If it doesn't, the sub-goal may be too vague or the principle list is incomplete.
+
 If yes → good sub-goal.
 If no → too vague, too broad, or not independently testable. Refine or split.
+
+---
+
+## Output Format
+
+When decomposing a goal, produce this structure:
+
+```markdown
+## Principle Extraction
+
+| Principle | Statement | Formally | Prerequisites |
+|-----------|-----------|---------|---------------|
+| <name> | <sentence> | <LaTeX or —> | <prior knowledge> |
+
+## SMART Goal
+<15-word refined statement>
+
+## Sub-Goals
+
+| # | Axis | Sub-Goal | Domain | Difficulty | Depth | Principle |
+|---|------|----------|--------|-----------|-------|-----------|
+| SG-1 | Motivation | <statement> | <domain> | low | intro | — |
+| SG-2 | Key Concept | <statement> | <domain> | <derived> | <derived> | <principle name> |
+| ... | ... | ... | ... | ... | ... | ... |
+| SG-N | Verification | <statement> | <domain> | high | adv | integrative |
+
+## Prerequisite Graph
+
+<Goal> (core)
+  requires:
+    <External> (prerequisite) ← CHECK learner profile
+  rests on:
+    <Principle> (principle) → SG-X
+      led to:
+        <Principle> (principle) → SG-Y
+
+## Sequence
+- SG-1 has no prerequisites
+- SG-2 requires SG-1 (graph: rests on)
+- SG-3 requires SG-2 (graph: led to)
+- ...
+- SG-N requires all previous sub-goals
+```
