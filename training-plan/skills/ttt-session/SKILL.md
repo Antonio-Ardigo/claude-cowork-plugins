@@ -88,7 +88,7 @@ Rules:
 - Present the scenario and the task directly
 - Ask the learner to respond
 - Wait for the learner's response before proceeding
-- ALWAYS include the "not familiar" note at the end of every Initial Test (see below)
+- ALWAYS include the "not familiar" note AND the "clarification" note at the end of every test (see below)
 
 Example opening:
 > **Practical Case -- SG-3: Unit-Rate Estimation**
@@ -103,8 +103,47 @@ Example opening:
 > **Task:** Calculate the total foundation cost. Show your work.
 >
 > *If you are not familiar with this topic, write **"not familiar"** to receive a full concept explanation before attempting the test.*
+>
+> *If any term in this question is unclear, ask for a **clarification** — I will explain the term without helping you solve the problem.*
 
-The "not familiar" note MUST appear at the end of every Initial Test presentation. It gives learners an honest opt-in to receive the full concept explainer before attempting a topic they have no background in.
+Both notes MUST appear at the end of every Initial Test AND Final Test presentation:
+- The "not familiar" note gives learners an honest opt-in to receive the full concept explainer before attempting a topic they have no background in.
+- The "clarification" note enables the Term Clarification Protocol (see below) — preventing false negatives from terminology confusion.
+
+### Term Clarification Protocol
+
+When the learner asks about a term during a test phase (Initial Test or Final Test), invoke the **term-clarifier** agent. Pass it:
+1. The term the learner asked about
+2. The Anticipated CTQs for this sub-goal (from the blueprint)
+3. The Principle Extraction table (from the training plan)
+4. The sub-goal statement
+
+Do NOT pass: the test question, the expected answer, the pass criteria, or the teach topics. The term-clarifier agent is firewalled from the answer.
+
+The term-clarifier will return one of three responses:
+- **Category A (tested knowledge)**: Declines to clarify; suggests "not familiar" if the learner lacks background
+- **Category B (context vocabulary)**: Provides a generic definition with an example from a different context
+- **Category C (missing prerequisite)**: Provides a definition and flags a session note for the Teach phase
+
+After the clarification, resume the test. The learner continues their attempt. Clarifications do not count as gaps or failures — they are purely informational.
+
+**Rules for clarifications:**
+- Multiple clarifications are allowed during a single test
+- Each clarification is for ONE term at a time
+- Clarifications are logged in the session transcript
+- Category C clarifications are noted in the evaluation as potential prerequisite gaps
+
+**Handling PLAN-REVISION-REQUEST:**
+
+If the term-clarifier returns a PLAN-REVISION-REQUEST (critical missing prerequisite), the session must:
+
+1. Show the clarification to the learner normally
+2. After the learner submits their test answer (or says "not familiar"), present the plan revision offer:
+   > "During this test, you asked about **[term]** which is a foundational concept not currently covered in your training plan. I recommend adding a prerequisite session before continuing. You can:
+   > - **A)** Add a prerequisite session on [concept] and run it before retrying this test
+   > - **B)** Continue with the current session as-is"
+3. If the learner chooses A: save a checkpoint, add the prerequisite sub-goal to the plan (update the Sub-Goals table, Prerequisite Graph, and Sequence), then run the new prerequisite session. After it completes, resume the current session from the checkpoint.
+4. If the learner chooses B: continue normally. The gap is noted in the learner profile for future reference.
 
 ### Phase 2: EVALUATE
 
@@ -171,6 +210,8 @@ Present a NEW practical case testing the same competencies:
 - Same competencies being assessed
 - Same pass criteria
 - Same format (practical, immediate, no preamble)
+- MUST include both the "not familiar" and "clarification" notes at the end (same as Initial Test)
+- The Term Clarification Protocol applies identically during the Final Test
 
 ### Phase 5: EVALUATE FINAL
 

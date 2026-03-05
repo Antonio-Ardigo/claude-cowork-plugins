@@ -273,6 +273,42 @@ Your estimate includes "builder's risk insurance: $45,000" and "possible soil re
 ---
 ```
 
+## Key Terms Appendix
+
+Every teaching block (abbreviated or full) MUST end with a **Key Terms** table before the Quick Check. This table defines every domain-specific term introduced or used in the explanation.
+
+```markdown
+**Key Terms**
+| Term | Definition | First appears |
+|------|-----------|---------------|
+| <term> | <one-sentence definition> | <Principle N / Worked Example / etc.> |
+```
+
+### Rules
+
+- Include ALL domain terms used in the teaching block, not just new ones
+- Definitions must be self-contained — a reader should understand each term without reading the full explanation
+- Use the term's formal name (e.g., "Hermitian matrix" not "that kind of matrix")
+- If a term has a common synonym, note it: "Self-adjoint (also: Hermitian in finite dimensions)"
+- For mathematical terms, include the LaTeX notation: "Conjugate transpose: $A^*$ or $A^\dagger$"
+- Order terms by first appearance in the teaching block, not alphabetically
+- The Key Terms table is included in the concept file export
+
+### Example
+
+```markdown
+**Key Terms**
+| Term | Definition | First appears |
+|------|-----------|---------------|
+| Direct cost | A cost traceable to a specific scope item on a drawing or schedule | Principle 1 |
+| Indirect cost | A project-wide cost not tied to one deliverable (e.g., site security, insurance) | Principle 1 |
+| Contingency | A probability-weighted reserve for identified risk events that may or may not occur | Principle 2 |
+| Mob/demob | Mobilization and demobilization — the cost of moving crew and equipment to and from site | Worked Example Step 2 |
+| Builder's risk insurance | Insurance covering damage to works under construction; base is typically direct costs only | Worked Example Step 2 |
+```
+
+---
+
 ## When the Quick Check Fails
 
 If the learner answers the Quick Check incorrectly:
