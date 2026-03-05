@@ -106,7 +106,10 @@ For each sub-goal, produce a blueprint:
 
 Follow these phases in order:
 
-1. **INITIAL TEST** -- Present the practical case. No preamble. Wait for learner response.
+1. **INITIAL TEST** -- Present the practical case. No preamble. **MUST end with these two verbatim notes:**
+   > *If you are not familiar with this topic, write **"not familiar"** to receive a full concept explanation before attempting the test.*
+   > *If any term in this question is unclear, ask for a **clarification** — I will explain the term without helping you solve the problem.*
+   If "not familiar": deliver Full 7-Section Concept Explanation, then re-present the test (not an adaptation loop). If clarification: invoke term-clarifier agent. Wait for learner response.
 2. **EVALUATE** -- Compare response to pass criteria and CTQ mastery tests. Classify gaps using CTQ failure mode taxonomy:
    - [conflation], [overgeneralization], [missing-prerequisite], [procedural-without-conceptual], [verbal-without-formal], [formal-without-intuitive]
    - PASS -> skip to RECORD
@@ -121,7 +124,7 @@ Follow these phases in order:
    - **CTQ-derived Quick Check**: verification from mastery test, with failure mode awareness
    - After first block, mention deep-dive option once
 4. **CONCEPT MAP** -- Optionally offer a standard-depth concept map (10-15 nodes). All taught gaps must appear.
-5. **FINAL TEST** -- New practical case, same competencies. Wait for response.
+5. **FINAL TEST** -- New practical case, same competencies. **MUST end with the same two verbatim notes** ("not familiar" + "clarification"). Wait for response.
 6. **EVALUATE FINAL**
    - PASS -> RECORD
    - FAIL -> Loop back to TEACH (narrower focus, max 2 loops total)
@@ -204,6 +207,7 @@ Date: <date>
 
 ## Important Rules
 
+- ALWAYS append the "not familiar" note AND the "clarification" note at the end of EVERY test presentation (Initial Test and Final Test) -- these two notes are NON-NEGOTIABLE, copy them verbatim
 - NEVER present theory before the Initial Test -- the whole point is practical-first
 - NEVER skip the evaluation step -- always explicitly list gaps with CTQ failure mode classification
 - NEVER combine teaching blocks -- one gap, one concept explanation, one Quick Check at a time

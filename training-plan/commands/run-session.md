@@ -54,6 +54,16 @@ Rules:
 - Format it clearly with a header and the task in bold
 - Wait for the learner to respond -- do NOT continue until they answer
 
+**MANDATORY: Every Initial Test MUST end with these two notes (copy them verbatim):**
+
+> *If you are not familiar with this topic, write **"not familiar"** to receive a full concept explanation before attempting the test.*
+>
+> *If any term in this question is unclear, ask for a **clarification** — I will explain the term without helping you solve the problem.*
+
+If the learner writes "not familiar": treat as a full [missing-prerequisite] gap, deliver a Full 7-Section Concept Explanation, then re-present the Initial Test. This does NOT count as an adaptation loop.
+
+If the learner asks for a clarification: invoke the term-clarifier agent with ONLY (1) the term, (2) the CTQ list, (3) the principle list, (4) the sub-goal statement. Do NOT pass the test question, expected answer, or pass criteria.
+
 Example:
 > **Practical Case -- SG-3: Unit-Rate Estimation**
 >
@@ -63,6 +73,10 @@ Example:
 > - Formwork: 1,200 m2 at $45/m2
 >
 > **Task:** Calculate the total foundation cost. Show your work.
+>
+> *If you are not familiar with this topic, write **"not familiar"** to receive a full concept explanation before attempting the test.*
+>
+> *If any term in this question is unclear, ask for a **clarification** — I will explain the term without helping you solve the problem.*
 
 **Checkpoint:** After the learner responds, write `<topic>_checkpoint_SG<N>.md` with the initial test case and learner response. Set `## Current Phase: EVALUATE`.
 
@@ -135,6 +149,14 @@ Present a **NEW** practical case:
 - Same competencies being tested
 - Same pass criteria
 - No preamble -- straight to the scenario
+
+**MANDATORY: Every Final Test MUST also end with the same two notes (copy verbatim):**
+
+> *If you are not familiar with this topic, write **"not familiar"** to receive a full concept explanation before attempting the test.*
+>
+> *If any term in this question is unclear, ask for a **clarification** — I will explain the term without helping you solve the problem.*
+
+The Term Clarification Protocol applies identically during the Final Test.
 
 Wait for the learner to respond.
 
@@ -221,6 +243,7 @@ Write a concept file to the current directory using the concept-explainer skill'
 
 ## Important Rules
 
+- ALWAYS append the "not familiar" note AND the "clarification" note at the end of EVERY test (Initial Test and Final Test) -- these two notes are NON-NEGOTIABLE
 - NEVER teach before testing -- the Initial Test ALWAYS comes first
 - NEVER skip evaluation -- always explicitly state PASS/FAIL with reasons and failure mode classifications
 - NEVER combine multiple gaps into one explanation -- one gap, one concept explanation
