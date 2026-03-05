@@ -109,7 +109,7 @@ Follow these phases in order:
 1. **INITIAL TEST** -- Present the practical case. No preamble. **MUST end with these two verbatim notes:**
    > *If you are not familiar with this topic, write **"not familiar"** to receive a full concept explanation before attempting the test.*
    > *If any term in this question is unclear, ask for a **clarification** — I will explain the term without helping you solve the problem.*
-   If "not familiar": deliver Full 7-Section Concept Explanation, then re-present the test (not an adaptation loop). If clarification: invoke term-clarifier agent. Wait for learner response.
+   If "not familiar": deliver Full 7-Section Concept Explanation, then re-present the test (not an adaptation loop). If clarification: invoke term-clarifier agent. If term-clarifier returns PLAN-REVISION-REQUEST: after learner submits answer, offer (A) add prerequisite SG or (B) continue as-is. Wait for learner response.
 2. **EVALUATE** -- Compare response to pass criteria and CTQ mastery tests. Classify gaps using CTQ failure mode taxonomy:
    - [conflation], [overgeneralization], [missing-prerequisite], [procedural-without-conceptual], [verbal-without-formal], [formal-without-intuitive]
    - PASS -> skip to RECORD
@@ -121,7 +121,7 @@ Follow these phases in order:
    - **Key Innovations**: breakthroughs and techniques (if applicable)
    - **Worked Example**: FULLY DEVELOPED step-by-step example -- every intermediate step shown and annotated with "Why" and "Note" (ALWAYS included, even in abbreviated form)
    - **Intuitive Formalization**: math where relevant (if complex gap at intermediate+)
-   - **CTQ-derived Quick Check**: verification from mastery test, with failure mode awareness
+   - **CTQ-derived Quick Check**: verification from mastery test, with failure mode awareness. MUST end with clarification note. **NEVER show expected answer before learner responds** — present only the question, wait for response, then reveal answer and evaluate.
    - After first block, mention deep-dive option once
 4. **CONCEPT MAP** -- Optionally offer a standard-depth concept map (10-15 nodes). All taught gaps must appear.
 5. **FINAL TEST** -- New practical case, same competencies. **MUST end with the same two verbatim notes** ("not familiar" + "clarification"). Wait for response.
@@ -208,6 +208,7 @@ Date: <date>
 ## Important Rules
 
 - ALWAYS append the "not familiar" note AND the "clarification" note at the end of EVERY test presentation (Initial Test and Final Test) -- these two notes are NON-NEGOTIABLE, copy them verbatim
+- NEVER reveal expected answers or "Watch for" hints BEFORE the learner responds -- this applies to ALL questions (Initial Test, Quick Checks, Final Test). Present the question, wait, THEN show the answer.
 - NEVER present theory before the Initial Test -- the whole point is practical-first
 - NEVER skip the evaluation step -- always explicitly list gaps with CTQ failure mode classification
 - NEVER combine teaching blocks -- one gap, one concept explanation, one Quick Check at a time

@@ -64,6 +64,13 @@ If the learner writes "not familiar": treat as a full [missing-prerequisite] gap
 
 If the learner asks for a clarification: invoke the term-clarifier agent with ONLY (1) the term, (2) the CTQ list, (3) the principle list, (4) the sub-goal statement. Do NOT pass the test question, expected answer, or pass criteria.
 
+If the term-clarifier returns a **PLAN-REVISION-REQUEST** (critical missing prerequisite): show the clarification to the learner normally. After the learner submits their test answer (or says "not familiar"), present:
+> "During this test, you asked about **[term]** which is a foundational concept not currently covered in your training plan. You can:
+> - **A)** Add a prerequisite session on [concept] and run it before retrying this test
+> - **B)** Continue with the current session as-is"
+If A: save checkpoint, add the prerequisite sub-goal to the plan (update Sub-Goals table, Prerequisite Graph, and Sequence), then run the new prerequisite session. After it completes, resume this session from the checkpoint.
+If B: continue normally, note the gap in the learner profile.
+
 Example:
 > **Practical Case -- SG-3: Unit-Rate Estimation**
 >
@@ -113,7 +120,9 @@ Use the sub-goal's blueprint Estimated Depth. Default: intermediate.
 
 **Step 3: Deliver the concept explanation**
 - ONE explanation per gap, delivered sequentially
-- After each Quick Check (CTQ-derived), wait for the learner's answer
+- Every Quick Check MUST end with: `*If any term in this question is unclear, ask for a **clarification**.*`
+- **NEVER show the expected answer or "Watch for" hint before the learner responds.** Present ONLY the question + clarification note. After the learner answers, reveal the expected answer, evaluate, and proceed.
+- If the learner asks for a clarification during a Quick Check: invoke the term-clarifier agent (same protocol as during tests)
 - If they get the Quick Check wrong: re-explain using a different angle, give one more CTQ check
 - If they fail the second check: note as persistent gap, proceed to next gap
 
@@ -244,6 +253,7 @@ Write a concept file to the current directory using the concept-explainer skill'
 ## Important Rules
 
 - ALWAYS append the "not familiar" note AND the "clarification" note at the end of EVERY test (Initial Test and Final Test) -- these two notes are NON-NEGOTIABLE
+- NEVER reveal expected answers or "Watch for" hints BEFORE the learner responds -- this applies to ALL questions (Initial Test, Quick Checks, Final Test). Present the question, wait, THEN show the answer.
 - NEVER teach before testing -- the Initial Test ALWAYS comes first
 - NEVER skip evaluation -- always explicitly state PASS/FAIL with reasons and failure mode classifications
 - NEVER combine multiple gaps into one explanation -- one gap, one concept explanation

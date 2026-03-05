@@ -188,6 +188,9 @@ For each identified gap, generate a concept explanation using the `content-build
 
 Rules:
 - Deliver ONE explanation at a time
+- Every Quick Check MUST end with: `*If any term in this question is unclear, ask for a **clarification**.*`
+- **NEVER show expected answers or "Watch for" hints before the learner responds to a Quick Check.** Present the question + clarification note, wait for the learner's answer, THEN reveal the expected answer and evaluate.
+- If the learner asks for a clarification during a Quick Check: invoke the term-clarifier agent (same protocol as during tests)
 - Wait for the learner to complete the Quick Check before moving to the next
 - If the Quick Check fails, re-explain that specific point before moving on
 - After ALL gaps are taught, proceed to Phase 3.5

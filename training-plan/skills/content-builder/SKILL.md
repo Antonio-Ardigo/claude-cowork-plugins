@@ -34,8 +34,12 @@ See concept-explainer skill Section 3.5 for domain templates.>
 
 **Quick Check** (CTQ: [source principle])
 <CTQ-derived verification question>
-(Expected answer: <answer>)
-(Watch for: <failure mode>)
+
+*If any term in this question is unclear, ask for a **clarification**.*
+
+<!-- HIDDEN — do NOT show to the learner until AFTER they respond:
+Expected answer: <answer>
+Watch for: <failure mode> -->
 
 ---
 ```
@@ -50,7 +54,7 @@ Deliver all 7 sections from the concept-explainer skill at the session's depth l
 4. **Worked Example** -- FULLY DEVELOPED step-by-step example with every intermediate step shown, every algebraic/linguistic/logical transformation explicit, annotated with "Why" and "Note" at each step. See concept-explainer skill Section 3.5 for format and domain templates.
 5. **Intuitive Formalization** -- Minimum math to make predictions
 6. **CTQ Mapping** -- Mastery criteria table with failure modes
-7. **Quick Check** (CTQ-derived) -- Verification question from the CTQ mastery test
+7. **Quick Check** (CTQ-derived) -- Verification question from the CTQ mastery test. Include clarification note. HIDE expected answer until the learner responds.
 
 ### Concept Comparison (for conflation gaps)
 
@@ -110,6 +114,8 @@ Quick Checks are derived from CTQ mastery tests:
 - The expected answer is specific and verifiable
 - The "Watch for" line identifies the most likely failure mode
 - Must test understanding, not recall: "When would you use X?" not "What is the definition of X?"
+- Every Quick Check MUST end with: `*If any term in this question is unclear, ask for a **clarification**.*`
+- The expected answer and "Watch for" hint are HIDDEN from the learner — only reveal AFTER the learner responds
 
 ## Example: Abbreviated Concept Explanation
 
@@ -149,8 +155,12 @@ $$38.0 \text{ t} \times \$2{,}100/\text{t} = \$79{,}800$$
 
 **Quick Check** (CTQ: dimensional consistency)
 Your quantity is 38,000 kg of rebar. The rate card says $2,100/t. What is the correct rebar cost?
-(Expected answer: 38,000 kg / 1,000 kg/t = 38.0 t; 38.0 t x $2,100/t = $79,800)
-(Watch for: overgeneralization -- applying the rate directly without unit conversion)
+
+*If any term in this question is unclear, ask for a **clarification**.*
+
+<!-- HIDDEN — reveal ONLY after the learner responds:
+Expected answer: 38,000 kg / 1,000 kg/t = 38.0 t; 38.0 t x $2,100/t = $79,800
+Watch for: overgeneralization -- applying the rate directly without unit conversion -->
 
 ---
 ```
@@ -267,8 +277,12 @@ $$\text{Total Estimate} = \sum \text{Direct}_i + \sum \text{Indirect}_j + \text{
 
 **Quick Check** (CTQ: classification)
 Your estimate includes "builder's risk insurance: $45,000" and "possible soil remediation if contamination found: $120,000." Which is indirect and which is contingency, and why?
-(Expected answer: Insurance is indirect -- it's a known, project-wide cost that will be paid regardless. Soil remediation is contingency -- it depends on a risk event that may not occur.)
-(Watch for: conflation -- calling both "indirect" because neither is tied to a specific scope item)
+
+*If any term in this question is unclear, ask for a **clarification**.*
+
+<!-- HIDDEN — reveal ONLY after the learner responds:
+Expected answer: Insurance is indirect -- it's a known, project-wide cost that will be paid regardless. Soil remediation is contingency -- it depends on a risk event that may not occur.
+Watch for: conflation -- calling both "indirect" because neither is tied to a specific scope item -->
 
 ---
 ```
@@ -310,6 +324,11 @@ Every teaching block (abbreviated or full) MUST end with a **Key Terms** table b
 ---
 
 ## When the Quick Check Fails
+
+After the learner responds to the Quick Check, reveal the expected answer and the "Watch for" failure mode. Then evaluate:
+
+- **Correct**: Acknowledge, proceed to next gap or Phase 3.5
+- **Incorrect**: Follow the re-teach protocol below
 
 If the learner answers the Quick Check incorrectly:
 
