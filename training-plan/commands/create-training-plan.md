@@ -105,6 +105,7 @@ For each sub-goal, design a TTT session blueprint.
 - **Pass Criteria**: Concrete, measurable threshold (e.g., "identifies 8 of 10 categories", "calculation within 5%")
 - **Estimated Depth**: introductory / intermediate / advanced (derived from sub-goal difficulty)
 - **Principle**: Which principle(s) from Step 1.75 this sub-goal tests
+- **Exercise**: A simple, concrete, self-contained hands-on exercise the learner can do to practice this concept. Should be completable in 5-10 minutes with clear instructions and expected outcome. Different from the Initial/Final Tests — this is a practice activity, not an assessment.
 - **Anticipated CTQs**: 2-4 Critical-To-Quality criteria for this sub-goal. Each CTQ: what must be understood + mastery test + common failure mode (using CTQ failure mode taxonomy: conflation, overgeneralization, missing-prerequisite, procedural-without-conceptual, verbal-without-formal, formal-without-intuitive)
 - **Teach Topics**: Key concepts, exercises, and known pitfalls with CTQ failure mode classification (e.g., "[conflation]: confusing indirect costs with contingency", "[procedural-without-conceptual]: applying formula without understanding boundary conditions")
 - **Final Test**: A DIFFERENT practical case testing the same competencies
@@ -118,6 +119,7 @@ Core Principle blueprints include a **fully worked example in the plan itself** 
 - **Initial Test**: A simple scenario testing whether the learner can STATE the principle in their own words AND APPLY it to a basic case. Simpler than Key Concept tests.
 - **Pass Criteria**: "Can state the principle in own words AND apply it to a basic scenario correctly"
 - **Estimated Depth**: Always introductory
+- **Exercise**: A simple, concrete, self-contained hands-on exercise the learner can do to practice this principle. Should be completable in 5-10 minutes. Different from the Initial/Final Tests — this is a practice activity, not an assessment.
 - **Anticipated CTQs**: 1-2 CTQs focused on understanding the principle, not applying advanced techniques
 - **Teach Topics**: The principle itself, its boundary conditions, common misunderstandings
 - **Final Test**: A DIFFERENT simple scenario testing the same principle
@@ -177,6 +179,7 @@ Generated: <date> | Status: in-progress
 - **Pass Criteria:** <measurable threshold>
 - **Estimated Depth:** introductory
 - **Principle:** —
+- **Exercise:** <simple hands-on exercise, 5-10 min, concrete and self-contained>
 - **Anticipated CTQs:**
   | CTQ | Source | Mastery Test | Common Failure Mode |
   |-----|--------|-------------|---------------------|
@@ -196,6 +199,7 @@ Generated: <date> | Status: in-progress
 - **Initial Test:** <simple scenario testing principle understanding>
 - **Pass Criteria:** Can state the principle in own words AND apply it to a basic scenario correctly
 - **Estimated Depth:** introductory
+- **Exercise:** <simple hands-on exercise, 5-10 min, concrete and self-contained>
 - **Anticipated CTQs:**
   | CTQ | Source | Mastery Test | Common Failure Mode |
   |-----|--------|-------------|---------------------|
@@ -208,6 +212,7 @@ Generated: <date> | Status: in-progress
 - **Pass Criteria:** <measurable threshold>
 - **Estimated Depth:** <introductory/intermediate/advanced>
 - **Principle:** <principle name>
+- **Exercise:** <simple hands-on exercise, 5-10 min, concrete and self-contained>
 - **Anticipated CTQs:**
   | CTQ | Source | Mastery Test | Common Failure Mode |
   |-----|--------|-------------|---------------------|
