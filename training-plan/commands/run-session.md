@@ -14,7 +14,9 @@ The user wants to work on: **$ARGUMENTS**
 
 ## Step 0: Find the Training Plan
 
-Use Glob to find `*_training_plan.md` in the current directory. Read the file. If no plan exists, tell the user to run `/create-training-plan` first.
+Use Glob to find `*_training_plan.md` or `*-socratic_training_plan.md` in the current directory. Read the file. If no plan exists, tell the user to run `/create-training-plan` or `/socratic-training-plan` first.
+
+**Detect Socratic mode:** If the plan filename ends with `-socratic_training_plan.md` OR the plan contains a `## Pedagogical Method: Socratic Discovery` section, this is a **Socratic plan**. All subsequent phases MUST follow the Socratic execution rules described below. Set a mental flag: `SOCRATIC = true`.
 
 ## Step 1: Identify the Target Sub-Goal
 
@@ -53,6 +55,17 @@ Rules:
 - Start directly with the scenario and task
 - Format it clearly with a header and the task in bold
 - Wait for the learner to respond -- do NOT continue until they answer
+
+**SOCRATIC MODE — Phase 1 additions (if SOCRATIC = true):**
+
+Before presenting the Initial Test case, present the **Discovery Question** from the blueprint. The Discovery Question creates genuine puzzlement — the learner must *feel* the gap before attempting the test.
+
+Format:
+> **Discovery Question**
+>
+> <the Discovery Question from the blueprint>
+
+Then present the Initial Test case. The test is designed so the learner's natural first attempt fails or is incomplete — this is the **designed wrong path**. Do NOT warn the learner about the wrong path. Let them hit it naturally.
 
 **Core Principle SGs — special handling:**
 For sub-goals with Axis = "Core Principle", the Initial Test is simpler — it tests whether the learner can state and apply the foundational principle, not perform complex applications. The blueprint includes a fully worked example. Session flow:
@@ -113,6 +126,13 @@ After the learner responds, evaluate against the pass criteria and CTQ mastery t
 - If PASS: tell them, then skip to Phase 6
 - If PARTIAL or FAIL: list the specific gaps with CTQ failure mode classification, then proceed to Phase 3
 
+**SOCRATIC MODE — Phase 2 additions (if SOCRATIC = true):**
+
+When evaluating, explicitly note whether the learner hit the **designed wrong path** from the blueprint. If they did, name the tension:
+> "Your approach assumed [wrong path assumption]. This is exactly the tension this concept resolves — [brief statement of why the wrong path fails]."
+
+This makes the gap visible and creates the *desire* for the concept. Do NOT explain the concept yet — just name the tension. The resolution comes in Phase 3.
+
 Classify each gap using the CTQ failure mode taxonomy:
 - "Gap [conflation]: confused indirect costs with contingency"
 - "Gap [procedural-without-conceptual]: applied formula but cannot explain reasoning"
@@ -151,6 +171,41 @@ After the FIRST teaching block, mention once:
 
 After ALL gaps are taught and Quick Checks addressed, proceed to Phase 3.5.
 
+**SOCRATIC MODE — Phase 3 replacement (if SOCRATIC = true):**
+
+When SOCRATIC = true, **replace** the standard declarative teaching with Socratic guided discovery. The content is the same; the delivery method changes fundamentally.
+
+**Socratic Teach Protocol:**
+
+For EACH identified gap:
+
+1. **Name the tension** (from Phase 2): Remind the learner of the specific failure and why their approach didn't work. Do NOT give the answer yet.
+
+2. **Deploy the Socratic Guidance Chain** from the blueprint. Present questions ONE AT A TIME:
+   - Present question 1. Wait for the learner's response.
+   - Based on their answer, present question 2 (or adapt it). Wait.
+   - Continue until the chain's final question, which should make the conclusion **inescapable**.
+   - If the learner arrives at the concept themselves at ANY point in the chain, confirm and move to step 3.
+   - If the learner is stuck after the full chain, THEN (and only then) explain the concept directly — but frame it as: "Here's what the chain was leading to:" not as new information.
+
+3. **Resolution**: The concept emerges as the *only* way to resolve the tension. Frame it as an inevitability:
+   - Instead of: "The Born rule states P = |psi|^2"
+   - Say: "So the only operation on psi that gives a non-negative number summing to 1 is... what?" (let them say it)
+   - Or: "You just showed that [their reasoning]. This is exactly [concept name]."
+
+4. **Quick Check**: Same as standard — CTQ-derived, wait for response, clarification note. But phrase the Quick Check as: "Now reconstruct why [concept] is the only resolution to the tension we started with."
+
+5. **If Quick Check fails**: Do NOT re-explain declaratively. Instead, return to the Guidance Chain at the point where the learner's reasoning broke down. Ask a different narrowing question targeting that specific break.
+
+**Key Socratic rules for Phase 3:**
+- NEVER state a concept before the learner has attempted to derive it
+- NEVER give the answer in a question ("Isn't it true that X?" is NOT Socratic — it's leading)
+- Guidance Chain questions must be GENUINE questions with a search space, not rhetorical
+- Prefer "What would happen if..." and "Why can't we just..." over "Can you see that..."
+- If the learner says something wrong, do NOT correct immediately — ask "What does that predict for [specific case]?" and let the prediction fail
+- Each question narrows the search space WITHOUT giving the answer
+- The deep-dive option still applies (mention once after first block)
+
 **Checkpoint:** After EACH teaching block and Quick Check, update `<topic>_checkpoint_SG<N>.md` with the completed block (including format used: abbreviated/full/comparison). Update `## Current Phase: TEACH (Gap N of M completed)`. After the final block, set `## Current Phase: CONCEPT_MAP_OFFER`.
 
 ### Phase 3.5: OPTIONAL CONCEPT MAP
@@ -174,6 +229,13 @@ Present a **NEW** practical case:
 - Same competencies being tested
 - Same pass criteria
 - No preamble -- straight to the scenario
+
+**SOCRATIC MODE — Phase 4 additions (if SOCRATIC = true):**
+
+The Final Test MUST include a **"reconstruct the reasoning"** component. In addition to the practical case, add:
+> **Part B:** Explain *why* your approach works. What would go wrong if you used [the wrong path from the Initial Test] instead?
+
+This tests whether the learner can reconstruct the reasoning chain, not just apply a memorized procedure. The learner must demonstrate they understand WHY the concept resolves the tension, not just THAT it does.
 
 **MANDATORY: Every Final Test MUST also end with the same two notes (copy verbatim):**
 

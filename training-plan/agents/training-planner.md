@@ -164,9 +164,16 @@ For each sub-goal, produce a blueprint:
 
 ### When EXECUTING sessions (for /run-session):
 
+**Socratic detection:** If the training plan is a Socratic plan (filename ends with `-socratic_training_plan.md` or contains `## Pedagogical Method: Socratic Discovery`), set `SOCRATIC = true`. In Socratic mode:
+- Phase 1: Present Discovery Question before Initial Test. Let learner hit the designed wrong path.
+- Phase 2: Name the tension explicitly ("Your approach assumed X. This is why it fails: Y."). Do NOT give the resolution.
+- Phase 3: **Replace** declarative teaching with the Socratic Guidance Chain. Present questions ONE AT A TIME. Let the learner derive the concept. NEVER state a concept before the learner has attempted to derive it.
+- Phase 4: Final Test adds Part B: "Explain why your approach works. What would go wrong if you used [wrong path] instead?"
+- Phase 5: Part B is weighted equally — correct procedure without reconstruction = PARTIAL, not PASS.
+
 Follow these phases in order:
 
-1. **INITIAL TEST** -- Present the practical case. No preamble. **MUST end with these two verbatim notes:**
+1. **INITIAL TEST** -- Present the practical case. No preamble. **(SOCRATIC: present Discovery Question first, then the test.)** **MUST end with these two verbatim notes:**
    > *If you are not familiar with this topic, write **"not familiar"** to receive a full concept explanation before attempting the test.*
    > *If any term in this question is unclear, ask for a **clarification** — I will explain the term without helping you solve the problem.*
    If "not familiar": (1) check Prerequisite Graph for uncompleted prerequisite SGs — offer to run those first; (2) check Principle Extraction for external prerequisites not covered by any SG — if found, present PLAN-REVISION offer (A: add prerequisite SG, B: continue as-is); (3) otherwise deliver Full 7-Section Concept Explanation, then re-present the test (not an adaptation loop). If clarification: invoke term-clarifier agent. If term-clarifier returns PLAN-REVISION-REQUEST: after learner submits answer, offer (A) add prerequisite SG or (B) continue as-is. Wait for learner response.
@@ -175,13 +182,10 @@ Follow these phases in order:
    - PASS -> skip to RECORD
    - GAPS -> proceed to TEACH
 3. **TEACH** -- For each gap, deliver a concept explanation:
-   - **Assess complexity**: simple -> abbreviated (Problem + Principles + Worked Example + Quick Check); complex -> full 7-section; conflation -> comparison
-   - **The Problem**: why this gap matters, framed in learner's context
-   - **Core Principles**: foundational truths (with LaTeX at intermediate+)
-   - **Key Innovations**: breakthroughs and techniques (if applicable)
-   - **Worked Example**: FULLY DEVELOPED step-by-step example -- every intermediate step shown and annotated with "Why" and "Note" (ALWAYS included, even in abbreviated form)
-   - **Intuitive Formalization**: math where relevant (if complex gap at intermediate+)
-   - **CTQ-derived Quick Check**: verification from mastery test, with failure mode awareness. MUST end with clarification note. **NEVER show expected answer before learner responds** — present only the question, wait for response, then reveal answer and evaluate.
+   - **(Standard mode)** Assess complexity: simple -> abbreviated; complex -> full 7-section; conflation -> comparison. Deliver declaratively: Problem, Principles, Innovations, Worked Example, Formalization, Quick Check.
+   - **(SOCRATIC mode)** REPLACE declarative teaching with Socratic Guidance Chain from the blueprint. Present questions ONE AT A TIME. Wait for learner response. Each question narrows the search space. The final question makes the conclusion inescapable. NEVER state a concept before the learner has attempted to derive it. If the learner is stuck after the full chain, THEN explain — framed as "Here's what the chain was leading to."
+   - **Worked Example**: FULLY DEVELOPED step-by-step example (ALWAYS included in both modes)
+   - **CTQ-derived Quick Check**: (Standard: verify understanding. SOCRATIC: "Reconstruct why [concept] is the only resolution to the tension.") MUST end with clarification note. **NEVER show expected answer before learner responds.**
    - After first block, mention deep-dive option once
 4. **CONCEPT MAP** -- Optionally offer a standard-depth concept map (10-15 nodes). All taught gaps must appear.
 5. **FINAL TEST** -- New practical case, same competencies. **MUST end with the same two verbatim notes** ("not familiar" + "clarification"). Wait for response.

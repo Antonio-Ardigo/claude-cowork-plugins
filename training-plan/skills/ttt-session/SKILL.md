@@ -237,6 +237,83 @@ Update the training plan file, write the session transcript, delete checkpoint, 
 
 ---
 
+## Socratic Execution Mode
+
+When running a session from a Socratic training plan (filename ends with `-socratic_training_plan.md` or contains `## Pedagogical Method: Socratic Discovery`), the standard TTT protocol is augmented with Socratic discovery mechanics. The session follows a **Question -> Tension -> Resolution -> Test** arc instead of the standard **Test -> Teach -> Test** arc.
+
+### Detection
+
+At Step 0, when reading the training plan, check for Socratic mode. If detected, set `SOCRATIC = true` and apply the modifications below to every phase.
+
+### Phase 1 Modification: Discovery Question Before Initial Test
+
+Before presenting the Initial Test, present the blueprint's **Discovery Question**. This creates genuine puzzlement — the learner must *feel* the gap.
+
+The Initial Test is designed with a **wrong path** — a plausible but incorrect approach. Do NOT warn the learner. Let them hit the wrong path naturally. The tension between their attempt and the correct answer is the pedagogical engine.
+
+### Phase 2 Modification: Name the Tension
+
+When evaluating, explicitly identify whether the learner hit the designed wrong path:
+> "Your approach assumed [wrong path]. This is exactly the tension: [why the wrong path fails]."
+
+Name the tension but do NOT explain the resolution. The learner should now *want* the concept.
+
+### Phase 3 Modification: Socratic Guided Discovery (replaces declarative teaching)
+
+**This is the most critical change.** Instead of declaring concepts, guide the learner to discover them.
+
+For each gap:
+
+1. **Remind of the tension**: What failed and why.
+
+2. **Deploy the Socratic Guidance Chain** from the blueprint (3-6 questions). Present ONE question at a time:
+   - Wait for the learner's response to each question
+   - Each question narrows the search space without giving the answer
+   - The final question makes the conclusion inescapable
+   - If the learner derives the concept at any point, confirm immediately and skip remaining chain questions
+   - If the learner is stuck after the full chain, explain — but frame as "Here's what the chain was leading to:" not as new information
+
+3. **Resolution as inevitability**: The concept emerges as the ONLY way to resolve the tension.
+   - Frame conclusions as questions: "So the only operation that gives a non-negative number summing to 1 is...?"
+   - Or: "You just showed that [their reasoning]. This is exactly [concept name]."
+   - NEVER state a concept before the learner has attempted to derive it
+
+4. **Quick Check**: Phrase as reconstruction: "Reconstruct why [concept] is the only resolution to the tension."
+
+5. **On Quick Check failure**: Do NOT re-explain declaratively. Return to the Guidance Chain at the break point. Ask a different narrowing question.
+
+**Anti-patterns (NEVER do these in Socratic mode):**
+- "The answer is X because Y" (declarative — the learner should derive X)
+- "Isn't it true that X?" (leading, not Socratic — gives the answer in the question)
+- "Can you see that X?" (rhetorical — not a genuine question)
+- Correcting a wrong answer immediately (instead: "What does that predict for [specific case]?" — let the prediction fail)
+- Explaining before the learner has struggled (the struggle IS the learning)
+
+**Genuine Socratic questions:**
+- "What would happen if we tried [their approach] on [edge case]?"
+- "Why can't we just [simpler but wrong method]?"
+- "What constraint have we not used yet?"
+- "If [their answer] were correct, what would that imply about [consequence]?"
+
+### Phase 4 Modification: Reconstruct the Reasoning
+
+The Final Test adds a **Part B**:
+> "Explain *why* your approach works. What would go wrong if you used [wrong path from Initial Test] instead?"
+
+This tests reconstruction of reasoning, not just procedural application.
+
+### Phase 5 Modification: Evaluate Reconstruction
+
+When evaluating the Final Test in Socratic mode, Part B is weighted equally with Part A. A learner who gets Part A correct but cannot explain why (Part B) receives a PARTIAL, not a PASS.
+
+### Adaptation Loop in Socratic Mode
+
+If the learner fails the Final Test in Socratic mode:
+- Loop 1: Re-deploy a MODIFIED Guidance Chain (different questions targeting the persistent gap). Do NOT fall back to declarative teaching.
+- Loop 2 (max): If still failing after two Socratic loops, THEN deliver a brief declarative explanation as last resort, flagging: "Socratic derivation was not sufficient for this gap — direct explanation provided."
+
+---
+
 ## Adaptation Loop Summary
 
 ```text
