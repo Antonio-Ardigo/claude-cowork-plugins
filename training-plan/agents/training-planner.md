@@ -14,6 +14,15 @@ description: >
   </example>
 
   <example>
+  Context: User wants a Socratic training plan
+  user: "Create a Socratic training plan for deriving quantum mechanics from spectra"
+  assistant: "I'll use the training-planner agent to build a Socratic training plan with discovery questions and guidance chains."
+  <commentary>
+  Socratic training plan uses the same goal decomposition as /create-training-plan plus a Socratic Discovery layer (Discovery Questions, Socratic Guidance Chains, designed wrong paths, reconstruct-the-reasoning tests).
+  </commentary>
+  </example>
+
+  <example>
   Context: User has a training plan and wants to practice
   user: "Run session SG-3 on unit-rate estimation"
   assistant: "I'll use the training-planner agent to run a TTT session for that sub-goal."

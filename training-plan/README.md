@@ -26,6 +26,15 @@ Example:
 /create-training-plan I want to learn cost estimation for EPC construction projects
 ```
 
+### `/socratic-training-plan <learning goal>`
+
+Creates a Socratic training plan using the same goal decomposition structure as `/create-training-plan` (SMART goal, principle extraction, 5-axis decomposition, prerequisite graph) with a **Socratic Discovery** layer. Each session follows a **Question -> Tension -> Resolution -> Test** arc where concepts emerge as inevitable discoveries rather than delivered facts. Blueprints include Discovery Questions, designed "wrong paths," Socratic Guidance Chains (3-6 progressively narrowing questions), and "reconstruct the reasoning" final tests.
+
+Example:
+```
+/socratic-training-plan Derive quantum mechanics from experimental spectra
+```
+
 ### `/run-session <sub-goal>`
 
 Runs an interactive TTT session for one sub-goal. Teaches using concept-builder methodology (Problem, Principles, Innovations, Worked Example, Formalization, CTQ, Conceptual Map). Saves checkpoints after each phase. Exports a concept file on completion.
@@ -55,13 +64,14 @@ Example:
 
 - **1 agent**: `training-planner` (orchestrator)
 - **5 skills**: `goal-decomposer`, `ttt-session`, `content-builder`, `concept-explainer`, `learner-analytics`
-- **4 commands**: `/create-training-plan`, `/run-session`, `/training-status`, `/concept-library`
+- **5 commands**: `/create-training-plan`, `/socratic-training-plan`, `/run-session`, `/training-status`, `/concept-library`
 
 ## Output Files
 
 | File | Content |
 |------|---------|
 | `<topic>_training_plan.md` | Plan + progress tracking |
+| `<topic>-socratic_training_plan.md` | Socratic plan + progress tracking |
 | `<topic>_session_SG<N>.md` | Session transcript per sub-goal |
 | `<topic>_checkpoint_SG<N>.md` | In-progress session checkpoint (deleted on completion) |
 | `learner_profile.md` | Persistent learner profile across all plans |
