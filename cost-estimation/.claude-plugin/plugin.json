@@ -1,0 +1,8 @@
+{
+  "name": "cost-estimation",
+  "version": "1.0.0",
+  "description": "Civil/structural cost estimation with strict domain separation. Six knowledge domains (design assumptions, productivity rates, cost bases, data sources, company policy, construction methods) plus cross-cutting skills (quantity takeoff, scheduling, risk assessment, audit/QA). Multi-market support (international, Saudi, UAE, Egypt). BOQ generation, XLSX workbooks with charts/Gantt/histograms, Executive Summary and Audit Report DOCX outputs, engineering sketches.",
+  "author": {
+    "name": "Anton Ardigo"
+  }
+}
