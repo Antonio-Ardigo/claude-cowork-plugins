@@ -40,13 +40,13 @@ Source: Compiled from industry data, IPA benchmarks, AACE cost reference series.
 
 This mapping enables the convergence matrix. Each Market WBS category maps to one or more Trade WBS sections (the 14-section BOQ used by the bottom-up estimate).
 
-| Market WBS | Code | Maps to Trade WBS Sections | Trade WBS Description |
-|------------|------|---------------------------|----------------------|
+| Market WBS | Code | Maps to Trade WBS Sections (v2.0, 15-section BOQ) | Trade WBS Description |
+|------------|------|---------------------------------------------------|----------------------|
 | Civil/Structural | M1 | Sec 3 + 4 + 5 + 6 + 7 + 8 | Blinding + Base slab + Walls + Roof + Rebar + Formwork |
-| Earthworks | M2 | Sec 2 + 11 | Earthworks + Backfill |
-| Waterproofing | M3 | Sec 9 + 10 | Waterproofing + Joints & Waterstops |
-| Mechanical/Piping | M4 | Sec 12 | M&E / Piping |
-| Testing/Commissioning | M5 | Sec 13 + 14 | Testing & Commissioning + Sundries |
+| Earthworks | M2 | Sec 2 + 12 | Earthworks + Backfill |
+| Waterproofing | M3 | Sec 9 + 10 + 11 | Waterproofing + Joints & Waterstops + Screeds & Finishes |
+| Mechanical/Piping | M4 | Sec 13 | M&E / Piping |
+| Testing/Commissioning | M5 | Sec 14 + 15 | Testing & Commissioning + Sundries |
 | Preliminaries/Indirects | M6 | Sec 1 | Preliminaries |
 | Contractor Markup | M7 | Markup rows | Contingency + Escalation + OH&P |
 

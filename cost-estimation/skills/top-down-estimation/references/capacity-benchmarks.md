@@ -1,6 +1,8 @@
 # Capacity Benchmarks -- Top-Down Estimation Rates
 
-## RC Rectangular Water Tanks ($/m3 stored, total project cost)
+## RC Rectangular Water Tanks ($/m3 stored, TOTAL project cost INCLUDING markups)
+
+**CRITICAL: These rates are ALL-IN total project cost. They ALREADY INCLUDE contingency, escalation, and OH&P. Do NOT apply markups on top of these rates. The top-down estimate total = capacity x benchmark rate. No further markups.**
 
 | Volume Range | International (USD) | Gulf/Saudi (USD) | UAE (USD) | Egypt/S.Asia (USD) | Source |
 |-------------|--------------------|-----------------|-----------|--------------------|--------|
@@ -12,9 +14,16 @@
 | 200,000 m3 | $95-145 | $75-120 | $85-130 | $45-85 | IPA, IMARC, project data |
 
 ### Validated Reference Points
-- 100,000 m3 RC rectangular (International): $13.7M = **$137/m3** -- use as mid-range anchor
-- 100,000 m3 RC rectangular (Saudi): $11.6M = **$116/m3** -- use as mid-range anchor
+- 100,000 m3 RC rectangular (International): $13.7M = **$137/m3** total (including ~23% markups)
+- 100,000 m3 RC rectangular (Saudi): $11.6M = **$116/m3** total (including ~30% markups)
 - Saudi is typically 15-20% below international for RC tanks
+
+### Deriving Direct Cost from Total
+To split the all-in rate into direct cost + markups for the discipline breakdown:
+- Direct cost = Total / (1 + compound markup factor)
+- Saudi compound markup: 1.10 x 1.05 x 1.15 = 1.33 --> Direct = Total / 1.33
+- International compound markup: 1.08 x 1.03 x 1.12 = 1.246 --> Direct = Total / 1.246
+- Example: Saudi $116/m3 total --> Direct = $116/1.33 = **$87.22/m3** --> $8,722,000 direct for 100k m3
 
 ## RC Circular Water Tanks ($/m3 stored, total project cost)
 
@@ -60,7 +69,7 @@ Source: CEIC, GASTAT, IPA benchmarking database, IMARC Group Q4 2025.
 
 ## Discipline Breakdown Benchmarks (% of DIRECT cost, before markups)
 
-### RC Rectangular Tanks
+### RC Rectangular Tanks -- Buried/Standard (excavation depth >= 50% of wall height)
 | Market WBS | Category | Small (<25k m3) | Medium (25k-100k m3) | Large (>100k m3) |
 |-----------|----------|-----------------|----------------------|-------------------|
 | M1 | Civil/Structural | 50-55% | 48-52% | 45-50% |
@@ -70,8 +79,21 @@ Source: CEIC, GASTAT, IPA benchmarking database, IMARC Group Q4 2025.
 | M5 | Testing/Commissioning | 3-5% | 2-4% | 2-3% |
 | M6 | Preliminaries/Indirects | 14-18% | 13-16% | 12-15% |
 
+### RC Rectangular Tanks -- Surface/Shallow (excavation depth < 50% of wall height)
+| Market WBS | Category | Small (<25k m3) | Medium (25k-100k m3) | Large (>100k m3) |
+|-----------|----------|-----------------|----------------------|-------------------|
+| M1 | Civil/Structural | 52-57% | 50-55% | 48-53% |
+| M2 | Earthworks | 3-6% | 3-5% | 2-4% |
+| M3 | Waterproofing | 6-9% | 6-8% | 5-7% |
+| M4 | Mechanical/Piping | 10-14% | 10-13% | 10-12% |
+| M5 | Testing/Commissioning | 3-5% | 2-4% | 2-3% |
+| M6 | Preliminaries/Indirects | 14-18% | 13-16% | 12-15% |
+
+Note: Surface tanks have lower earthworks (no deep excavation) and correspondingly higher Civil/Structural share. Select the appropriate table based on excavation depth vs wall height.
+
 Notes:
 - Percentages are of DIRECT cost (before contingency, escalation, OH&P)
+- M1-M6 must sum to 100%
 - Civil/Structural share decreases with size (economy of scale in concrete/rebar)
 - Preliminaries share decreases with size (fixed costs spread over larger base)
 - Sum of M1-M6 = 100% of direct costs; M7 markups applied on top
