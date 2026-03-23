@@ -4,8 +4,8 @@
 
 The Market WBS organizes project cost by functional discipline. Each category has a benchmark basis (how cost is estimated) and a typical percentage range of total project cost.
 
-| Code | Category | Benchmark Basis | Typical % (RC Tanks) | Notes |
-|------|----------|----------------|----------------------|-------|
+| Code | Category | Benchmark Basis | Typical % of TOTAL project cost | Notes |
+|------|----------|----------------|--------------------------------|-------|
 | M1 | Civil/Structural | $/m3 concrete volume | 35-45% | Concrete + rebar + formwork |
 | M2 | Earthworks | $/m3 excavated volume | 5-10% | Excavation + backfill + compaction |
 | M3 | Waterproofing | $/m2 treated area | 5-8% | Membranes + coatings + joints + waterstops |
@@ -13,6 +13,12 @@ The Market WBS organizes project cost by functional discipline. Each category ha
 | M5 | Testing/Commissioning | LS or % of direct | 2-4% | Hydrostatic test, disinfection, handover |
 | M6 | Preliminaries/Indirects | % of direct or $/month x duration | 10-15% | Staff, equipment, temp works, mob/demob |
 | M7 | Contractor Markup | % compound on subtotal | 15-30% | Contingency + escalation + OH&P |
+
+**Important -- % basis clarification:**
+- M1-M6 percentages above are of TOTAL project cost (including markups). They sum to ~70-85%.
+- M7 is the remaining ~15-30%.
+- For the top-down estimation procedure in capacity-benchmarks.md, M1-M6 percentages are expressed as % of DIRECT cost (before markups), where they sum to 100%. The two sets of percentages are NOT the same -- see capacity-benchmarks.md "Discipline Breakdown Benchmarks" for the direct-cost basis.
+- The indirect-cost-structure.md file expresses indirects as 19-37% of DIRECT cost (detailed buildup). This is LARGER than the 10-15% M6 shown here because this table uses % of TOTAL, not % of DIRECT. At ~25% markup, 14% of direct = ~10.5% of total -- consistent.
 
 ### Discipline Breakdown by Asset Type (% of TOTAL project cost including markups)
 
@@ -65,7 +71,7 @@ After computing variance = (TD_amount - BU_amount) / BU_amount for each mapped c
 | M4 Mechanical/Piping | +/- 25% | Check scope completeness (M&E often underestimated) |
 | M5 Testing/Commissioning | +/- 30% | Check test requirements and commissioning scope |
 | M6 Preliminaries/Indirects | +/- 20% | Check duration and staffing level |
-| M7 Contractor Markup | +/- 10% | Check markup percentages vs company policy |
+| M7 Contractor Markup | N/A (not in convergence matrix) | Checked separately: verify markup %s match company policy in markup-structure.md |
 
 ### Convergence Status Flags
 - **CONVERGED**: Variance within threshold -- no action needed

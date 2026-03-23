@@ -177,28 +177,32 @@ Write a JSON file to the output directory with:
 
 Also write:
 - `bu_summary.md` -- human-readable summary
-- XLSX workbook data (the 18-sheet structure) as the primary deliverable
 
-### Step 10: Generate XLSX Workbook
-Generate the detailed XLSX workbook using openpyxl (via Bash/Python):
-- BOQ sheet with all 14 sections and formulas
-- Indirect Costs sheet (10-category breakdown from Step 4)
-- Schedule sheet (activity list with dates)
-- Gantt Chart sheet
-- Resource Histogram sheet
-- Risk Register sheet
-- Sensitivity sheet (tornado on top-5)
-- Unit Prices reference sheet (all rates from market file, consolidated)
-- Productivity Rates reference sheet (all rates from rates-*.md, consolidated)
-- Charts (pie, bar, area for cost breakdown)
-- Drawings sheet (placeholder for sketches)
-- References sheet (all source URLs)
-- Cover/Summary sheet
+**Note:** The bottom-up agent does NOT generate the final XLSX workbook. It writes structured JSON data files that the orchestrator (full-estimate.md) consumes to build the consolidated ~24-sheet workbook. This avoids duplication and ensures the orchestrator controls the final workbook layout including convergence, Pareto, and reference sheets.
+
+### Step 10: Write Supplementary Data Files
+Write additional JSON files for the orchestrator to consume:
+
+- `{output_dir}/bu_boq.json` -- full 14-section BOQ with all line items (item ref, description, unit, qty, rate, amount)
+- `{output_dir}/bu_indirect_detail.json` -- 10-category indirect cost breakdown with every line item
+- `{output_dir}/bu_schedule.json` -- activity list with durations, predecessors, dates, critical path flag
+- `{output_dir}/bu_resources.json` -- weekly headcount by trade for resource histogram
+- `{output_dir}/bu_risk.json` -- risk register entries + sensitivity ranges
+- `{output_dir}/bu_unit_prices.json` -- all unit rates used (item, unit, rate, source, date)
+- `{output_dir}/bu_productivity.json` -- all productivity rates used (activity, base rate, gang, climate factor, adjusted rate, source)
+
+These files give the orchestrator everything it needs to build all XLSX sheets without re-reading the .md reference files.
 
 ## Output Files
-- `{output_dir}/bu_estimate.json` -- structured data for convergence matrix
+- `{output_dir}/bu_estimate.json` -- structured summary for convergence matrix
 - `{output_dir}/bu_summary.md` -- human-readable summary for DOCX
-- `{output_dir}/{Asset}_{Volume}_{Market}.xlsx` -- full workbook
+- `{output_dir}/bu_boq.json` -- detailed BOQ data
+- `{output_dir}/bu_indirect_detail.json` -- itemized indirect costs
+- `{output_dir}/bu_schedule.json` -- schedule data
+- `{output_dir}/bu_resources.json` -- resource histogram data
+- `{output_dir}/bu_risk.json` -- risk register + sensitivity
+- `{output_dir}/bu_unit_prices.json` -- consolidated unit prices
+- `{output_dir}/bu_productivity.json` -- consolidated productivity rates
 
 ## Skills Used
 All 11 skills: design-assumptions, quantity-takeoff, cost-bases, productivity, scheduling, risk-assessment, audit-qa, company-policy, construction-methods, data-sources, top-down-estimation (for market_wbs_mapped output)

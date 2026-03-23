@@ -19,8 +19,50 @@ Orchestrates the dual-path cost estimation process. Launches the top-down and bo
 1. Extract structure type, volume, location, design code from scope brief
 2. Select geometry reference file (rc-tank-rectangular.md or rc-tank-circular.md)
 3. Calculate key dimensions (length, width, depth, wall thickness, etc.)
-4. Prepare a design assumptions summary to pass to both sub-agents
-5. Create output directory for sub-agent results
+4. Create output directory: `./{Asset}_{Volume}_{Market}_output/` in the current working directory
+5. Prepare a **Design Assumptions Summary** JSON to pass to BOTH sub-agents (ensures identical basis):
+
+```json
+{
+  "scope": {
+    "asset_type": "RC rectangular tank",
+    "capacity_m3": 100000,
+    "market": "saudi",
+    "design_code": "EN 1992-3"
+  },
+  "geometry": {
+    "configuration": "2x2 cells",
+    "length_m": 65,
+    "width_m": 65,
+    "total_depth_m": 6.5,
+    "water_depth_m": 5.92,
+    "freeboard_m": 0.58,
+    "wall_thickness_mm": 400,
+    "base_thickness_mm": 400,
+    "roof_slab_mm": 250,
+    "num_cells": 4
+  },
+  "structural": {
+    "concrete_blinding": "C12/15",
+    "concrete_walls_base": "C35/45",
+    "concrete_internal": "C30/37",
+    "concrete_columns": "C40/50",
+    "rebar_grade": "B500B",
+    "rebar_cover_mm": 40,
+    "rebar_intensity_kg_per_m3": 100
+  },
+  "site": {
+    "climate_zone": "hot_arid",
+    "productivity_factor": 0.80,
+    "soil_type": "sandy",
+    "water_table_depth_m": 15,
+    "dewatering_required": false
+  },
+  "output_dir": "./Tank_100000m3_SAUDI_output/"
+}
+```
+
+This JSON is the single source of truth for both sub-agents. Any dimension, grade, or assumption that affects cost must be in this summary.
 
 ### Step 2: Launch Top-Down Agent
 Use the Agent tool to launch `top-down-estimate`:
@@ -53,8 +95,14 @@ Use the Agent tool to launch `bottom-up-estimate`:
 |-----------|----------|--------------|--------------|-------------|-------------|--------|
 | M1 | Civil/Structural | ... | ... | ... | ... | CONVERGED |
 | M2 | Earthworks | ... | ... | ... | ... | INVESTIGATE |
-| ... | ... | ... | ... | ... | ... | ... |
-| **TOTAL** | | ... | ... | ... | ... | ... |
+| M3 | Waterproofing | ... | ... | ... | ... | CONVERGED |
+| M4 | Mechanical/Piping | ... | ... | ... | ... | CONVERGED |
+| M5 | Testing/Commissioning | ... | ... | ... | ... | CONVERGED |
+| M6 | Preliminaries/Indirects | ... | ... | ... | ... | CONVERGED |
+| **DIRECT SUBTOTAL** | | ... | ... | ... | ... | ... |
+| | | | | | | |
+| M7 | Contractor Markup (checked separately) | TD: ...% | BU: ...% | -- | -- | vs policy |
+| **GRAND TOTAL** | | ... | ... | ... | ... | ... |
 
 ### Step 5: Build Main Quantities (Pareto -- 80% of Value)
 1. Extract all BOQ line items from bu_estimate.json (or read the XLSX BOQ sheet)
@@ -212,7 +260,7 @@ Run the 10-point audit checklist from audit-qa:
 10. All costs traced to source with date
 
 **Additional convergence checks:**
-11. Convergence matrix computed for all 7 Market WBS categories
+11. Convergence matrix computed for all 6 direct-cost Market WBS categories (M1-M6; M7 markups checked separately against company policy)
 12. Total convergence variance within +/-15%
 13. No SCOPE GAP flags (all categories populated in both estimates)
 14. Indirect Costs sheet total matches BOQ Section 1 total
@@ -225,7 +273,15 @@ Fix any findings. Report summary.
 - Scope brief (natural language)
 - Optional: specific parameters, market overrides, custom rates
 
-## Outputs
+## Output Directory Convention
+All files are written to `./{Asset}_{Volume}_{Market}_output/` in the current working directory.
+Example: `./Tank_100000m3_SAUDI_output/`
+
+Sub-agent intermediate files (JSON):
+- `td_estimate.json`, `td_summary.md` (from top-down agent)
+- `bu_estimate.json`, `bu_summary.md`, `bu_boq.json`, `bu_indirect_detail.json`, `bu_schedule.json`, `bu_resources.json`, `bu_risk.json`, `bu_unit_prices.json`, `bu_productivity.json` (from bottom-up agent)
+
+Final deliverables (in same directory):
 - `{Asset}_{Volume}_{Market}.xlsx` -- consolidated workbook (~24 sheets)
 - `{Asset}_Executive_Summary_{Market}.docx` -- 6-8 page summary with convergence discussion
 - `{Asset}_Audit_Report_{Market}.docx` -- audit with convergence check
