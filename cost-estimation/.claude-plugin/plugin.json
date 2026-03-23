@@ -1,7 +1,7 @@
 {
   "name": "cost-estimation",
-  "version": "1.0.0",
-  "description": "Civil/structural cost estimation with strict domain separation. Six knowledge domains (design assumptions, productivity rates, cost bases, data sources, company policy, construction methods) plus cross-cutting skills (quantity takeoff, scheduling, risk assessment, audit/QA). Multi-market support (international, Saudi, UAE, Egypt). BOQ generation, XLSX workbooks with charts/Gantt/histograms, Executive Summary and Audit Report DOCX outputs, engineering sketches.",
+  "version": "2.0.0",
+  "description": "Civil/structural cost estimation with dual-path architecture: top-down (market benchmarks, Market WBS) and bottom-up (detailed BOQ, Trade WBS) agents run independently, then converge in a comparison matrix. Seven knowledge domains (design assumptions, productivity rates, cost bases, data sources, company policy, construction methods, top-down estimation) plus cross-cutting skills (quantity takeoff, scheduling, risk assessment, audit/QA). Separate reference sheets for unit prices and productivity rates. Detailed indirect cost breakdown (manning, equipment, shop drawings, mobilization). Main quantities Pareto analysis. Multi-market support. XLSX workbooks (~24 sheets with charts/Gantt/histograms/convergence), Executive Summary and Audit Report DOCX outputs, engineering sketches.",
   "author": {
     "name": "Anton Ardigo"
   }
